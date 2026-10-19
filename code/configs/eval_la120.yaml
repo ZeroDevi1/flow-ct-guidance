@@ -1,0 +1,23 @@
+# 限角 0–120°（每 1° 一个投影，共 120 个），无噪声；Phase 1b 外推设置
+seed: 0
+data:
+  type: slices
+  processed_dir: /root/autodl-tmp/data/totalseg/processed
+  split: test200
+  n_test: 200
+physics:
+  n_angles: 120
+  angle_range: 2.0943951023931953
+  i0: null
+  sigma: 0.0
+sampling:
+  nfe: 50
+  zeta: 1.0          # 引导强度；dps 乘 Δt 后网格 {3,10,30,100}，pigdm 网格 {0.5,1,2}；在 val 上选定后覆盖
+  dc_lam: 1.0        # dc 的相对 λ（单位 tr(AᵀA)/N²，与角度数无关）；网格 {0.3,1,3}，在 val 上选
+  dc_iters: 5
+  pigdm_cg_iters: 5
+  pigdm_sigma_y: 0.0 # ΠGDM 测量噪声标准差（正弦图单位）；无噪设置为 0
+  pigdm_eta: 1.0e-3  # CG 数值阻尼，单位 tr(AAᵀ)/m
+  t_start_guidance: 0.0
+  n_samples: 1       # W3 改 8 做不确定性
+  batch_size: 8

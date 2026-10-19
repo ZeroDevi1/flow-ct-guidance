@@ -1,0 +1,30 @@
+# 吞吐基准：与 prior_256.yaml 同一网络与训练设置，数据换成合成相位体，只测 s/步与显存，不作实验结论。
+seed: 0
+out_dir: checkpoints/bench_prior256
+data:
+  type: phantom
+  n: 2048
+model:
+  in_ch: 1
+  out_ch: 1
+  base_ch: 64
+  ch_mult: [1, 1, 2, 2, 4]
+  num_res: 2
+  attn_res: [16]
+  dropout: 0.0
+  image_size: 256
+train:
+  batch_size: 32
+  grad_accum: 1
+  lr: 2.0e-4
+  lr_min: 1.0e-5
+  max_steps: 300
+  warmup: 100
+  ema: 0.9995
+  t_mode: logit-normal
+  log_every: 100
+  sample_every: 100000
+  sample_nfe: 10
+  num_workers: 8
+  amp: true
+  compile: true

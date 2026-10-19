@@ -1,0 +1,35 @@
+# 正式先验：TotalSegmentator 全集（官方 train 划分）256² 切片，UNet ≈20M 参数。
+# 选型依据（2026-10-19 方法学顾问审查 + 实测）：44.6M 版（base_ch 96）在 4090 上 0.88 s/步、5090 上 0.574 s/步，
+# 120k 步超出 ¥100 预算；瓶颈是 256² 层的显存带宽而非算力，因此保留分辨率、收窄网络，并用 compile 融合逐元素算子。
+seed: 0
+out_dir: checkpoints/prior_256
+data:
+  type: slices
+  processed_dir: /root/autodl-tmp/data/totalseg/processed
+  split: train
+model:
+  in_ch: 1
+  out_ch: 1
+  base_ch: 64
+  ch_mult: [1, 1, 2, 2, 4]
+  num_res: 2
+  attn_res: [16]
+  dropout: 0.0
+  image_size: 256
+train:
+  batch_size: 32
+  grad_accum: 1      # 5090 32G；OOM 时改 2
+  lr: 2.0e-4
+  lr_min: 1.0e-5     # warmup 后余弦衰减
+  wd: 0.0
+  max_steps: 120000  # ≈ 90 epoch（约 4.3 万张训练切片）；5090 + compile 实测 0.19 s/步 ≈ 6.4 h
+  max_hours: 9       # 墙钟上限，到点按当前步保存 ema_final
+  warmup: 1000
+  ema: 0.9995
+  t_mode: logit-normal
+  log_every: 100
+  sample_every: 10000
+  sample_nfe: 50
+  num_workers: 8
+  amp: true
+  compile: true

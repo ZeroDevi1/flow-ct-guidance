@@ -1,0 +1,351 @@
+{
+  "sv60": {
+    "dps": {
+      "param": [
+        30,
+        0.4
+      ],
+      "val_psnr": 24.592381172180175,
+      "at_edge": false,
+      "grid": [
+        {
+          "strength": 3,
+          "t_start": 0.1,
+          "val_psnr": 16.922748851776124
+        },
+        {
+          "strength": 3,
+          "t_start": 0.2,
+          "val_psnr": 15.055849227905274
+        },
+        {
+          "strength": 3,
+          "t_start": 0.3,
+          "val_psnr": 13.935231189727784
+        },
+        {
+          "strength": 3,
+          "t_start": 0.4,
+          "val_psnr": 13.204425811767578
+        },
+        {
+          "strength": 3,
+          "t_start": 0.5,
+          "val_psnr": 12.75246006011963
+        },
+        {
+          "strength": 10,
+          "t_start": 0.1,
+          "val_psnr": 23.249612731933595
+        },
+        {
+          "strength": 10,
+          "t_start": 0.2,
+          "val_psnr": 23.78274589538574
+        },
+        {
+          "strength": 10,
+          "t_start": 0.3,
+          "val_psnr": 20.65044605255127
+        },
+        {
+          "strength": 10,
+          "t_start": 0.4,
+          "val_psnr": 18.204648513793945
+        },
+        {
+          "strength": 10,
+          "t_start": 0.5,
+          "val_psnr": 16.651523189544676
+        },
+        {
+          "strength": 30,
+          "t_start": 0.1,
+          "val_psnr": 23.47428909301758
+        },
+        {
+          "strength": 30,
+          "t_start": 0.2,
+          "val_psnr": 23.10069465637207
+        },
+        {
+          "strength": 30,
+          "t_start": 0.3,
+          "val_psnr": 24.144880714416505
+        },
+        {
+          "strength": 30,
+          "t_start": 0.4,
+          "val_psnr": 24.592381172180175
+        },
+        {
+          "strength": 30,
+          "t_start": 0.5,
+          "val_psnr": 24.27714324951172
+        },
+        {
+          "strength": 100,
+          "t_start": 0.1,
+          "val_psnr": 17.608624935150146
+        },
+        {
+          "strength": 100,
+          "t_start": 0.2,
+          "val_psnr": 16.56149419784546
+        },
+        {
+          "strength": 100,
+          "t_start": 0.3,
+          "val_psnr": 16.152523860931396
+        },
+        {
+          "strength": 100,
+          "t_start": 0.4,
+          "val_psnr": 17.665167331695557
+        },
+        {
+          "strength": 100,
+          "t_start": 0.5,
+          "val_psnr": 18.96647087097168
+        },
+        {
+          "strength": 300,
+          "t_start": 0.1,
+          "val_psnr": 13.266460304260255
+        },
+        {
+          "strength": 300,
+          "t_start": 0.2,
+          "val_psnr": 11.932481689453125
+        },
+        {
+          "strength": 300,
+          "t_start": 0.3,
+          "val_psnr": 11.86498727798462
+        },
+        {
+          "strength": 300,
+          "t_start": 0.4,
+          "val_psnr": 12.010896644592286
+        },
+        {
+          "strength": 300,
+          "t_start": 0.5,
+          "val_psnr": 12.990951251983642
+        }
+      ]
+    },
+    "pigdm": {
+      "param": [
+        1,
+        0.0
+      ],
+      "val_psnr": 36.755533370971676,
+      "at_edge": false,
+      "grid": [
+        {
+          "strength": 0.5,
+          "t_start": 0.0,
+          "val_psnr": 36.733105163574216
+        },
+        {
+          "strength": 1,
+          "t_start": 0.0,
+          "val_psnr": 36.755533370971676
+        },
+        {
+          "strength": 2,
+          "t_start": 0.0,
+          "val_psnr": 11.999976749420165
+        }
+      ]
+    },
+    "dc": {
+      "param": [
+        0.3,
+        0.0
+      ],
+      "val_psnr": 35.759081535339355,
+      "at_edge": false,
+      "grid": [
+        {
+          "strength": 0.01,
+          "t_start": 0.0,
+          "val_psnr": 35.75841896057129
+        },
+        {
+          "strength": 0.03,
+          "t_start": 0.0,
+          "val_psnr": 35.758979301452634
+        },
+        {
+          "strength": 0.1,
+          "t_start": 0.0,
+          "val_psnr": 35.75898918151856
+        },
+        {
+          "strength": 0.3,
+          "t_start": 0.0,
+          "val_psnr": 35.759081535339355
+        },
+        {
+          "strength": 1,
+          "t_start": 0.0,
+          "val_psnr": 35.74773525238037
+        },
+        {
+          "strength": 3,
+          "t_start": 0.0,
+          "val_psnr": 35.68170604705811
+        }
+      ]
+    }
+  },
+  "ld1e5": {
+    "dps": {
+      "param": [
+        30,
+        0.4
+      ],
+      "val_psnr": 24.60674716949463,
+      "at_edge": false,
+      "grid": [
+        {
+          "strength": 10,
+          "t_start": 0.2,
+          "val_psnr": 23.494354553222657
+        },
+        {
+          "strength": 10,
+          "t_start": 0.3,
+          "val_psnr": 20.549560871124267
+        },
+        {
+          "strength": 10,
+          "t_start": 0.4,
+          "val_psnr": 18.183133678436278
+        },
+        {
+          "strength": 10,
+          "t_start": 0.5,
+          "val_psnr": 16.651611404418944
+        },
+        {
+          "strength": 30,
+          "t_start": 0.2,
+          "val_psnr": 23.181163940429688
+        },
+        {
+          "strength": 30,
+          "t_start": 0.3,
+          "val_psnr": 24.215171775817872
+        },
+        {
+          "strength": 30,
+          "t_start": 0.4,
+          "val_psnr": 24.60674716949463
+        },
+        {
+          "strength": 30,
+          "t_start": 0.5,
+          "val_psnr": 24.21361125946045
+        },
+        {
+          "strength": 100,
+          "t_start": 0.2,
+          "val_psnr": 16.56027145385742
+        },
+        {
+          "strength": 100,
+          "t_start": 0.3,
+          "val_psnr": 16.14295980453491
+        },
+        {
+          "strength": 100,
+          "t_start": 0.4,
+          "val_psnr": 17.65102169036865
+        },
+        {
+          "strength": 100,
+          "t_start": 0.5,
+          "val_psnr": 18.93010887145996
+        }
+      ]
+    },
+    "pigdm": {
+      "param": [
+        0.1,
+        0.0
+      ],
+      "val_psnr": 32.47062026977539,
+      "at_edge": false,
+      "grid": [
+        {
+          "strength": 0.03,
+          "t_start": 0.0,
+          "val_psnr": 24.58004276275635
+        },
+        {
+          "strength": 0.05,
+          "t_start": 0.0,
+          "val_psnr": 29.42053382873535
+        },
+        {
+          "strength": 0.1,
+          "t_start": 0.0,
+          "val_psnr": 32.47062026977539
+        },
+        {
+          "strength": 0.25,
+          "t_start": 0.0,
+          "val_psnr": 30.625586471557618
+        },
+        {
+          "strength": 0.5,
+          "t_start": 0.0,
+          "val_psnr": 29.426666297912597
+        },
+        {
+          "strength": 1,
+          "t_start": 0.0,
+          "val_psnr": 28.70367935180664
+        }
+      ]
+    },
+    "dc": {
+      "param": [
+        30,
+        0.0
+      ],
+      "val_psnr": 30.43527126312256,
+      "at_edge": false,
+      "grid": [
+        {
+          "strength": 1,
+          "t_start": 0.0,
+          "val_psnr": 24.46517307281494
+        },
+        {
+          "strength": 3,
+          "t_start": 0.0,
+          "val_psnr": 24.781080856323243
+        },
+        {
+          "strength": 10,
+          "t_start": 0.0,
+          "val_psnr": 26.946705780029298
+        },
+        {
+          "strength": 30,
+          "t_start": 0.0,
+          "val_psnr": 30.43527126312256
+        },
+        {
+          "strength": 100,
+          "t_start": 0.0,
+          "val_psnr": 30.368067054748536
+        }
+      ]
+    }
+  }
+}

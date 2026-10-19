@@ -1,0 +1,33 @@
+# Phase 1b 补全器（ssm）：mixer=ssm, t_cond=true。设计见 docs/02_phase1b_angle_ssm_design.md §3–4。
+# 冻结先验 prior_256；稀疏视角 / 限角掩码 6:4 混合；batch 与步数是首次实测前的估计，开机后先测显存与 s/步。
+seed: 0
+out_dir: checkpoints/completer_ssm
+prior_ckpt: checkpoints/prior_256/ema_final.pt
+data:
+  type: slices
+  processed_dir: /root/autodl-tmp/data/totalseg/processed
+  n_val: 32
+model:
+  d: 256
+  n_layers: 4
+  mixer: ssm
+  t_cond: true
+  det_ch: 16
+  det_down: 4
+  d_state: 16
+  expand: 2
+train:
+  batch_size: 8
+  lr: 3.0e-4
+  lr_min: 1.0e-5
+  warmup: 500
+  max_steps: 15000
+  p_limited: 0.4
+  p_dc: 0.5
+  dc_lam: 0.3
+  beta_hlcc: 0.1
+  t_min: 0.05
+  log_every: 100
+  val_every: 1000
+  num_workers: 6
+  amp: true

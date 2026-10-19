@@ -1,0 +1,29 @@
+# B1 FBPConvNet（sv30）：FBP → U-Net 残差。骨架与先验相同（base 64, [1,1,2,2,4], attn@16），
+# 每个设置 10k 步 + 余弦衰减（顾问预算：原 [1,2,4,4] × 30k 步 × 4 设置约 13 h，放不下）。
+seed: 0
+out_dir: checkpoints/fbpconvnet_sv30
+data:
+  type: slices
+  processed_dir: /root/autodl-tmp/data/totalseg/processed
+  test_split: test200
+  n_test: 200
+physics:
+  n_angles: 30
+  i0: null
+  sigma: 0.0
+  mu_scale: 0.06
+model:
+  in_ch: 1
+  out_ch: 1
+  base_ch: 64
+  ch_mult: [1, 1, 2, 2, 4]
+  num_res: 2
+  attn_res: [16]
+  image_size: 256
+train:
+  batch_size: 16
+  lr: 2.0e-4
+  lr_min: 1.0e-5
+  warmup: 500
+  max_steps: 10000
+  num_workers: 8

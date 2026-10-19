@@ -1,0 +1,31 @@
+# 冒烟：合成相位体、64² 冒烟先验、小补全器、几十步。只验证训练 / 采样链路能跑通，数字无意义。
+seed: 0
+out_dir: checkpoints/completer_smoke
+prior_ckpt: checkpoints/smoke_phantom/ema_final.pt
+data:
+  type: phantom
+  n: 64
+model:
+  d: 32
+  n_layers: 2
+  mixer: ssm
+  t_cond: true
+  det_ch: 4
+  det_down: 4
+  d_state: 4
+  expand: 1
+train:
+  batch_size: 4
+  lr: 3.0e-4
+  lr_min: 1.0e-5
+  warmup: 10
+  max_steps: 40
+  p_limited: 0.4
+  p_dc: 0.5
+  dc_lam: 0.3
+  beta_hlcc: 0.1
+  t_min: 0.05
+  log_every: 10
+  val_every: 40
+  num_workers: 0
+  amp: false

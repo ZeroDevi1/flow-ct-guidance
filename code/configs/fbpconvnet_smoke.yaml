@@ -1,0 +1,23 @@
+seed: 0
+out_dir: checkpoints/fbpconvnet_smoke
+data:
+  type: phantom
+  n: 128
+  n_test: 8
+physics:
+  n_angles: 30
+  i0: null
+  sigma: 0.0
+model:
+  in_ch: 1
+  out_ch: 1
+  base_ch: 16
+  ch_mult: [1, 2]
+  num_res: 1
+  attn_res: []
+  image_size: 64
+train:
+  batch_size: 8
+  lr: 2.0e-4
+  max_steps: 100
+  num_workers: 0

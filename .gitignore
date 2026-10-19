@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.npy
+*.pt
+*.pth
+checkpoints/
+code/results/
+.DS_Store
+paper/build*/

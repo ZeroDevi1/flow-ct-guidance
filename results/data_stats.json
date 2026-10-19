@@ -1,0 +1,27 @@
+{
+  "train": {
+    "n_slices": 43220,
+    "n_patients": 1082
+  },
+  "val": {
+    "n_slices": 2280,
+    "n_patients": 57
+  },
+  "test": {
+    "n_slices": 3560,
+    "n_patients": 89
+  },
+  "test200": {
+    "n_slices": 200,
+    "n_patients": 20
+  },
+  "size": 256,
+  "hu_window": [
+    -1000.0,
+    1000.0
+  ],
+  "value_range": [
+    -1,
+    1
+  ]
+}

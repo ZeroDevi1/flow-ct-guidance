@@ -1,0 +1,18 @@
+# 与 smoke_phantom.yaml 配套的采样冒烟配置
+seed: 0
+data:
+  type: phantom
+  n_test: 8
+physics:
+  n_angles: 30
+  i0: null
+  sigma: 0.0
+sampling:
+  nfe: 20
+  zeta: 1.0
+  dc_lam: 1.0
+  dc_iters: 3
+  pigdm_cg_iters: 3
+  t_start_guidance: 0.0
+  n_samples: 2
+  batch_size: 4

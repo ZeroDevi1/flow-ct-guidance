@@ -1,0 +1,22 @@
+data:
+  n_test: 200
+  processed_dir: /root/autodl-tmp/data/totalseg/processed
+  split: test200
+  type: slices
+physics:
+  i0: 100000.0
+  mu_scale: 0.06
+  n_angles: 180
+  sigma: 0.0
+sampling:
+  batch_size: 8
+  dc_iters: 5
+  dc_lam: 1.0
+  n_samples: 1
+  nfe: 50
+  pigdm_cg_iters: 5
+  pigdm_eta: 0.001
+  pigdm_sigma_y: 0.0
+  t_start_guidance: 0.0
+  zeta: 1.0
+seed: 0
