@@ -53,7 +53,16 @@ results/               每个实验的 metrics.json / per_image.csv / config.yam
 docs/                  实验设计、新颖性核查、Phase 1b 设计、周报
 ```
 
-模型权重没有放进仓库（先验约 80 MB）。按下面的步骤可以复现。
+## 模型权重
+
+训练好的权重发布在 [Release v1.0-phase1](https://github.com/ZeroDevi1/flow-ct-guidance/releases/tag/v1.0-phase1)，附有 `SHA256SUMS.txt`：
+
+| 文件 | 内容 |
+|---|---|
+| `prior_256_ema_final.pt` | 流匹配先验，19.8M 参数，12 万步的 EMA 权重 |
+| `fbpconvnet_{sv30,sv60,sv90,ld1e5}.pt` | 各采集协议下的 FBPConvNet 基线，各训练 10k 步 |
+
+有了先验权重，就**不需要重新训练**，可以直接做后验采样实验。把它放到 `code/checkpoints/prior_256/ema_final.pt`，然后跳过下面复现步骤中的第 4 步。
 
 ## 复现
 
