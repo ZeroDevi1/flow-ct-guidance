@@ -1,0 +1,16 @@
+ts=0 zeta=1 [16/16] psnr=13.50 fbp=28.08  0.1 min
+ts=0 zeta=3 [16/16] psnr=13.76 fbp=28.08  0.1 min
+ts=0 zeta=10 [16/16] psnr=13.25 fbp=28.08  0.1 min
+ts=0 zeta=30 [16/16] psnr=12.28 fbp=28.08  0.1 min
+ts=0 zeta=100 [16/16] psnr=9.80 fbp=28.08  0.1 min
+ts=0.1 zeta=1 [16/16] psnr=13.37 fbp=28.08  0.1 min
+ts=0.1 zeta=3 [16/16] psnr=16.26 fbp=28.08  0.1 min
+ts=0.1 zeta=10 [16/16] psnr=16.46 fbp=28.08  0.1 min
+ts=0.1 zeta=30 [16/16] psnr=17.90 fbp=28.08  0.1 min
+ts=0.1 zeta=100 [16/16] psnr=13.40 fbp=28.08  0.1 min
+ts=0.2 zeta=1 [16/16] psnr=12.39 fbp=28.08  0.1 min
+ts=0.2 zeta=3 [16/16] psnr=15.47 fbp=28.08  0.1 min
+ts=0.2 zeta=10 [16/16] psnr=20.27 fbp=28.08  0.1 min
+ts=0.2 zeta=30 [16/16] psnr=18.36 fbp=28.08  0.1 min
+ts=0.2 zeta=100 [16/16] psnr=13.71 fbp=28.08  0.1 min
+[DONE]

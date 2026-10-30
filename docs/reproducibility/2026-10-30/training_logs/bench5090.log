@@ -1,0 +1,18 @@
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+all radon tests passed
+[BENCH] mb8x4
+params: 44.56M  device=cuda  dataset=2048
+{"step": 100, "loss": 0.2642173767089844, "lr": 0.0001, "min": 0.9674967209498088}
+{"step": 200, "loss": 0.03062451258301735, "lr": 0.0001, "min": 1.913099213441213}
+done -> checkpoints/bench_prior256
+[BENCH] mb16x2
+params: 44.56M  device=cuda  dataset=2048
+{"step": 100, "loss": 0.2609023451805115, "lr": 0.0001, "min": 0.956193741162618}
+{"step": 200, "loss": 0.027609996497631073, "lr": 0.0001, "min": 1.895511798063914}
+Traceback (most recent call last):
+  File "/root/autodl-tmp/MedFusionProjects/01_diffusion_inverse/src/train_flow.py", line 122, in <module>
+    main()
+  File "/root/autodl-tmp/MedFusionProjects/01_diffusion_inverse/src/train_flow.py", line 107, in main
+    json.dump(log, open(out_dir / "train_log.json", "w"))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'checkpoints/bench_prior256_mb16/train_log.json'

@@ -89,6 +89,8 @@ python scripts/collect_results.py
 python scripts/analyze.py --results results --index results/index_test200.csv --paper ../paper
 ```
 
+历史运行资料的来源、旧源码差异、环境快照及权重/数据校验见 [2026-10-30 复现资料恢复记录](docs/reproducibility/2026-10-30/README.md)；这是既有证据归档，不是新增实验结果或完整数据盘备份。
+
 运行前需要把配置里的 `processed_dir` 改成你自己的数据路径。复现的输出会写到 `code/results/` 和 `code/checkpoints/`；仓库根目录下的 `results/` 是本文实际跑出来的结果记录。整个研究约用了 12 个 GPU 小时。
 
 ## 局限
@@ -121,3 +123,4 @@ python scripts/analyze.py --results results --index results/index_test200.csv --
   howpublished = {\url{https://github.com/ZeroDevi1/flow-ct-guidance}}
 }
 ```
+

@@ -1,0 +1,50 @@
+[
+  {
+    "filename": "slices_test.npy",
+    "shape": [
+      3560,
+      256,
+      256
+    ],
+    "dtype": "float16",
+    "bytes": 466616448,
+    "sha256": "64679ff8d6b23c3a07ae712d279977614c3dec301abf2412e1c5a6f1ac35e7b5",
+    "included": false
+  },
+  {
+    "filename": "slices_test200.npy",
+    "shape": [
+      200,
+      256,
+      256
+    ],
+    "dtype": "float16",
+    "bytes": 26214528,
+    "sha256": "cd1d119ac8383f2f44a76273242758f69953dd0d90bd82e1f7d45622868638c0",
+    "included": false
+  },
+  {
+    "filename": "slices_train.npy",
+    "shape": [
+      43220,
+      256,
+      256
+    ],
+    "dtype": "float16",
+    "bytes": 5664931968,
+    "sha256": "7167e2e8939014ed2841aeea24fd533914d60b6c04caad5a3576db385ce1f2f0",
+    "included": false
+  },
+  {
+    "filename": "slices_val.npy",
+    "shape": [
+      2280,
+      256,
+      256
+    ],
+    "dtype": "float16",
+    "bytes": 298844288,
+    "sha256": "10f2085f9fda73c88c9d4a98c2b84330c960742396d3e05a7ea923239da20cae",
+    "included": false
+  }
+]

@@ -1,0 +1,6 @@
+zeta=0.1 [16/16] psnr=11.69 fbp=28.08  0.1 min
+zeta=0.3 [16/16] psnr=12.42 fbp=28.08  0.1 min
+zeta=1 [16/16] psnr=13.50 fbp=28.08  0.1 min
+zeta=3 [16/16] psnr=13.76 fbp=28.08  0.1 min
+zeta=10 [16/16] psnr=13.25 fbp=28.08  0.1 min
+[DONE]

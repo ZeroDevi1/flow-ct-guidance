@@ -1,0 +1,17 @@
+data:
+  n_test: 8
+  type: phantom
+physics:
+  i0: null
+  n_angles: 30
+  sigma: 0.0
+sampling:
+  batch_size: 4
+  dc_iters: 3
+  dc_lam: 1.0
+  n_samples: 2
+  nfe: 20
+  pigdm_cg_iters: 3
+  t_start_guidance: 0.0
+  zeta: 1.0
+seed: 0

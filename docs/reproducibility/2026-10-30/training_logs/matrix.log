@@ -1,0 +1,1387 @@
+[START] 等待先验训练结束：/root/autodl-tmp/MedFusionProjects/.autodl-remote/jobs/prior256.status
+[START] stage=tune
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance dps --nfe 50 --n-samples 1 --out results/tune_sv60_dps_3_ts0.1 --zeta 3 --t-start 0.1 --split val --n-test 50
+[8/50] psnr=18.09 fbp=28.53  0.1 min
+[16/50] psnr=17.16 fbp=28.45  0.2 min
+[24/50] psnr=17.36 fbp=28.34  0.2 min
+[32/50] psnr=17.05 fbp=28.13  0.3 min
+[40/50] psnr=17.00 fbp=28.41  0.3 min
+[48/50] psnr=16.94 fbp=28.38  0.4 min
+[50/50] psnr=16.92 fbp=28.36  0.4 min
+{
+ "psnr": {
+  "mean": 16.922748851776124,
+  "std": 2.662259194398293,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.2753445242345333,
+  "std": 0.12471250450910563,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.48108510583639147,
+  "std": 0.12608203426262288,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.11266229309141636,
+  "std": 0.06027896717505067,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 28.358539428710937,
+  "std": 2.1650660270874034,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.6430943232774734,
+  "std": 0.07874719763601548,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.24697318896651269,
+  "std": 0.06148827872231977,
+  "n": 50
+ }
+}
+-> results/tune_sv60_dps_3_ts0.1
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance dps --nfe 50 --n-samples 1 --out results/tune_sv60_dps_3_ts0.2 --zeta 3 --t-start 0.2 --split val --n-test 50
+[8/50] psnr=16.09 fbp=28.53  0.1 min
+[16/50] psnr=15.20 fbp=28.45  0.1 min
+[24/50] psnr=15.32 fbp=28.34  0.2 min
+[32/50] psnr=15.09 fbp=28.13  0.3 min
+[40/50] psnr=15.16 fbp=28.41  0.3 min
+[48/50] psnr=15.09 fbp=28.38  0.4 min
+[50/50] psnr=15.06 fbp=28.36  0.4 min
+{
+ "psnr": {
+  "mean": 15.055849227905274,
+  "std": 2.4077219239570335,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.19427464224398136,
+  "std": 0.11480523717193737,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.5491205435991288,
+  "std": 0.11340078165605774,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.17467531822621823,
+  "std": 0.08786803409974886,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 28.358539428710937,
+  "std": 2.1650660270874034,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.6430943232774734,
+  "std": 0.07874719763601548,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.24697318896651269,
+  "std": 0.06148827872231977,
+  "n": 50
+ }
+}
+-> results/tune_sv60_dps_3_ts0.2
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance dps --nfe 50 --n-samples 1 --out results/tune_sv60_dps_3_ts0.3 --zeta 3 --t-start 0.3 --split val --n-test 50
+[8/50] psnr=15.05 fbp=28.53  0.1 min
+[16/50] psnr=14.04 fbp=28.45  0.1 min
+[24/50] psnr=14.09 fbp=28.34  0.2 min
+[32/50] psnr=13.95 fbp=28.13  0.2 min
+[40/50] psnr=14.07 fbp=28.41  0.3 min
+[48/50] psnr=13.96 fbp=28.38  0.3 min
+[50/50] psnr=13.94 fbp=28.36  0.4 min
+{
+ "psnr": {
+  "mean": 13.935231189727784,
+  "std": 2.3734540650891116,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.17367211529985072,
+  "std": 0.10635766826524265,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.5703706812858581,
+  "std": 0.11404055213220969,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.23953208744525908,
+  "std": 0.1335814447294405,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 28.358539428710937,
+  "std": 2.1650660270874034,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.6430943232774734,
+  "std": 0.07874719763601548,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.24697318896651269,
+  "std": 0.06148827872231977,
+  "n": 50
+ }
+}
+-> results/tune_sv60_dps_3_ts0.3
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance dps --nfe 50 --n-samples 1 --out results/tune_sv60_dps_10_ts0.1 --zeta 10 --t-start 0.1 --split val --n-test 50
+[8/50] psnr=23.32 fbp=28.53  0.1 min
+[16/50] psnr=23.92 fbp=28.45  0.2 min
+[24/50] psnr=23.61 fbp=28.34  0.2 min
+[32/50] psnr=23.37 fbp=28.13  0.3 min
+[40/50] psnr=23.32 fbp=28.41  0.3 min
+[48/50] psnr=23.24 fbp=28.38  0.4 min
+[50/50] psnr=23.25 fbp=28.36  0.4 min
+{
+ "psnr": {
+  "mean": 23.249612731933595,
+  "std": 3.630115199994258,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.5726186692714691,
+  "std": 0.15087579687788547,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.3225331664085388,
+  "std": 0.1029215952574144,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.03266947885975242,
+  "std": 0.02484095186107708,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 28.358539428710937,
+  "std": 2.1650660270874034,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.6430943232774734,
+  "std": 0.07874719763601548,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.24697318896651269,
+  "std": 0.06148827872231977,
+  "n": 50
+ }
+}
+-> results/tune_sv60_dps_10_ts0.1
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance dps --nfe 50 --n-samples 1 --out results/tune_sv60_dps_10_ts0.2 --zeta 10 --t-start 0.2 --split val --n-test 50
+[8/50] psnr=23.60 fbp=28.53  0.1 min
+[16/50] psnr=23.71 fbp=28.45  0.1 min
+[24/50] psnr=23.93 fbp=28.34  0.2 min
+[32/50] psnr=23.59 fbp=28.13  0.3 min
+[40/50] psnr=23.71 fbp=28.41  0.3 min
+[48/50] psnr=23.80 fbp=28.38  0.4 min
+[50/50] psnr=23.78 fbp=28.36  0.4 min
+{
+ "psnr": {
+  "mean": 23.78274589538574,
+  "std": 3.2343622823661673,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.5752919808030128,
+  "std": 0.14444410999430377,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.3319515636563301,
+  "std": 0.09679867913528335,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.02673883831128478,
+  "std": 0.013994620202466173,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 28.358539428710937,
+  "std": 2.1650660270874034,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.6430943232774734,
+  "std": 0.07874719763601548,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.24697318896651269,
+  "std": 0.06148827872231977,
+  "n": 50
+ }
+}
+-> results/tune_sv60_dps_10_ts0.2
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance dps --nfe 50 --n-samples 1 --out results/tune_sv60_dps_10_ts0.3 --zeta 10 --t-start 0.3 --split val --n-test 50
+[8/50] psnr=21.03 fbp=28.53  0.1 min
+[16/50] psnr=20.51 fbp=28.45  0.1 min
+[24/50] psnr=20.86 fbp=28.34  0.2 min
+[32/50] psnr=20.54 fbp=28.13  0.2 min
+[40/50] psnr=20.70 fbp=28.41  0.3 min
+[48/50] psnr=20.66 fbp=28.38  0.3 min
+[50/50] psnr=20.65 fbp=28.36  0.4 min
+{
+ "psnr": {
+  "mean": 20.65044605255127,
+  "std": 2.909083831407019,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.4048303687572479,
+  "std": 0.13999055841089744,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.4390802749991417,
+  "std": 0.10995257513669911,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.04958221049979329,
+  "std": 0.02681267818098784,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 28.358539428710937,
+  "std": 2.1650660270874034,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.6430943232774734,
+  "std": 0.07874719763601548,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.24697318896651269,
+  "std": 0.06148827872231977,
+  "n": 50
+ }
+}
+-> results/tune_sv60_dps_10_ts0.3
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance dps --nfe 50 --n-samples 1 --out results/tune_sv60_dps_30_ts0.1 --zeta 30 --t-start 0.1 --split val --n-test 50
+[8/50] psnr=23.63 fbp=28.53  0.1 min
+[16/50] psnr=23.46 fbp=28.45  0.2 min
+[24/50] psnr=23.60 fbp=28.34  0.2 min
+[32/50] psnr=23.30 fbp=28.13  0.3 min
+[40/50] psnr=23.39 fbp=28.41  0.3 min
+[48/50] psnr=23.46 fbp=28.38  0.4 min
+[50/50] psnr=23.47 fbp=28.36  0.4 min
+{
+ "psnr": {
+  "mean": 23.47428909301758,
+  "std": 1.7580629376961077,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.5441027677059174,
+  "std": 0.118963464597905,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.3546929329633713,
+  "std": 0.09592015809346954,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.038296908549964426,
+  "std": 0.010042970582238043,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 28.358539428710937,
+  "std": 2.1650660270874034,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.6430943232774734,
+  "std": 0.07874719763601548,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.24697318896651269,
+  "std": 0.06148827872231977,
+  "n": 50
+ }
+}
+-> results/tune_sv60_dps_30_ts0.1
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance dps --nfe 50 --n-samples 1 --out results/tune_sv60_dps_30_ts0.2 --zeta 30 --t-start 0.2 --split val --n-test 50
+[8/50] psnr=23.40 fbp=28.53  0.1 min
+[16/50] psnr=23.04 fbp=28.45  0.1 min
+[24/50] psnr=23.20 fbp=28.34  0.2 min
+[32/50] psnr=22.93 fbp=28.13  0.3 min
+[40/50] psnr=23.06 fbp=28.41  0.3 min
+[48/50] psnr=23.07 fbp=28.38  0.4 min
+[50/50] psnr=23.10 fbp=28.36  0.4 min
+{
+ "psnr": {
+  "mean": 23.10069465637207,
+  "std": 1.636028176072555,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.5497465515136719,
+  "std": 0.11536750285950133,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.349468948841095,
+  "std": 0.09152854571035667,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.03806487027555704,
+  "std": 0.009112061022133033,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 28.358539428710937,
+  "std": 2.1650660270874034,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.6430943232774734,
+  "std": 0.07874719763601548,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.24697318896651269,
+  "std": 0.06148827872231977,
+  "n": 50
+ }
+}
+-> results/tune_sv60_dps_30_ts0.2
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance dps --nfe 50 --n-samples 1 --out results/tune_sv60_dps_30_ts0.3 --zeta 30 --t-start 0.3 --split val --n-test 50
+[8/50] psnr=23.90 fbp=28.53  0.1 min
+[16/50] psnr=24.14 fbp=28.45  0.1 min
+[24/50] psnr=24.15 fbp=28.34  0.2 min
+[32/50] psnr=23.89 fbp=28.13  0.2 min
+[40/50] psnr=23.98 fbp=28.41  0.3 min
+[48/50] psnr=24.15 fbp=28.38  0.3 min
+[50/50] psnr=24.14 fbp=28.36  0.4 min
+{
+ "psnr": {
+  "mean": 24.144880714416505,
+  "std": 1.8243627127474673,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.5694699376821518,
+  "std": 0.11929553895337977,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.3296233901381493,
+  "std": 0.08791104857399804,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.03801076706498861,
+  "std": 0.007417990757865186,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 28.358539428710937,
+  "std": 2.1650660270874034,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.6430943232774734,
+  "std": 0.07874719763601548,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.24697318896651269,
+  "std": 0.06148827872231977,
+  "n": 50
+ }
+}
+-> results/tune_sv60_dps_30_ts0.3
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance pigdm --nfe 50 --n-samples 1 --out results/tune_sv60_pigdm_0.5 --zeta 0.5 --t-start 0.0 --split val --n-test 50
+[8/50] psnr=36.83 fbp=28.53  0.1 min
+[16/50] psnr=37.02 fbp=28.45  0.2 min
+[24/50] psnr=36.62 fbp=28.34  0.3 min
+[32/50] psnr=36.52 fbp=28.13  0.4 min
+[40/50] psnr=36.84 fbp=28.41  0.4 min
+[48/50] psnr=36.82 fbp=28.38  0.5 min
+[50/50] psnr=36.73 fbp=28.36  0.6 min
+{
+ "psnr": {
+  "mean": 36.733105163574216,
+  "std": 4.291586448312451,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.9132251417636872,
+  "std": 0.07388133066193896,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.1039748553186655,
+  "std": 0.07342186333200247,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.0020842408819589766,
+  "std": 0.0007511498822639294,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 28.358539428710937,
+  "std": 2.1650660270874034,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.6430943232774734,
+  "std": 0.07874719763601548,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.24697318896651269,
+  "std": 0.06148827872231977,
+  "n": 50
+ }
+}
+-> results/tune_sv60_pigdm_0.5
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance pigdm --nfe 50 --n-samples 1 --out results/tune_sv60_pigdm_1 --zeta 1 --t-start 0.0 --split val --n-test 50
+[8/50] psnr=36.68 fbp=28.53  0.1 min
+[16/50] psnr=36.64 fbp=28.45  0.2 min
+[24/50] psnr=36.45 fbp=28.34  0.3 min
+[32/50] psnr=36.53 fbp=28.13  0.4 min
+[40/50] psnr=36.68 fbp=28.41  0.4 min
+[48/50] psnr=36.85 fbp=28.38  0.5 min
+[50/50] psnr=36.76 fbp=28.36  0.6 min
+{
+ "psnr": {
+  "mean": 36.755533370971676,
+  "std": 5.055622122140611,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.8995050358772277,
+  "std": 0.09383221638191419,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.12507795792073012,
+  "std": 0.08553656884954783,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.0022543003829196095,
+  "std": 0.00097664611343558,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 28.358539428710937,
+  "std": 2.1650660270874034,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.6430943232774734,
+  "std": 0.07874719763601548,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.24697318896651269,
+  "std": 0.06148827872231977,
+  "n": 50
+ }
+}
+-> results/tune_sv60_pigdm_1
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance pigdm --nfe 50 --n-samples 1 --out results/tune_sv60_pigdm_2 --zeta 2 --t-start 0.0 --split val --n-test 50
+[8/50] psnr=11.60 fbp=28.53  0.1 min
+[16/50] psnr=12.19 fbp=28.45  0.2 min
+[24/50] psnr=12.04 fbp=28.34  0.3 min
+[32/50] psnr=12.17 fbp=28.13  0.4 min
+[40/50] psnr=12.14 fbp=28.41  0.4 min
+[48/50] psnr=12.05 fbp=28.38  0.5 min
+[50/50] psnr=12.00 fbp=28.36  0.6 min
+{
+ "psnr": {
+  "mean": 11.999976749420165,
+  "std": 2.2796745335459763,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.20260717436671258,
+  "std": 0.10621065412589985,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.5636452478170395,
+  "std": 0.06551402583399149,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.25990568324923513,
+  "std": 0.10030004971439284,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 28.358539428710937,
+  "std": 2.1650660270874034,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.6430943232774734,
+  "std": 0.07874719763601548,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.24697318896651269,
+  "std": 0.06148827872231977,
+  "n": 50
+ }
+}
+-> results/tune_sv60_pigdm_2
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance dc --nfe 50 --n-samples 1 --out results/tune_sv60_dc_0.3 --dc-lam 0.3 --t-start 0.0 --split val --n-test 50
+[8/50] psnr=35.74 fbp=28.53  0.1 min
+[16/50] psnr=36.13 fbp=28.45  0.1 min
+[24/50] psnr=35.48 fbp=28.34  0.2 min
+[32/50] psnr=35.41 fbp=28.13  0.3 min
+[40/50] psnr=35.73 fbp=28.41  0.3 min
+[48/50] psnr=35.86 fbp=28.38  0.4 min
+[50/50] psnr=35.76 fbp=28.36  0.4 min
+{
+ "psnr": {
+  "mean": 35.759081535339355,
+  "std": 5.695024611885796,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.8643885684013367,
+  "std": 0.11925580569333157,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.09225115463137627,
+  "std": 0.05846958814832482,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.0012058121329755521,
+  "std": 0.0016346949853846121,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 28.358539428710937,
+  "std": 2.1650660270874034,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.6430943232774734,
+  "std": 0.07874719763601548,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.24697318896651269,
+  "std": 0.06148827872231977,
+  "n": 50
+ }
+}
+-> results/tune_sv60_dc_0.3
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance dc --nfe 50 --n-samples 1 --out results/tune_sv60_dc_1 --dc-lam 1 --t-start 0.0 --split val --n-test 50
+[8/50] psnr=35.73 fbp=28.53  0.1 min
+[16/50] psnr=36.11 fbp=28.45  0.1 min
+[24/50] psnr=35.47 fbp=28.34  0.2 min
+[32/50] psnr=35.40 fbp=28.13  0.3 min
+[40/50] psnr=35.72 fbp=28.41  0.3 min
+[48/50] psnr=35.84 fbp=28.38  0.4 min
+[50/50] psnr=35.75 fbp=28.36  0.4 min
+{
+ "psnr": {
+  "mean": 35.74773525238037,
+  "std": 5.653279066729266,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.8649854898452759,
+  "std": 0.11849934225198926,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.0921829711459577,
+  "std": 0.058244807019807034,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.001190035817271564,
+  "std": 0.0016062858866833592,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 28.358539428710937,
+  "std": 2.1650660270874034,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.6430943232774734,
+  "std": 0.07874719763601548,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.24697318896651269,
+  "std": 0.06148827872231977,
+  "n": 50
+ }
+}
+-> results/tune_sv60_dc_1
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance dc --nfe 50 --n-samples 1 --out results/tune_sv60_dc_3 --dc-lam 3 --t-start 0.0 --split val --n-test 50
+[8/50] psnr=35.66 fbp=28.53  0.1 min
+[16/50] psnr=36.02 fbp=28.45  0.1 min
+[24/50] psnr=35.41 fbp=28.34  0.2 min
+[32/50] psnr=35.34 fbp=28.13  0.3 min
+[40/50] psnr=35.66 fbp=28.41  0.3 min
+[48/50] psnr=35.77 fbp=28.38  0.4 min
+[50/50] psnr=35.68 fbp=28.36  0.4 min
+{
+ "psnr": {
+  "mean": 35.68170604705811,
+  "std": 5.523795807760319,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.8664687764644623,
+  "std": 0.11650581626248845,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.0925662044249475,
+  "std": 0.058510211002648305,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.0012088852206943556,
+  "std": 0.0015261485973892743,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 28.358539428710937,
+  "std": 2.1650660270874034,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.6430943232774734,
+  "std": 0.07874719763601548,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.24697318896651269,
+  "std": 0.06148827872231977,
+  "n": 50
+ }
+}
+-> results/tune_sv60_dc_3
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_lowdose1e5.yaml --guidance dps --nfe 50 --n-samples 1 --out results/tune_ld1e5_dps_10_ts0.2 --zeta 10 --t-start 0.2 --split val --n-test 50
+[8/50] psnr=23.37 fbp=27.19  0.1 min
+[16/50] psnr=23.45 fbp=26.60  0.2 min
+[24/50] psnr=23.61 fbp=26.13  0.2 min
+[32/50] psnr=23.28 fbp=25.83  0.3 min
+[40/50] psnr=23.39 fbp=25.54  0.3 min
+[48/50] psnr=23.50 fbp=25.93  0.4 min
+[50/50] psnr=23.49 fbp=25.97  0.4 min
+{
+ "psnr": {
+  "mean": 23.494354553222657,
+  "std": 3.074730087941262,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.5624999773502349,
+  "std": 0.1428987238487715,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.335069400370121,
+  "std": 0.09614606798855727,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.030222672577947376,
+  "std": 0.012540500809475896,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 25.973172454833986,
+  "std": 3.3043273753346853,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.5767368215322495,
+  "std": 0.15797447644449022,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.3337732157856226,
+  "std": 0.20071830809235383,
+  "n": 50
+ }
+}
+-> results/tune_ld1e5_dps_10_ts0.2
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_lowdose1e5.yaml --guidance dps --nfe 50 --n-samples 1 --out results/tune_ld1e5_dps_30_ts0.2 --zeta 30 --t-start 0.2 --split val --n-test 50
+[8/50] psnr=23.60 fbp=27.19  0.1 min
+[16/50] psnr=23.19 fbp=26.60  0.2 min
+[24/50] psnr=23.29 fbp=26.13  0.2 min
+[32/50] psnr=23.02 fbp=25.83  0.3 min
+[40/50] psnr=23.15 fbp=25.54  0.3 min
+[48/50] psnr=23.16 fbp=25.93  0.4 min
+[50/50] psnr=23.18 fbp=25.97  0.4 min
+{
+ "psnr": {
+  "mean": 23.181163940429688,
+  "std": 1.667485648368344,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.5569463175535202,
+  "std": 0.1145581014745866,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.3472142398357391,
+  "std": 0.08983500373461185,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.038505450524389744,
+  "std": 0.008957167416812123,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 25.973172454833986,
+  "std": 3.3043273753346853,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.5767368215322495,
+  "std": 0.15797447644449022,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.3337732157856226,
+  "std": 0.20071830809235383,
+  "n": 50
+ }
+}
+-> results/tune_ld1e5_dps_30_ts0.2
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_lowdose1e5.yaml --guidance pigdm --nfe 50 --n-samples 1 --out results/tune_ld1e5_pigdm_0.5 --zeta 0.5 --t-start 0.0 --split val --n-test 50
+[8/50] psnr=31.76 fbp=27.19  0.2 min
+[16/50] psnr=30.59 fbp=26.60  0.3 min
+[24/50] psnr=29.41 fbp=26.13  0.4 min
+[32/50] psnr=29.00 fbp=25.83  0.6 min
+[40/50] psnr=28.73 fbp=25.54  0.7 min
+[48/50] psnr=29.45 fbp=25.93  0.8 min
+[50/50] psnr=29.43 fbp=25.97  0.9 min
+{
+ "psnr": {
+  "mean": 29.426666297912597,
+  "std": 6.132217947757481,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.693081540465355,
+  "std": 0.20226147194199515,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.23432046646252275,
+  "std": 0.19943208985379282,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.01456103757955134,
+  "std": 0.004973962669369483,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 25.973172454833986,
+  "std": 3.3043273753346853,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.5767368215322495,
+  "std": 0.15797447644449022,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.3337732157856226,
+  "std": 0.20071830809235383,
+  "n": 50
+ }
+}
+-> results/tune_ld1e5_pigdm_0.5
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_lowdose1e5.yaml --guidance pigdm --nfe 50 --n-samples 1 --out results/tune_ld1e5_pigdm_1 --zeta 1 --t-start 0.0 --split val --n-test 50
+[8/50] psnr=30.87 fbp=27.19  0.2 min
+[16/50] psnr=29.67 fbp=26.60  0.3 min
+[24/50] psnr=29.00 fbp=26.13  0.4 min
+[32/50] psnr=28.41 fbp=25.83  0.6 min
+[40/50] psnr=27.90 fbp=25.54  0.7 min
+[48/50] psnr=28.65 fbp=25.93  0.8 min
+[50/50] psnr=28.70 fbp=25.97  0.9 min
+{
+ "psnr": {
+  "mean": 28.70367935180664,
+  "std": 5.5059515929891925,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.6806512662768364,
+  "std": 0.20913692390501468,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.2476407583616674,
+  "std": 0.21060833807239224,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.0218656256608665,
+  "std": 0.008863623712547928,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 25.973172454833986,
+  "std": 3.3043273753346853,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.5767368215322495,
+  "std": 0.15797447644449022,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.3337732157856226,
+  "std": 0.20071830809235383,
+  "n": 50
+ }
+}
+-> results/tune_ld1e5_pigdm_1
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_lowdose1e5.yaml --guidance dc --nfe 50 --n-samples 1 --out results/tune_ld1e5_dc_1 --dc-lam 1 --t-start 0.0 --split val --n-test 50
+[8/50] psnr=26.38 fbp=27.19  0.1 min
+[16/50] psnr=25.60 fbp=26.60  0.3 min
+[24/50] psnr=24.70 fbp=26.13  0.4 min
+[32/50] psnr=24.26 fbp=25.83  0.5 min
+[40/50] psnr=23.81 fbp=25.54  0.6 min
+[48/50] psnr=24.43 fbp=25.93  0.7 min
+[50/50] psnr=24.47 fbp=25.97  0.8 min
+{
+ "psnr": {
+  "mean": 24.46517307281494,
+  "std": 5.2186636726184,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.5368517729640007,
+  "std": 0.19972575655327549,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.4308860571682453,
+  "std": 0.2348869497366984,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.009150797501206398,
+  "std": 0.0038300259308619807,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 25.973172454833986,
+  "std": 3.3043273753346853,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.5767368215322495,
+  "std": 0.15797447644449022,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.3337732157856226,
+  "std": 0.20071830809235383,
+  "n": 50
+ }
+}
+-> results/tune_ld1e5_dc_1
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_lowdose1e5.yaml --guidance dc --nfe 50 --n-samples 1 --out results/tune_ld1e5_dc_3 --dc-lam 3 --t-start 0.0 --split val --n-test 50
+[8/50] psnr=26.79 fbp=27.19  0.1 min
+[16/50] psnr=25.95 fbp=26.60  0.3 min
+[24/50] psnr=25.03 fbp=26.13  0.4 min
+[32/50] psnr=24.57 fbp=25.83  0.5 min
+[40/50] psnr=24.11 fbp=25.54  0.6 min
+[48/50] psnr=24.75 fbp=25.93  0.7 min
+[50/50] psnr=24.78 fbp=25.97  0.8 min
+{
+ "psnr": {
+  "mean": 24.781080856323243,
+  "std": 5.4002480578079295,
+  "n": 50
+ },
+ "ssim": {
+  "mean": 0.546271336376667,
+  "std": 0.2032911031115089,
+  "n": 50
+ },
+ "lpips": {
+  "mean": 0.42181979306042194,
+  "std": 0.2377359783739305,
+  "n": 50
+ },
+ "dc": {
+  "mean": 0.008872946808114648,
+  "std": 0.0037714081834239683,
+  "n": 50
+ },
+ "psnr_fbp": {
+  "mean": 25.973172454833986,
+  "std": 3.3043273753346853,
+  "n": 50
+ },
+ "ssim_fbp": {
+  "mean": 0.5767368215322495,
+  "std": 0.15797447644449022,
+  "n": 50
+ },
+ "lpips_fbp": {
+  "mean": 0.3337732157856226,
+  "std": 0.20071830809235383,
+  "n": 50
+ }
+}
+-> results/tune_ld1e5_dc_3
+[DONE] stage=tune
+[START] stage=select
+[METRIC] sv60 dps: best=(30, 0.3) val_psnr=24.14  [EDGE]
+[METRIC] sv60 pigdm: best=(1, 0.0) val_psnr=36.76
+[METRIC] sv60 dc: best=(0.3, 0.0) val_psnr=35.76  [EDGE]
+[METRIC] ld1e5 dps: best=(10, 0.2) val_psnr=23.49  [EDGE]
+[METRIC] ld1e5 pigdm: best=(0.5, 0.0) val_psnr=29.43  [EDGE]
+[METRIC] ld1e5 dc: best=(3, 0.0) val_psnr=24.78  [EDGE]
+[DONE] stage=select
+[START] stage=main
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse30.yaml --guidance dps --nfe 50 --n-samples 1 --out results/main_sv30_dps --zeta 30 --t-start 0.3
+[8/200] psnr=21.58 fbp=21.49  0.1 min
+[16/200] psnr=23.82 fbp=23.07  0.1 min
+[24/200] psnr=24.22 fbp=23.42  0.2 min
+[32/200] psnr=24.16 fbp=23.51  0.2 min
+[40/200] psnr=24.16 fbp=23.45  0.3 min
+[48/200] psnr=23.75 fbp=22.98  0.3 min
+[56/200] psnr=23.58 fbp=22.75  0.4 min
+[64/200] psnr=23.59 fbp=22.72  0.4 min
+[72/200] psnr=23.74 fbp=22.98  0.5 min
+[80/200] psnr=23.87 fbp=23.23  0.5 min
+[88/200] psnr=23.54 fbp=22.79  0.6 min
+[96/200] psnr=23.58 fbp=22.86  0.6 min
+[104/200] psnr=23.69 fbp=22.89  0.7 min
+[112/200] psnr=23.76 fbp=22.89  0.7 min
+[120/200] psnr=23.83 fbp=23.04  0.8 min
+[128/200] psnr=23.76 fbp=22.99  0.8 min
+[136/200] psnr=23.77 fbp=23.05  0.9 min
+[144/200] psnr=23.79 fbp=23.14  0.9 min
+[152/200] psnr=23.88 fbp=23.29  1.0 min
+[160/200] psnr=23.79 fbp=23.18  1.0 min
+[168/200] psnr=23.84 fbp=23.24  1.1 min
+[176/200] psnr=23.97 fbp=23.40  1.1 min
+[184/200] psnr=23.98 fbp=23.46  1.2 min
+[192/200] psnr=23.96 fbp=23.52  1.2 min
+[200/200] psnr=23.93 fbp=23.50  1.3 min
+{
+ "psnr": {
+  "mean": 23.93013517379761,
+  "std": 2.18073657331455,
+  "n": 200
+ },
+ "ssim": {
+  "mean": 0.5670196038484573,
+  "std": 0.12448033854604942,
+  "n": 200
+ },
+ "lpips": {
+  "mean": 0.3303268396854401,
+  "std": 0.09083258764955847,
+  "n": 200
+ },
+ "dc": {
+  "mean": 0.037821866627782585,
+  "std": 0.00919284240322156,
+  "n": 200
+ },
+ "psnr_fbp": {
+  "mean": 23.50056957244873,
+  "std": 2.643844666508287,
+  "n": 200
+ },
+ "ssim_fbp": {
+  "mean": 0.4287092533707619,
+  "std": 0.08281506890588619,
+  "n": 200
+ },
+ "lpips_fbp": {
+  "mean": 0.36505890026688576,
+  "std": 0.05660447755676759,
+  "n": 200
+ }
+}
+-> results/main_sv30_dps
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse30.yaml --guidance pigdm --nfe 50 --n-samples 1 --out results/main_sv30_pigdm --zeta 1 --t-start 0.0
+[8/200] psnr=28.51 fbp=21.49  0.1 min
+[16/200] psnr=33.01 fbp=23.07  0.2 min
+[24/200] psnr=33.22 fbp=23.42  0.3 min
+[32/200] psnr=32.73 fbp=23.51  0.3 min
+[40/200] psnr=32.24 fbp=23.45  0.4 min
+[48/200] psnr=31.21 fbp=22.98  0.5 min
+[56/200] psnr=30.75 fbp=22.75  0.6 min
+[64/200] psnr=31.10 fbp=22.72  0.6 min
+[72/200] psnr=31.80 fbp=22.98  0.7 min
+[80/200] psnr=32.21 fbp=23.23  0.8 min
+[88/200] psnr=31.36 fbp=22.79  0.9 min
+[96/200] psnr=31.65 fbp=22.86  0.9 min
+[104/200] psnr=31.76 fbp=22.89  1.0 min
+[112/200] psnr=31.96 fbp=22.89  1.1 min
+[120/200] psnr=32.16 fbp=23.04  1.2 min
+[128/200] psnr=32.23 fbp=22.99  1.2 min
+[136/200] psnr=32.18 fbp=23.05  1.3 min
+[144/200] psnr=32.35 fbp=23.14  1.4 min
+[152/200] psnr=32.37 fbp=23.29  1.5 min
+[160/200] psnr=32.10 fbp=23.18  1.6 min
+[168/200] psnr=31.98 fbp=23.24  1.6 min
+[176/200] psnr=32.24 fbp=23.40  1.7 min
+[184/200] psnr=32.29 fbp=23.46  1.8 min
+[192/200] psnr=32.26 fbp=23.52  1.9 min
+[200/200] psnr=32.17 fbp=23.50  1.9 min
+{
+ "psnr": {
+  "mean": 32.16544618606567,
+  "std": 6.022504881257097,
+  "n": 200
+ },
+ "ssim": {
+  "mean": 0.8038731780648232,
+  "std": 0.14020799409068418,
+  "n": 200
+ },
+ "lpips": {
+  "mean": 0.13981636790558696,
+  "std": 0.09134803221342713,
+  "n": 200
+ },
+ "dc": {
+  "mean": 0.0019222146336687728,
+  "std": 0.0012241711488861367,
+  "n": 200
+ },
+ "psnr_fbp": {
+  "mean": 23.50056957244873,
+  "std": 2.643844666508287,
+  "n": 200
+ },
+ "ssim_fbp": {
+  "mean": 0.4287092533707619,
+  "std": 0.08281506890588619,
+  "n": 200
+ },
+ "lpips_fbp": {
+  "mean": 0.36505890026688576,
+  "std": 0.05660447755676759,
+  "n": 200
+ }
+}
+-> results/main_sv30_pigdm
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse30.yaml --guidance dc --nfe 50 --n-samples 1 --out results/main_sv30_dc --dc-lam 0.3 --t-start 0.0
+[8/200] psnr=25.62 fbp=21.49  0.1 min
+[16/200] psnr=30.36 fbp=23.07  0.1 min
+[24/200] psnr=31.52 fbp=23.42  0.2 min
+[32/200] psnr=31.89 fbp=23.51  0.2 min
+[40/200] psnr=31.96 fbp=23.45  0.2 min
+[48/200] psnr=30.85 fbp=22.98  0.3 min
+[56/200] psnr=30.36 fbp=22.75  0.3 min
+[64/200] psnr=30.58 fbp=22.72  0.4 min
+[72/200] psnr=31.08 fbp=22.98  0.4 min
+[80/200] psnr=31.64 fbp=23.23  0.5 min
+[88/200] psnr=30.77 fbp=22.79  0.5 min
+[96/200] psnr=30.86 fbp=22.86  0.5 min
+[104/200] psnr=30.99 fbp=22.89  0.6 min
+[112/200] psnr=31.09 fbp=22.89  0.6 min
+[120/200] psnr=31.25 fbp=23.04  0.7 min
+[128/200] psnr=31.36 fbp=22.99  0.7 min
+[136/200] psnr=31.47 fbp=23.05  0.7 min
+[144/200] psnr=31.53 fbp=23.14  0.8 min
+[152/200] psnr=31.64 fbp=23.29  0.8 min
+[160/200] psnr=31.34 fbp=23.18  0.9 min
+[168/200] psnr=31.48 fbp=23.24  0.9 min
+[176/200] psnr=31.68 fbp=23.40  1.0 min
+[184/200] psnr=31.73 fbp=23.46  1.0 min
+[192/200] psnr=31.74 fbp=23.52  1.0 min
+[200/200] psnr=31.62 fbp=23.50  1.1 min
+{
+ "psnr": {
+  "mean": 31.62133515357971,
+  "std": 5.182782021180622,
+  "n": 200
+ },
+ "ssim": {
+  "mean": 0.7575275279581547,
+  "std": 0.14932236258238343,
+  "n": 200
+ },
+ "lpips": {
+  "mean": 0.1315878631034866,
+  "std": 0.06850840980172421,
+  "n": 200
+ },
+ "dc": {
+  "mean": 0.0014926647752145073,
+  "std": 0.0012999670622565135,
+  "n": 200
+ },
+ "psnr_fbp": {
+  "mean": 23.50056957244873,
+  "std": 2.643844666508287,
+  "n": 200
+ },
+ "ssim_fbp": {
+  "mean": 0.4287092533707619,
+  "std": 0.08281506890588619,
+  "n": 200
+ },
+ "lpips_fbp": {
+  "mean": 0.36505890026688576,
+  "std": 0.05660447755676759,
+  "n": 200
+ }
+}
+-> results/main_sv30_dc
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance dps --nfe 50 --n-samples 1 --out results/main_sv60_dps --zeta 30 --t-start 0.3
+[8/200] psnr=21.75 fbp=26.20  0.1 min
+[16/200] psnr=23.83 fbp=27.86  0.1 min
+[24/200] psnr=24.19 fbp=28.50  0.2 min
+[32/200] psnr=24.22 fbp=28.62  0.2 min
+[40/200] psnr=24.24 fbp=28.55  0.3 min
+[48/200] psnr=23.84 fbp=28.03  0.3 min
+[56/200] psnr=23.66 fbp=27.71  0.4 min
+[64/200] psnr=23.63 fbp=27.66  0.4 min
+[72/200] psnr=23.79 fbp=27.96  0.5 min
+[80/200] psnr=23.92 fbp=28.20  0.6 min
+[88/200] psnr=23.60 fbp=27.68  0.6 min
+[96/200] psnr=23.64 fbp=27.75  0.7 min
+[104/200] psnr=23.76 fbp=27.77  0.7 min
+[112/200] psnr=23.83 fbp=27.78  0.8 min
+[120/200] psnr=23.89 fbp=27.98  0.8 min
+[128/200] psnr=23.85 fbp=27.96  0.9 min
+[136/200] psnr=23.87 fbp=28.01  0.9 min
+[144/200] psnr=23.88 fbp=28.10  1.0 min
+[152/200] psnr=23.97 fbp=28.25  1.0 min
+[160/200] psnr=23.92 fbp=28.17  1.1 min
+[168/200] psnr=23.98 fbp=28.28  1.1 min
+[176/200] psnr=24.11 fbp=28.38  1.2 min
+[184/200] psnr=24.12 fbp=28.44  1.2 min
+[192/200] psnr=24.10 fbp=28.52  1.3 min
+[200/200] psnr=24.07 fbp=28.50  1.3 min
+{
+ "psnr": {
+  "mean": 24.07054533958435,
+  "std": 2.082508047582859,
+  "n": 200
+ },
+ "ssim": {
+  "mean": 0.5766243883967399,
+  "std": 0.12008991949754019,
+  "n": 200
+ },
+ "lpips": {
+  "mean": 0.329121490418911,
+  "std": 0.09120833151907655,
+  "n": 200
+ },
+ "dc": {
+  "mean": 0.03829089100472629,
+  "std": 0.009258373878895746,
+  "n": 200
+ },
+ "psnr_fbp": {
+  "mean": 28.503285655975343,
+  "std": 2.5566328837408783,
+  "n": 200
+ },
+ "ssim_fbp": {
+  "mean": 0.6349508751928806,
+  "std": 0.08989254674351083,
+  "n": 200
+ },
+ "lpips_fbp": {
+  "mean": 0.22180507166311145,
+  "std": 0.0637794472144508,
+  "n": 200
+ }
+}
+-> results/main_sv60_dps
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance pigdm --nfe 50 --n-samples 1 --out results/main_sv60_pigdm --zeta 1 --t-start 0.0
+[8/200] psnr=31.15 fbp=26.20  0.1 min
+[16/200] psnr=36.08 fbp=27.86  0.2 min
+[24/200] psnr=37.41 fbp=28.50  0.3 min
+[32/200] psnr=37.95 fbp=28.62  0.4 min
+[40/200] psnr=38.27 fbp=28.55  0.4 min
+[48/200] psnr=37.06 fbp=28.03  0.5 min
+[56/200] psnr=36.31 fbp=27.71  0.6 min
+[64/200] psnr=36.26 fbp=27.66  0.7 min
+[72/200] psnr=36.77 fbp=27.96  0.8 min
+[80/200] psnr=37.27 fbp=28.20  0.8 min
+[88/200] psnr=36.23 fbp=27.68  0.9 min
+[96/200] psnr=36.28 fbp=27.75  1.0 min
+[104/200] psnr=36.35 fbp=27.77  1.1 min
+[112/200] psnr=36.37 fbp=27.78  1.2 min
+[120/200] psnr=36.57 fbp=27.98  1.3 min
+[128/200] psnr=36.60 fbp=27.96  1.3 min
+[136/200] psnr=36.67 fbp=28.01  1.4 min
+[144/200] psnr=36.78 fbp=28.10  1.5 min
+[152/200] psnr=36.88 fbp=28.25  1.6 min
+[160/200] psnr=36.66 fbp=28.17  1.7 min
+[168/200] psnr=36.79 fbp=28.28  1.7 min
+[176/200] psnr=36.95 fbp=28.38  1.8 min
+[184/200] psnr=37.03 fbp=28.44  1.9 min
+[192/200] psnr=36.97 fbp=28.52  2.0 min
+[200/200] psnr=36.93 fbp=28.50  2.1 min
+{
+ "psnr": {
+  "mean": 36.92594841003418,
+  "std": 5.214833690215433,
+  "n": 200
+ },
+ "ssim": {
+  "mean": 0.8992441415786743,
+  "std": 0.0885919904239695,
+  "n": 200
+ },
+ "lpips": {
+  "mean": 0.10934731570072471,
+  "std": 0.06550914944740055,
+  "n": 200
+ },
+ "dc": {
+  "mean": 0.002368540760871838,
+  "std": 0.0011135308756769786,
+  "n": 200
+ },
+ "psnr_fbp": {
+  "mean": 28.503285655975343,
+  "std": 2.5566328837408783,
+  "n": 200
+ },
+ "ssim_fbp": {
+  "mean": 0.6349508751928806,
+  "std": 0.08989254674351083,
+  "n": 200
+ },
+ "lpips_fbp": {
+  "mean": 0.22180507166311145,
+  "std": 0.0637794472144508,
+  "n": 200
+ }
+}
+-> results/main_sv60_pigdm
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse60.yaml --guidance dc --nfe 50 --n-samples 1 --out results/main_sv60_dc --dc-lam 0.3 --t-start 0.0
+[8/200] psnr=28.17 fbp=26.20  0.1 min
+[16/200] psnr=34.14 fbp=27.86  0.1 min
+[24/200] psnr=35.88 fbp=28.50  0.2 min
+[32/200] psnr=36.70 fbp=28.62  0.3 min
+[40/200] psnr=37.16 fbp=28.55  0.3 min
+[48/200] psnr=35.66 fbp=28.03  0.4 min
+[56/200] psnr=34.80 fbp=27.71  0.4 min
+[64/200] psnr=34.78 fbp=27.66  0.5 min
+[72/200] psnr=35.35 fbp=27.96  0.5 min
+[80/200] psnr=36.14 fbp=28.20  0.6 min
+[88/200] psnr=34.99 fbp=27.68  0.6 min
+[96/200] psnr=35.04 fbp=27.75  0.7 min
+[104/200] psnr=35.11 fbp=27.77  0.7 min
+[112/200] psnr=35.15 fbp=27.78  0.8 min
+[120/200] psnr=35.37 fbp=27.98  0.9 min
+[128/200] psnr=35.43 fbp=27.96  0.9 min
+[136/200] psnr=35.48 fbp=28.01  1.0 min
+[144/200] psnr=35.52 fbp=28.10  1.0 min
+[152/200] psnr=35.69 fbp=28.25  1.1 min
+[160/200] psnr=35.45 fbp=28.17  1.1 min
+[168/200] psnr=35.80 fbp=28.28  1.2 min
+[176/200] psnr=36.01 fbp=28.38  1.2 min
+[184/200] psnr=36.07 fbp=28.44  1.3 min
+[192/200] psnr=36.07 fbp=28.52  1.3 min
+[200/200] psnr=35.95 fbp=28.50  1.4 min
+{
+ "psnr": {
+  "mean": 35.95159958839417,
+  "std": 6.162797705807496,
+  "n": 200
+ },
+ "ssim": {
+  "mean": 0.8612065657973289,
+  "std": 0.125059733582835,
+  "n": 200
+ },
+ "lpips": {
+  "mean": 0.08314314758405089,
+  "std": 0.052885405598390944,
+  "n": 200
+ },
+ "dc": {
+  "mean": 0.0011127200374903624,
+  "std": 0.0011283956629910307,
+  "n": 200
+ },
+ "psnr_fbp": {
+  "mean": 28.503285655975343,
+  "std": 2.5566328837408783,
+  "n": 200
+ },
+ "ssim_fbp": {
+  "mean": 0.6349508751928806,
+  "std": 0.08989254674351083,
+  "n": 200
+ },
+ "lpips_fbp": {
+  "mean": 0.22180507166311145,
+  "std": 0.0637794472144508,
+  "n": 200
+ }
+}
+-> results/main_sv60_dc
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_sparse90.yaml --guidance dps --nfe 50 --n-samples 1 --out results/main_sv90_dps --zeta 30 --t-start 0.3
+[8/200] psnr=21.76 fbp=28.39  0.1 min
+[16/200] psnr=23.86 fbp=29.83  0.1 min
+[24/200] psnr=24.28 fbp=30.49  0.2 min
+[32/200] psnr=24.30 fbp=30.57  0.2 min
+[40/200] psnr=24.31 fbp=30.53  0.3 min
+[48/200] psnr=23.89 fbp=30.11  0.4 min
+[56/200] psnr=23.70 fbp=29.78  0.4 min
+[64/200] psnr=23.68 fbp=29.72  0.5 min
+[72/200] psnr=23.83 fbp=29.99  0.5 min
+[80/200] psnr=23.97 fbp=30.16  0.6 min
+[88/200] psnr=23.64 fbp=29.63  0.6 min
+[96/200] psnr=23.66 fbp=29.66  0.7 min
+[104/200] psnr=23.78 fbp=29.70  0.7 min
+[112/200] psnr=23.84 fbp=29.73  0.8 min
+[120/200] psnr=23.91 fbp=29.94  0.8 min
+[128/200] psnr=23.86 fbp=29.96  0.9 min
+[136/200] psnr=23.87 fbp=30.01  0.9 min
+[144/200] psnr=23.89 fbp=30.11  1.0 min
+[152/200] psnr=23.99 fbp=30.25  1.0 min
+[160/200] psnr=23.93 fbp=30.23  1.1 min
+[168/200] psnr=24.00 fbp=30.36  1.1 min
+[176/200] psnr=24.11 fbp=30.43  1.2 min
+[184/200] psnr=24.12 fbp=30.49  1.2 min
+[192/200] psnr=24.10 fbp=30.59  1.3 min

@@ -1,0 +1,109 @@
+{
+  "collected_at_utc": "2026-10-30T13:52:03.738371+00:00",
+  "excluded_patterns": [
+    "exec-*",
+    "dl*",
+    "setup*"
+  ],
+  "files": [
+    {
+      "name": "bench5090.log",
+      "bytes": 1199,
+      "sha256": "4f7ede08dded13230d17f80d72cd92de6cd5b49fd3aa13d7ddf92d215a980524",
+      "mtime_utc": "2026-10-19T00:48:27.421641+00:00",
+      "included": true
+    },
+    {
+      "name": "fbp.log",
+      "bytes": 5760,
+      "sha256": "5a33d20352536341cf719818d149fdab43d83dcb53b107695483e722c3ce61cd",
+      "mtime_utc": "2026-10-19T01:48:26.612275+00:00",
+      "included": true
+    },
+    {
+      "name": "matrix.log",
+      "bytes": 36503,
+      "sha256": "5a2d14c777097d1282dcbef2ce71ebc72e0f22abc91422472d79774af8f13b9a",
+      "mtime_utc": "2026-10-19T08:29:51.182842+00:00",
+      "included": true
+    },
+    {
+      "name": "matrix2.log",
+      "bytes": 120309,
+      "sha256": "9169f73b1797ff2e04318256332806dd76537936b3b36811f68f105c92dc4a05",
+      "mtime_utc": "2026-10-19T12:02:42.000467+00:00",
+      "included": true
+    },
+    {
+      "name": "matrix3.log",
+      "bytes": 1561,
+      "sha256": "6dafdf4202c99f98f2e09854e9363011c253ed78a11219018f08b5f019812c74",
+      "mtime_utc": "2026-10-19T12:08:13.027019+00:00",
+      "included": true
+    },
+    {
+      "name": "precheck.log",
+      "bytes": 242,
+      "sha256": "78c9fefd1083d95f2faacc8a95debf92958422e58094be46eac3a057ff66f025",
+      "mtime_utc": "2026-10-19T04:11:10.034675+00:00",
+      "included": true
+    },
+    {
+      "name": "precheck2.log",
+      "bytes": 237,
+      "sha256": "e869fdf16064059e477b923ef9e9b27a71a3cf3f7ea1d6f5062fce15a82c5db3",
+      "mtime_utc": "2026-10-19T04:42:03.942153+00:00",
+      "included": true
+    },
+    {
+      "name": "precheck3.log",
+      "bytes": 435,
+      "sha256": "986fc401aadeafba711437dbe555eee345cc34b0ead51c5148455a22c05f7684",
+      "mtime_utc": "2026-10-19T04:44:28.409116+00:00",
+      "included": true
+    },
+    {
+      "name": "precheck4.log",
+      "bytes": 788,
+      "sha256": "bdb13a258ba3f9eabd080627e0c6e4754694e867ec4732f559f9a1f86908e4ee",
+      "mtime_utc": "2026-10-19T04:48:47.064998+00:00",
+      "included": true
+    },
+    {
+      "name": "prior256.log",
+      "bytes": 123469,
+      "sha256": "1c1dc81440904073e423b4f69bab840655b42d9be242af43155b560719748b94",
+      "mtime_utc": "2026-10-19T08:06:36.414630+00:00",
+      "included": true
+    },
+    {
+      "name": "repairzip.log",
+      "bytes": 549,
+      "sha256": "c648232071907379af957c7a19e3c75a0a8bd5d60e9363db690c4f9a894557e1",
+      "mtime_utc": "2026-10-19T01:45:49.102143+00:00",
+      "included": true
+    },
+    {
+      "name": "smoke.log",
+      "bytes": 29225,
+      "sha256": "a3ddee5c6239b67a0138a10e751a955d7d7ae9499d73e80c574824873607091a",
+      "mtime_utc": "2026-10-19T00:56:28.028415+00:00",
+      "included": true
+    },
+    {
+      "name": "smoke2.log",
+      "bytes": 1209,
+      "sha256": "ddce1e41a3caa5e1139a9b2322fd02d9f7892bf5f9c3543e5f60bf0ac4906cd5",
+      "mtime_utc": "2026-10-19T01:00:51.129470+00:00",
+      "included": true
+    }
+  ],
+  "notice": "Private review archive; not yet approved as public release. Unmodified originals only where included.",
+  "source": "Original AutoDL named training/evaluation console logs; recovered without running experiments.",
+  "private_acquisition_archive": {
+    "bytes": 83063,
+    "sha256": "465bdd0bece4063e0fe5464272c04e1eac98cf50fd51df7644c3d5cefe8fff42",
+    "published": false
+  },
+  "interpretation": "Historical output, not proof of current tests passing. Partial/retried/precheck runs are not additional main-table evidence."
+}

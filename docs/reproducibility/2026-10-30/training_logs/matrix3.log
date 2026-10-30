@@ -1,0 +1,16 @@
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_lowdose1e5.yaml --guidance dps --nfe 50 --n-samples 1 --out results/tune_ld1e5_dps_10_ts0.5 --zeta 10 --t-start 0.5 --split val --n-test 50
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_lowdose1e5.yaml --guidance dps --nfe 50 --n-samples 1 --out results/tune_ld1e5_dps_30_ts0.5 --zeta 30 --t-start 0.5 --split val --n-test 50
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_lowdose1e5.yaml --guidance dps --nfe 50 --n-samples 1 --out results/tune_ld1e5_dps_100_ts0.5 --zeta 100 --t-start 0.5 --split val --n-test 50
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_lowdose1e5.yaml --guidance pigdm --nfe 50 --n-samples 1 --out results/tune_ld1e5_pigdm_0.03 --zeta 0.03 --t-start 0.0 --split val --n-test 50
+[RUN] src/sample_posterior.py --ckpt checkpoints/prior_256/ema_final.pt --config configs/eval_lowdose1e5.yaml --guidance pigdm --nfe 50 --n-samples 1 --out results/tune_ld1e5_pigdm_0.05 --zeta 0.05 --t-start 0.0 --split val --n-test 50
+[DONE] stage=tune
+[METRIC] sv60 dps: best=(30, 0.4) val_psnr=24.59
+[METRIC] sv60 pigdm: best=(1, 0.0) val_psnr=36.76
+[METRIC] sv60 dc: best=(0.3, 0.0) val_psnr=35.76
+[METRIC] ld1e5 dps: best=(30, 0.4) val_psnr=24.61
+[METRIC] ld1e5 pigdm: best=(0.1, 0.0) val_psnr=32.47
+[METRIC] ld1e5 dc: best=(30, 0.0) val_psnr=30.44
+[DONE] stage=select
+[DONE] stage=main
+[DONE] stage=ld1e4
+[ALLDONE]

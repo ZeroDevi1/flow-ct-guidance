@@ -1,0 +1,135 @@
+[START] stage=fbp
+[RUN] src/baselines/fbp_eval.py --config configs/eval_sparse30.yaml --out results/fbp_sv30
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+{
+ "psnr": {
+  "mean": 23.50056959152222,
+  "std": 2.643844687443689,
+  "n": 200
+ },
+ "ssim": {
+  "mean": 0.4287092533707619,
+  "std": 0.08281506890588619,
+  "n": 200
+ },
+ "lpips": {
+  "mean": 0.3650588937103748,
+  "std": 0.0566044898074341,
+  "n": 200
+ },
+ "dc": {
+  "mean": 0.06163290994707495,
+  "std": 0.03138090799801563,
+  "n": 200
+ }
+}
+[RUN] src/baselines/fbp_eval.py --config configs/eval_sparse60.yaml --out results/fbp_sv60
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+{
+ "psnr": {
+  "mean": 28.503285779953003,
+  "std": 2.556632910557862,
+  "n": 200
+ },
+ "ssim": {
+  "mean": 0.6349508751928806,
+  "std": 0.08989254674351083,
+  "n": 200
+ },
+ "lpips": {
+  "mean": 0.2218050835467875,
+  "std": 0.06377948149735954,
+  "n": 200
+ },
+ "dc": {
+  "mean": 0.03994574193377048,
+  "std": 0.017883733241868736,
+  "n": 200
+ }
+}
+[RUN] src/baselines/fbp_eval.py --config configs/eval_sparse90.yaml --out results/fbp_sv90
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+{
+ "psnr": {
+  "mean": 30.578676376342774,
+  "std": 2.342199899631648,
+  "n": 200
+ },
+ "ssim": {
+  "mean": 0.733885467350483,
+  "std": 0.08542436888019699,
+  "n": 200
+ },
+ "lpips": {
+  "mean": 0.14333149519516156,
+  "std": 0.06227315462465083,
+  "n": 200
+ },
+ "dc": {
+  "mean": 0.03581916699418798,
+  "std": 0.014718969141062107,
+  "n": 200
+ }
+}
+[RUN] src/baselines/fbp_eval.py --config configs/eval_lowdose1e5.yaml --out results/fbp_ld1e5
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+{
+ "psnr": {
+  "mean": 26.20717698097229,
+  "std": 2.7417687410495954,
+  "n": 200
+ },
+ "ssim": {
+  "mean": 0.5800862185284495,
+  "std": 0.13421527346150267,
+  "n": 200
+ },
+ "lpips": {
+  "mean": 0.3089382476918399,
+  "std": 0.16478042992162248,
+  "n": 200
+ },
+ "dc": {
+  "mean": 0.03598518369719386,
+  "std": 0.013536455068708481,
+  "n": 200
+ }
+}
+[RUN] src/baselines/fbp_eval.py --config configs/eval_lowdose.yaml --out results/fbp_ld1e4
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+/root/miniconda3/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+{
+ "psnr": {
+  "mean": 18.03308258533478,
+  "std": 3.9570571206592864,
+  "n": 200
+ },
+ "ssim": {
+  "mean": 0.32369124483317135,
+  "std": 0.15029554185060867,
+  "n": 200
+ },
+ "lpips": {
+  "mean": 0.601733289361,
+  "std": 0.2026648421535345,
+  "n": 200
+ },
+ "dc": {
+  "mean": 0.05067633529193699,
+  "std": 0.01403852825741293,
+  "n": 200
+ }
+}
+[DONE] stage=fbp
+| exp | method | setting | NFE | ζ/λ | K | PSNR | SSIM | LPIPS | DC | min |
+|---|---|---|---|---|---|---|---|---|---|---|
+| fbp_ld1e4 | fbp-ram-lak | ld1e4 |  |  |  | 18.03 ± 3.96 | 0.324 | 0.602 | 0.0507 |  |
+| fbp_ld1e5 | fbp-ram-lak | ld1e5 |  |  |  | 26.21 ± 2.74 | 0.580 | 0.309 | 0.0360 |  |
+| fbp_sv30 | fbp-ram-lak | sv30 |  |  |  | 23.50 ± 2.64 | 0.429 | 0.365 | 0.0616 |  |
+| fbp_sv60 | fbp-ram-lak | sv60 |  |  |  | 28.50 ± 2.56 | 0.635 | 0.222 | 0.0399 |  |
+| fbp_sv90 | fbp-ram-lak | sv90 |  |  |  | 30.58 ± 2.34 | 0.734 | 0.143 | 0.0358 |  |
+[DONE]

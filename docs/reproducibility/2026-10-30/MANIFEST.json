@@ -1,0 +1,2748 @@
+{
+  "schema_version": 1,
+  "collected_utc": "2026-10-30T13:48:05.639465+00:00",
+  "source": "Existing AutoDL project, recovered in CPU-only mode; original files unchanged.",
+  "source_git_commit": null,
+  "source_git_note": "No .git directory found in source project; do not attribute to a commit without comparison.",
+  "comparison_commit": "a9c29b4e6f2db2745034151f3d7a94dae699faa6",
+  "private_acquisition_archive": {
+    "bytes": 229590,
+    "sha256": "99b28bed28355de7722af207a51643c8e3d359d43fd4b1dc4ffe010f934ad673",
+    "published": false,
+    "note": "Private acquisition bundle; public archive removes unnecessary instance identifier and deduplicates exact files."
+  },
+  "scope": "Historical text evidence and checksum metadata, not a full disk or training-state backup. No new training or numerical evaluation performed.",
+  "comparison_counts": {
+    "byte_identical": 228,
+    "different": 3,
+    "absent": 23,
+    "unmapped": 4
+  },
+  "files": [
+    {
+      "path": "original_project/01_diffusion_inverse/src/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mtime_utc": "2026-10-18T15:46:31+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/src/__init__.py",
+      "baseline_git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/__init__.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/src/flow.py",
+      "bytes": 1701,
+      "sha256": "00dff8b9003031cabdd9e0c28659de674f0e6b1ade209ac104a63a370570cd46",
+      "mtime_utc": "2026-10-18T15:52:43+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/src/flow.py",
+      "baseline_git_blob_sha": "27ca0555ea2c66a0ba746677a08f4a7c03189bfb",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/flow.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/src/sample_posterior.py",
+      "bytes": 11850,
+      "sha256": "d4ae3e3443ff0b6a99b882fa3455fd70b8a1bf640274a7947e217fecc0f87100",
+      "mtime_utc": "2026-10-19T04:45:27.018893+00:00",
+      "comparison": "different",
+      "baseline_path": "code/src/sample_posterior.py",
+      "baseline_git_blob_sha": "6ff6b053539fa4ac1f48470afd518e7caa91f084",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/sample_posterior.py",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/src/sample_posterior.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/src/train_flow.py",
+      "bytes": 6376,
+      "sha256": "42bf82696c25d4a856709bd950389aa85fe42be5a9a851405fd0bb2ce7184797",
+      "mtime_utc": "2026-10-19T00:45:58.025067+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/src/train_flow.py",
+      "baseline_git_blob_sha": "f276a4ff8b25bcb09052e19cbcdd65a1968bde97",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/train_flow.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/src/utils.py",
+      "bytes": 2221,
+      "sha256": "39bddf033e19b35495b441fb36357ebfe7d441cd8d62ad157f92a4db7c9f08bd",
+      "mtime_utc": "2026-10-19T01:00:01.235069+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/src/utils.py",
+      "baseline_git_blob_sha": "2d419d9ed504bbfbbc2f0f624c90dfc6a6dd3aed",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/utils.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/configs/bench_prior256_phantom.yaml",
+      "bytes": 592,
+      "sha256": "04eda634c304d89b41a7e84ccad65a13ed5cdfe0c7bb4c0311b9c4387bce3c16",
+      "mtime_utc": "2026-10-19T00:51:02.897418+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/configs/bench_prior256_phantom.yaml",
+      "baseline_git_blob_sha": "0911973e5f5ad09e2c8ae20e4ab7acd94db9f77e",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/configs/bench_prior256_phantom.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/configs/eval_lowdose.yaml",
+      "bytes": 834,
+      "sha256": "ed7463a8d8165a6c2a35bc207cb3296b775a47883d90eab403ed3d5f0ef5f548",
+      "mtime_utc": "2026-10-19T00:50:54.438625+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/configs/eval_lowdose.yaml",
+      "baseline_git_blob_sha": "68b2ef14177cd75dce1bb9ab8cd17a9937dc95c2",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/configs/eval_lowdose.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/configs/eval_smoke.yaml",
+      "bytes": 278,
+      "sha256": "a2a5a2d8fc24d903d564087960f958531f4e7f1f93ecb4c8e4c4ec44d00bc96f",
+      "mtime_utc": "2026-10-18T15:55:16+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/configs/eval_smoke.yaml",
+      "baseline_git_blob_sha": "eab2d3e2dda83bbe168525e0ce8b6feb34939017",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/configs/eval_smoke.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/configs/eval_sparse30.yaml",
+      "bytes": 770,
+      "sha256": "8c43c9c351c1f43d87b4f4339bf5a84db9c1f0062eb83bc68207b84f6d8cf14c",
+      "mtime_utc": "2026-10-19T00:50:54.437896+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/configs/eval_sparse30.yaml",
+      "baseline_git_blob_sha": "fca2599c2030dd25ab3e18a5fca6e2b84e9f9536",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/configs/eval_sparse30.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/configs/eval_sparse60.yaml",
+      "bytes": 770,
+      "sha256": "fbe314e639345d6b5cbdd7e4a1ea59baa6f9d8af3b1e94d62a79297d9a9435ae",
+      "mtime_utc": "2026-10-19T00:50:54.438276+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/configs/eval_sparse60.yaml",
+      "baseline_git_blob_sha": "e81b804293d7101e85ad16b1f524b1b8e816ff9e",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/configs/eval_sparse60.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/configs/eval_sparse90.yaml",
+      "bytes": 770,
+      "sha256": "cae45f30246794152955b646a9c55f66918fde117c308cb806e41ff5c61975b4",
+      "mtime_utc": "2026-10-19T00:50:54.438469+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/configs/eval_sparse90.yaml",
+      "baseline_git_blob_sha": "8e8a05075eadac491b228f123daedc68ec6a6a59",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/configs/eval_sparse90.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/configs/fbpconvnet_smoke.yaml",
+      "bytes": 314,
+      "sha256": "a48a560639cfce376ef3a1eee49aca2f3aa21bd96d673ba37f126717c88a2161",
+      "mtime_utc": "2026-10-18T15:55:16+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/configs/fbpconvnet_smoke.yaml",
+      "baseline_git_blob_sha": "dd016529fa3bfdb9323c58c79af920a94b7ff09f",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/configs/fbpconvnet_smoke.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/configs/fbpconvnet_sv60.yaml",
+      "bytes": 677,
+      "sha256": "5a3e21cc2d7f6f9eb296c9be10cf5daa972f403672af5c00622a2f74d3cac057",
+      "mtime_utc": "2026-10-19T00:51:10.171744+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/configs/fbpconvnet_sv60.yaml",
+      "baseline_git_blob_sha": "25ca4436ae981632a18becff3f1b21e66a41cc05",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/configs/fbpconvnet_sv60.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/configs/prior_256.yaml",
+      "bytes": 1147,
+      "sha256": "95f01c29aa26e645435b4a03658030eabf14d0221b056f8c2d4542ec0e0b2e66",
+      "mtime_utc": "2026-10-19T00:56:57.905181+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/configs/prior_256.yaml",
+      "baseline_git_blob_sha": "2c54044707a4972a694d4979bc3474d3552c9385",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/configs/prior_256.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/configs/smoke_phantom.yaml",
+      "bytes": 452,
+      "sha256": "46efc6cf3174c7a849944fd55a1df0c274c6a115ae08b576c9c18a01743bee5a",
+      "mtime_utc": "2026-10-18T15:55:16+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/configs/smoke_phantom.yaml",
+      "baseline_git_blob_sha": "f5e3c23b7c50f733d9b42a6888e8ecf9b4c44c69",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/configs/smoke_phantom.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/configs/eval_lowdose1e5.yaml",
+      "bytes": 876,
+      "sha256": "40d5c5608114546f03f1b0892a6806ed9bfbf010cf7fb516662a6569bf5f2276",
+      "mtime_utc": "2026-10-19T00:50:54.438774+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/configs/eval_lowdose1e5.yaml",
+      "baseline_git_blob_sha": "c04102a85be54097b2f7c63b6a56d7237af99767",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/configs/eval_lowdose1e5.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/configs/fbpconvnet_ld1e5.yaml",
+      "bytes": 684,
+      "sha256": "4d9fbf5546cd33b51610d314cc3ee019ffe6983d5e2405f31e582ccf1bc45d25",
+      "mtime_utc": "2026-10-19T00:51:10.178155+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/configs/fbpconvnet_ld1e5.yaml",
+      "baseline_git_blob_sha": "dc6f1eda3d23c5329162af95a1c6a5b815ee89ae",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/configs/fbpconvnet_ld1e5.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/configs/fbpconvnet_sv30.yaml",
+      "bytes": 677,
+      "sha256": "c2cf90a79d573fbe56fd051fe1c7f951f7946d94abc158e58351f21a89f96314",
+      "mtime_utc": "2026-10-19T00:51:10.168005+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/configs/fbpconvnet_sv30.yaml",
+      "baseline_git_blob_sha": "cacc5f26bb45fb4a69b07c57b0d8d13f38a2e0db",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/configs/fbpconvnet_sv30.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/configs/fbpconvnet_sv90.yaml",
+      "bytes": 677,
+      "sha256": "eecbf7d36eef64d29a60c2df6264d628fefe4a46a8a631ac66ccd7a118cb1d80",
+      "mtime_utc": "2026-10-19T00:51:10.175174+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/configs/fbpconvnet_sv90.yaml",
+      "baseline_git_blob_sha": "912d1880f03924482a713adf574567809e360f2e",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/configs/fbpconvnet_sv90.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/tests/test_radon.py",
+      "bytes": 1172,
+      "sha256": "48ebbd1394a0af91a07e847b0ba97b2e677c227582371e00892befe5de6eabda",
+      "mtime_utc": "2026-10-18T15:55:16+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/tests/test_radon.py",
+      "baseline_git_blob_sha": "ec905f6926749135a968f686025e0024620ce1be",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/tests/test_radon.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/scripts/00_download_totalseg.sh",
+      "bytes": 1385,
+      "sha256": "667abfbf95063209b4007a8b4b84b65a346061b59f0f58443ce0a5337acd3940",
+      "mtime_utc": "2026-10-18T15:49:31+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/scripts/00_download_totalseg.sh",
+      "baseline_git_blob_sha": "e06ecd00d5cafdf5d4e5754ce91967c91631364f",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/scripts/00_download_totalseg.sh"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/scripts/collect_results.py",
+      "bytes": 3080,
+      "sha256": "1476364b097d3e57efea6bae602fbda865141ab9b6631d3f712d3797049239ed",
+      "mtime_utc": "2026-10-19T00:52:06.150415+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/scripts/collect_results.py",
+      "baseline_git_blob_sha": "6d3209484f1dabe2bc6d94561266232fcf9b02d3",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/scripts/collect_results.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/scripts/run_phase1.sh",
+      "bytes": 1378,
+      "sha256": "c9d7a4f8505589f8a9924a4f9c11fea75940ea6ab289f031897f2120da0e8321",
+      "mtime_utc": "2026-10-18T15:55:16+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/scripts/run_phase1.sh",
+      "baseline_git_blob_sha": "55aea02343996e462e1a7f0ce925a0c47d5eab1a",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/scripts/run_phase1.sh"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/scripts/run_matrix.py",
+      "bytes": 9308,
+      "sha256": "bc57975eb9b7f8209d79b30902330d0378af89af18c2d2e000ece39a731d6dde",
+      "mtime_utc": "2026-10-19T09:23:43.724488+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/scripts/run_matrix.py",
+      "baseline_git_blob_sha": "05fca0e65466d7221176f62b9cc81091b9725419",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/scripts/run_matrix.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/scripts/pipeline_prior.sh",
+      "bytes": 1789,
+      "sha256": "2c1ba39bb7eeb9cc7ff10c078039fc61f90c78e505e39a78631b3d7fae46035b",
+      "mtime_utc": "2026-10-19T01:41:21.850504+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/scripts/pipeline_prior.sh",
+      "baseline_git_blob_sha": "4bc44db44f1227ad8e816fb9b48f8db829f9247b",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/scripts/pipeline_prior.sh"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/scripts/pipeline_matrix.sh",
+      "bytes": 1007,
+      "sha256": "9154737548370a1d864b13185c13d1949d78e4259830d0daacd6dc13a182a068",
+      "mtime_utc": "2026-10-19T01:49:07.484241+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/scripts/pipeline_matrix.sh",
+      "baseline_git_blob_sha": "34bccf00d2b08419774f6f6d5f156d1f5e0d8493",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/scripts/pipeline_matrix.sh"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/scripts/analyze.py",
+      "bytes": 11054,
+      "sha256": "c90dc7000304b3c7a7312844df6b7f1648cee8ce3b8cccd9bbe475b55416a521",
+      "mtime_utc": "2026-10-19T04:49:42.227872+00:00",
+      "comparison": "different",
+      "baseline_path": "code/scripts/analyze.py",
+      "baseline_git_blob_sha": "5f994442d00ca86872392d8ff8cbb2f0de8e1ad7",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/scripts/analyze.py",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/scripts/analyze.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/summary.md",
+      "bytes": 10354,
+      "sha256": "cf3e3109d4d016c7fd1d4c3f8a3fc320c2949c85ee6c4e9fd0de5c3035084ebc",
+      "mtime_utc": "2026-10-19T12:08:13.019018+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/summary.md",
+      "baseline_git_blob_sha": "daadf72089c34b5d2a2420e7257834b9a95d60db",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/summary.md"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/data_stats.json",
+      "bytes": 346,
+      "sha256": "6c81503a161f447ef9645d18b3275b37a65f480c59260eb8a8dbfb1c4eca78c5",
+      "mtime_utc": "2026-10-19T01:47:58.263175+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/data_stats.json",
+      "baseline_git_blob_sha": "1fda2dabb9d211a0df5fcf1d675246e8407b5ab0",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/data_stats.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/selected_params.json",
+      "bytes": 7456,
+      "sha256": "c5074dab58d287a4f670dbf495fc8dd64cf35004d997efd1d100085576eff04f",
+      "mtime_utc": "2026-10-19T12:08:12.943012+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/selected_params.json",
+      "baseline_git_blob_sha": "dc104a899951dcc25279ee0c075a60e0260d922e",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/selected_params.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/src/baselines/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mtime_utc": "2026-10-18T15:46:31+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/src/baselines/__init__.py",
+      "baseline_git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/baselines/__init__.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/src/baselines/fbp_eval.py",
+      "bytes": 2470,
+      "sha256": "53f554d2edd754ec6060febadaffd8e8c6514e6b84c94cd54829ba2984d80684",
+      "mtime_utc": "2026-10-19T01:00:01.235636+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/src/baselines/fbp_eval.py",
+      "baseline_git_blob_sha": "ff7ad3688c155721e1c60e28ebd51a1d2e231576",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/baselines/fbp_eval.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/src/baselines/train_fbpconvnet.py",
+      "bytes": 4616,
+      "sha256": "caceb1cc8ad5fc0ce1af62c0f5d8f24f497f94cc3846324964f4a630c9c85f44",
+      "mtime_utc": "2026-10-19T01:00:01.235811+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/src/baselines/train_fbpconvnet.py",
+      "baseline_git_blob_sha": "f76bea9f1e78cd07c6a400c41d5bb41379707fea",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/baselines/train_fbpconvnet.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/src/data/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mtime_utc": "2026-10-18T15:46:31+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/src/data/__init__.py",
+      "baseline_git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/data/__init__.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/src/data/dataset.py",
+      "bytes": 2915,
+      "sha256": "1843e5f7e922b1e539f22bd707a7ca968df08ff1b635635848adf8043bcdc0aa",
+      "mtime_utc": "2026-10-19T00:47:19.090031+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/src/data/dataset.py",
+      "baseline_git_blob_sha": "e2af608ebbb429093093be25486564425a2e2699",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/data/dataset.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/src/data/prepare_slices.py",
+      "bytes": 8983,
+      "sha256": "fcb41af2a1fbd0568a229388c438b5a19eb6a7a735c002d8640cbc936c32587f",
+      "mtime_utc": "2026-10-19T00:34:26.252196+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/src/data/prepare_slices.py",
+      "baseline_git_blob_sha": "0ca7f6a60e99832dccb4542015d7042e9f84ca53",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/data/prepare_slices.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/src/eval/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mtime_utc": "2026-10-18T15:46:31+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/src/eval/__init__.py",
+      "baseline_git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/eval/__init__.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/src/eval/metrics.py",
+      "bytes": 2381,
+      "sha256": "7499f11ec51775a3d389e633601a751cafc02543d53fa64db688874607bd029e",
+      "mtime_utc": "2026-10-19T00:47:19.089544+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/src/eval/metrics.py",
+      "baseline_git_blob_sha": "f52472ef8f3507d8ea8d31b190576109fa72f2de",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/eval/metrics.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/src/models/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mtime_utc": "2026-10-18T15:46:31+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/src/models/__init__.py",
+      "baseline_git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/models/__init__.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/src/models/unet.py",
+      "bytes": 5839,
+      "sha256": "7e7927c8d52711c6856d4d6bcca471249d5f0caf0b42d1d0635625a52eb4ba6b",
+      "mtime_utc": "2026-10-18T16:02:50+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/src/models/unet.py",
+      "baseline_git_blob_sha": "48faab8c179ef755d08f2e47f8a5189b79539343",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/models/unet.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/src/physics/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "mtime_utc": "2026-10-18T15:46:31+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/src/physics/__init__.py",
+      "baseline_git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/physics/__init__.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/src/physics/radon.py",
+      "bytes": 8864,
+      "sha256": "f95c1f7c7c6b69e918a08f450754e2477e90b40002e4b0106b7301e4c8b0cadb",
+      "mtime_utc": "2026-10-19T00:46:38.580513+00:00",
+      "comparison": "different",
+      "baseline_path": "code/src/physics/radon.py",
+      "baseline_git_blob_sha": "d0a0279685117f0d03c88f8feafba6bdbf7b7ab6",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/src/physics/radon.py",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/src/physics/radon.py"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/smoke_dps/metrics.json",
+      "bytes": 1253,
+      "sha256": "2e7ca7c7a60640289a6d64603fd458a2a311b28f8273fea990c95a7a1da52d53",
+      "mtime_utc": "2026-10-19T00:53:46.969252+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/smoke_dps/metrics.json",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/smoke_dps/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/smoke_dps/config.yaml",
+      "bytes": 225,
+      "sha256": "9153497f38ef2dbdb7ff05a6e6ef062a6f41fbc09dfbef433d39c6508957ffff",
+      "mtime_utc": "2026-10-19T00:53:46.993252+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/smoke_dps/config.yaml",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/smoke_dps/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/smoke_pigdm/metrics.json",
+      "bytes": 1247,
+      "sha256": "39a1a4a91ce81107fd29c773ad8a89598c06a3cc8caad5e655f133bdc950ca62",
+      "mtime_utc": "2026-10-19T00:53:54.237176+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/smoke_pigdm/metrics.json",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/smoke_pigdm/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/smoke_pigdm/config.yaml",
+      "bytes": 225,
+      "sha256": "9153497f38ef2dbdb7ff05a6e6ef062a6f41fbc09dfbef433d39c6508957ffff",
+      "mtime_utc": "2026-10-19T00:53:54.253175+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/smoke_pigdm/config.yaml",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/smoke_pigdm/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/smoke_dc/metrics.json",
+      "bytes": 1259,
+      "sha256": "5d48f1f1f463fc55573d597655771a3b38f960cc7f405e3f2ca643bda44bb904",
+      "mtime_utc": "2026-10-19T00:53:59.273125+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/smoke_dc/metrics.json",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/smoke_dc/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/smoke_dc/config.yaml",
+      "bytes": 225,
+      "sha256": "9153497f38ef2dbdb7ff05a6e6ef062a6f41fbc09dfbef433d39c6508957ffff",
+      "mtime_utc": "2026-10-19T00:53:59.285125+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/smoke_dc/config.yaml",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/smoke_dc/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/smoke_fbp/metrics.json",
+      "bytes": 548,
+      "sha256": "8b5cda18012e1f98468613cda2ce02065ef8b7ced070c7a37004ba7ef9aea332",
+      "mtime_utc": "2026-10-19T00:54:03.297086+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/smoke_fbp/metrics.json",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/smoke_fbp/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/smoke2_dps/metrics.json",
+      "bytes": 1251,
+      "sha256": "937d0115671eb8c14b22aac13d11fa30d9fb7cb0aaef281795644a169aba9acd",
+      "mtime_utc": "2026-10-19T01:00:26.193668+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/smoke2_dps/metrics.json",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/smoke2_dps/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/smoke2_dps/config.yaml",
+      "bytes": 225,
+      "sha256": "9153497f38ef2dbdb7ff05a6e6ef062a6f41fbc09dfbef433d39c6508957ffff",
+      "mtime_utc": "2026-10-19T01:00:26.213658+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/smoke2_dps/config.yaml",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/smoke2_dps/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/smoke2_pigdm/metrics.json",
+      "bytes": 1262,
+      "sha256": "37e0711973e1d8b9faea904ad483380b1b9f98bb34f330e07026ab0fa7aac335",
+      "mtime_utc": "2026-10-19T01:00:33.058308+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/smoke2_pigdm/metrics.json",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/smoke2_pigdm/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/smoke2_pigdm/config.yaml",
+      "bytes": 225,
+      "sha256": "9153497f38ef2dbdb7ff05a6e6ef062a6f41fbc09dfbef433d39c6508957ffff",
+      "mtime_utc": "2026-10-19T01:00:33.070302+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/smoke2_pigdm/config.yaml",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/smoke2_pigdm/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/smoke2_dc/metrics.json",
+      "bytes": 1257,
+      "sha256": "c6d12b9afc81d03c0c51c4b47ad4e842469293523e12433a02774ba33161e856",
+      "mtime_utc": "2026-10-19T01:00:38.215785+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/smoke2_dc/metrics.json",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/smoke2_dc/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/smoke2_dc/config.yaml",
+      "bytes": 225,
+      "sha256": "9153497f38ef2dbdb7ff05a6e6ef062a6f41fbc09dfbef433d39c6508957ffff",
+      "mtime_utc": "2026-10-19T01:00:38.223781+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/smoke2_dc/config.yaml",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/smoke2_dc/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/smoke2_fbp/metrics.json",
+      "bytes": 548,
+      "sha256": "8b5cda18012e1f98468613cda2ce02065ef8b7ced070c7a37004ba7ef9aea332",
+      "mtime_utc": "2026-10-19T01:00:42.289792+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/smoke2_fbp/metrics.json",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/smoke2_fbp/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/fbp_sv30/metrics.json",
+      "bytes": 550,
+      "sha256": "abdcfbc27cdd977314024d1e6fbef085e546694b2375272007b6bcefa29d2a1d",
+      "mtime_utc": "2026-10-19T01:48:04.207406+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbp_sv30/metrics.json",
+      "baseline_git_blob_sha": "ebbcea7a505bdd7171f322d36bf3ad0f112a81ed",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbp_sv30/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/fbp_sv60/metrics.json",
+      "bytes": 553,
+      "sha256": "b2571846f491188246b798c4d9eab246c073ddb3f66309ced5e520a32e764700",
+      "mtime_utc": "2026-10-19T01:48:09.303603+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbp_sv60/metrics.json",
+      "baseline_git_blob_sha": "93240924fdacbcdb8c5703be0c1998dbe6252bb0",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbp_sv60/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/fbp_sv90/metrics.json",
+      "bytes": 553,
+      "sha256": "35bea1ab2bb6bd2474038383abef7a9fb7863e2cc204a7ac88b102c951d79af5",
+      "mtime_utc": "2026-10-19T01:48:14.595809+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbp_sv90/metrics.json",
+      "baseline_git_blob_sha": "1302628b16c14029acc8a799d7bf923ff99ac3c1",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbp_sv90/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/fbp_ld1e5/metrics.json",
+      "bytes": 580,
+      "sha256": "8b3ce429c1ac38c166e123b6e64376804d6568274da07a4f91cb5a01050702da",
+      "mtime_utc": "2026-10-19T01:48:20.200026+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbp_ld1e5/metrics.json",
+      "baseline_git_blob_sha": "2c1ffc1c77f897b89b4185114caeee51e45b1f76",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbp_ld1e5/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/fbp_ld1e4/metrics.json",
+      "bytes": 574,
+      "sha256": "fb795d98690273c39a2ba6dd103f634ac2c849f41a9596fc032e7f03495a23cc",
+      "mtime_utc": "2026-10-19T01:48:25.816244+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbp_ld1e4/metrics.json",
+      "baseline_git_blob_sha": "6692bcae865ccdb5daad44e65e80425cd62289a8",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbp_ld1e4/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_3_ts0.1/metrics.json",
+      "bytes": 1052,
+      "sha256": "251f09c04aea56ce6b0cfbd22f558af3de9b251eb6d033107e9e94f263ff43bf",
+      "mtime_utc": "2026-10-19T08:07:42.180782+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_3_ts0.1/metrics.json",
+      "baseline_git_blob_sha": "39db0990b6d82b87dd1011cf244d949d5b1e079f",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_3_ts0.1/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_3_ts0.1/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:07:42.316795+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_3_ts0.1/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_3_ts0.1/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_3_ts0.2/metrics.json",
+      "bytes": 1054,
+      "sha256": "18a411dfec5c4b9967c66da7c29c17568e764abfbd9d719a7c21dfe436b657cb",
+      "mtime_utc": "2026-10-19T08:08:09.575209+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_3_ts0.2/metrics.json",
+      "baseline_git_blob_sha": "1dc81604b65aa4314b40eb64d11efedcbddda8fd",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_3_ts0.2/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_3_ts0.2/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:08:09.691219+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_3_ts0.2/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_3_ts0.2/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_3_ts0.3/metrics.json",
+      "bytes": 1054,
+      "sha256": "9eb53f71a8c6a9d38ed57260e50a2c6582d83e17c93f1b67f3715f1607cd2cd2",
+      "mtime_utc": "2026-10-19T08:08:35.561442+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_3_ts0.3/metrics.json",
+      "baseline_git_blob_sha": "81761e005c1f7fd5bacca940710257ddf22f61b7",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_3_ts0.3/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_3_ts0.3/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:08:35.677452+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_3_ts0.3/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_3_ts0.3/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_10_ts0.1/metrics.json",
+      "bytes": 1053,
+      "sha256": "a3a0af056eaaec50379cc4b41ad510be064cf736032344e99069454abaa03b07",
+      "mtime_utc": "2026-10-19T08:09:04.187829+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_10_ts0.1/metrics.json",
+      "baseline_git_blob_sha": "7b5974ffa4569bcf3786e66af214c9bd179ceb02",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_10_ts0.1/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_10_ts0.1/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:09:04.303839+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_10_ts0.1/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_10_ts0.1/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_10_ts0.2/metrics.json",
+      "bytes": 1055,
+      "sha256": "cb9b8ae19cd59c5b0b55b44cf444f2a1eacba4be3e0cfa63caf590553bf7474d",
+      "mtime_utc": "2026-10-19T08:09:31.458036+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_10_ts0.2/metrics.json",
+      "baseline_git_blob_sha": "aed583998500c0c1c0073847611cec00fcc6c0b2",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_10_ts0.2/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_10_ts0.2/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:09:31.570045+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_10_ts0.2/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_10_ts0.2/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_10_ts0.3/metrics.json",
+      "bytes": 1053,
+      "sha256": "b4d22a7e7576153b3616fbb207d2bf51f5e5646f693f59f63f17aa0c2ac146b1",
+      "mtime_utc": "2026-10-19T08:09:57.432080+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_10_ts0.3/metrics.json",
+      "baseline_git_blob_sha": "8562995bd8cc6d40d0754426cbbdcaae77c6ac87",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_10_ts0.3/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_10_ts0.3/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:09:57.560089+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_10_ts0.3/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_10_ts0.3/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_30_ts0.1/metrics.json",
+      "bytes": 1053,
+      "sha256": "e7a715fb388180f7e6158259b44da00b7d95b0d05cde8e55e6d0ba1ef9028cd4",
+      "mtime_utc": "2026-10-19T08:10:26.218281+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_30_ts0.1/metrics.json",
+      "baseline_git_blob_sha": "b101a12d5e8be0a8f8ffc7142d1c026850c391a9",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_30_ts0.1/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_30_ts0.1/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:10:26.326289+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_30_ts0.1/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_30_ts0.1/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_30_ts0.2/metrics.json",
+      "bytes": 1053,
+      "sha256": "d0988dd3ce1ccae9e6f18b00aaa92ea45b176260d426cdd303319b179df59316",
+      "mtime_utc": "2026-10-19T08:10:53.368301+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_30_ts0.2/metrics.json",
+      "baseline_git_blob_sha": "cb87639e3ffdd1434f436d655b6de21760ce111e",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_30_ts0.2/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_30_ts0.2/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:10:53.492310+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_30_ts0.2/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_30_ts0.2/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_30_ts0.3/metrics.json",
+      "bytes": 1055,
+      "sha256": "958460989a37ec6d4c8dc8ccb2b6012fa9943c8daa9cf64294dad173d34d9cba",
+      "mtime_utc": "2026-10-19T08:11:19.474192+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_30_ts0.3/metrics.json",
+      "baseline_git_blob_sha": "358c5bc13251e53c17be24e124d334b75422672a",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_30_ts0.3/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_30_ts0.3/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:11:19.586200+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_30_ts0.3/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_30_ts0.3/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_pigdm_0.5/metrics.json",
+      "bytes": 1058,
+      "sha256": "c246d853b80f9517f02406b41a549cb88e514cbb75623a753c5cab95f2d29974",
+      "mtime_utc": "2026-10-19T08:11:58.180913+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_pigdm_0.5/metrics.json",
+      "baseline_git_blob_sha": "ca04dcae86f36d144fa2c3100241f186c74abee9",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_pigdm_0.5/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_pigdm_0.5/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:11:58.284920+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_pigdm_0.5/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_pigdm_0.5/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_pigdm_1/metrics.json",
+      "bytes": 1057,
+      "sha256": "c3a1c8ccf2af923123c4fe474da619b5729cb4c5190e649e70ed5057a7db2906",
+      "mtime_utc": "2026-10-19T08:12:36.555516+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_pigdm_1/metrics.json",
+      "baseline_git_blob_sha": "7dede026b4853d7ce0a37df02b387b32fa433412",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_pigdm_1/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_pigdm_1/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:12:36.659523+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_pigdm_1/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_pigdm_1/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_pigdm_2/metrics.json",
+      "bytes": 1056,
+      "sha256": "b6652e52e847933177c7b2c250eaa8b1c039487728af16771e5145284e0d5bf8",
+      "mtime_utc": "2026-10-19T08:13:15.578076+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_pigdm_2/metrics.json",
+      "baseline_git_blob_sha": "e67d555967176df8e7c6ebf1963fdfbb0ef2a7e6",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_pigdm_2/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_pigdm_2/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:13:15.690083+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_pigdm_2/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_pigdm_2/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dc_0.3/metrics.json",
+      "bytes": 1056,
+      "sha256": "3f0ea1b31fd0a5efe2934aa061eb6cca3d772972457e8de5293c0ce10512c5f7",
+      "mtime_utc": "2026-10-19T08:13:41.603736+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dc_0.3/metrics.json",
+      "baseline_git_blob_sha": "c7d0750fd6cc3fdb0807d167a9c53efac5d40ae9",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dc_0.3/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dc_0.3/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:13:41.675741+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dc_0.3/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dc_0.3/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dc_1/metrics.json",
+      "bytes": 1054,
+      "sha256": "cc6af950d2067f70363015cd2887825b07ca41b38d22c138b690d12752fef93b",
+      "mtime_utc": "2026-10-19T08:14:07.733368+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dc_1/metrics.json",
+      "baseline_git_blob_sha": "e03f362ca8a6c6e091777af1aaa7938282406cc2",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dc_1/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dc_1/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:14:07.805373+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dc_1/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dc_1/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dc_3/metrics.json",
+      "bytes": 1055,
+      "sha256": "fafae5a3345f61da491f5bedb3eb57470513874055f5387a2342f2757cb33620",
+      "mtime_utc": "2026-10-19T08:14:33.766961+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dc_3/metrics.json",
+      "baseline_git_blob_sha": "6b6d5f936f23d609e7ca7f06f4529a319cd14820",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dc_3/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dc_3/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:14:33.838966+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dc_3/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dc_3/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_10_ts0.2/metrics.json",
+      "bytes": 1079,
+      "sha256": "7288fbfdb541f05e6d73cb0850326a88e064d974bf3274c7f0d41ee2b9f790aa",
+      "mtime_utc": "2026-10-19T08:15:02.548686+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_10_ts0.2/metrics.json",
+      "baseline_git_blob_sha": "3d20cbb00055cc182336fe1d43005782b7adcd6e",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_10_ts0.2/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_10_ts0.2/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:15:02.664692+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_10_ts0.2/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_10_ts0.2/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_30_ts0.2/metrics.json",
+      "bytes": 1080,
+      "sha256": "ddd6cdc74f6cfcad7a539f4f583414ad09535398c372ada18aebb8c39cdb3ebe",
+      "mtime_utc": "2026-10-19T08:15:31.602389+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_30_ts0.2/metrics.json",
+      "baseline_git_blob_sha": "5e0b92f840c3a97c2f85dfc2e6128f8be21ba700",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_30_ts0.2/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_30_ts0.2/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:15:31.710396+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_30_ts0.2/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_30_ts0.2/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_pigdm_0.5/metrics.json",
+      "bytes": 1081,
+      "sha256": "b5c7899de3c2b835eb30332fa53024b512aaf6bd0c6ea7a5ae375a680a0f298c",
+      "mtime_utc": "2026-10-19T08:16:29.253668+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_pigdm_0.5/metrics.json",
+      "baseline_git_blob_sha": "08b67575f736d7e4189b530f00bf688d7fb56898",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_pigdm_0.5/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_pigdm_0.5/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:16:29.357674+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_pigdm_0.5/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_pigdm_0.5/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_pigdm_1/metrics.json",
+      "bytes": 1080,
+      "sha256": "7667ae26305e80ae9ef2db66940f514b712e4a3d2d1551557265180f57bd4bdd",
+      "mtime_utc": "2026-10-19T08:17:26.976827+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_pigdm_1/metrics.json",
+      "baseline_git_blob_sha": "abbd6fb185ed58b4606a3c4dee3aca953989643c",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_pigdm_1/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_pigdm_1/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:17:27.080832+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_pigdm_1/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_pigdm_1/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dc_1/metrics.json",
+      "bytes": 1076,
+      "sha256": "17af3a58d9ec010a28ce5859b54688814ecd2f2afc999db2f86bead32900ac5b",
+      "mtime_utc": "2026-10-19T08:18:15.651404+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dc_1/metrics.json",
+      "baseline_git_blob_sha": "4aae4eb681c604095cec1a56f8e020536c92b530",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dc_1/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dc_1/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:18:15.735409+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dc_1/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dc_1/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dc_3/metrics.json",
+      "bytes": 1079,
+      "sha256": "a8b2b3d2e5357b2e4600545a196fc66bf1bf04f3c8f3fd7f6fa47e1b36377b1e",
+      "mtime_utc": "2026-10-19T08:19:04.493918+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dc_3/metrics.json",
+      "baseline_git_blob_sha": "144168970250ae8a4fdb9fe7be31ad9f9908002b",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dc_3/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dc_3/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:19:04.573923+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dc_3/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dc_3/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/unc4_sv30_dps/metrics.json",
+      "bytes": 1290,
+      "sha256": "486f38df32d61564fb01c42e840b1099600a76aac2d9d8f4b207e5e6803d1478",
+      "mtime_utc": "2026-10-19T09:54:36.067037+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/unc4_sv30_dps/metrics.json",
+      "baseline_git_blob_sha": "78a6bd70b9466f20dd7326cdca1715132ac3427d",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/unc4_sv30_dps/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/unc4_sv30_dps/config.yaml",
+      "bytes": 341,
+      "sha256": "4c44381f3588f3e1dccfc6cceadd9dee92498c108722bab8520f8e900298e8c5",
+      "mtime_utc": "2026-10-19T09:54:36.159034+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/unc4_sv30_dps/config.yaml",
+      "baseline_git_blob_sha": "b872bf5c3856a4d0c58cbf50025254bb056cfc57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/unc4_sv30_dps/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv30_pigdm/metrics.json",
+      "bytes": 1068,
+      "sha256": "23c975c87d6f2c9dc9282885afc35b426a2fcdfa5b448947e95805c7f6691cbe",
+      "mtime_utc": "2026-10-19T08:22:24.843609+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv30_pigdm/metrics.json",
+      "baseline_git_blob_sha": "18b145d4543776046e00e496b6b42f98fd217582",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv30_pigdm/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv30_pigdm/config.yaml",
+      "bytes": 341,
+      "sha256": "4c44381f3588f3e1dccfc6cceadd9dee92498c108722bab8520f8e900298e8c5",
+      "mtime_utc": "2026-10-19T08:22:24.927613+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv30_pigdm/config.yaml",
+      "baseline_git_blob_sha": "b872bf5c3856a4d0c58cbf50025254bb056cfc57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv30_pigdm/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv30_dc/metrics.json",
+      "bytes": 1064,
+      "sha256": "cb30cd11a5fe35d1fedbb6d56c8a2be5f7b4dbba50e799fc39987f1f62806f67",
+      "mtime_utc": "2026-10-19T08:23:33.062722+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv30_dc/metrics.json",
+      "baseline_git_blob_sha": "17a78701c267cee58c757822874abf2e856196c5",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv30_dc/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv30_dc/config.yaml",
+      "bytes": 341,
+      "sha256": "4c44381f3588f3e1dccfc6cceadd9dee92498c108722bab8520f8e900298e8c5",
+      "mtime_utc": "2026-10-19T08:23:33.142726+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv30_dc/config.yaml",
+      "baseline_git_blob_sha": "b872bf5c3856a4d0c58cbf50025254bb056cfc57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv30_dc/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/unc4_sv30_pigdm/metrics.json",
+      "bytes": 1292,
+      "sha256": "a355d35ab0678add31ce12ec42599bca1b59b07cd2cae1446f17b7a7a23484a0",
+      "mtime_utc": "2026-10-19T10:02:07.522908+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/unc4_sv30_pigdm/metrics.json",
+      "baseline_git_blob_sha": "baa64727d8a37af60ce0998d93248a73991b7503",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/unc4_sv30_pigdm/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/unc4_sv30_pigdm/config.yaml",
+      "bytes": 341,
+      "sha256": "4c44381f3588f3e1dccfc6cceadd9dee92498c108722bab8520f8e900298e8c5",
+      "mtime_utc": "2026-10-19T10:02:07.610863+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/unc4_sv30_pigdm/config.yaml",
+      "baseline_git_blob_sha": "b872bf5c3856a4d0c58cbf50025254bb056cfc57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/unc4_sv30_pigdm/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv60_pigdm/metrics.json",
+      "bytes": 1067,
+      "sha256": "e8d2b43b9634ed573d69cf26fea926c4ab8de0c3b87db9d6a22b875072bc2d27",
+      "mtime_utc": "2026-10-19T08:27:02.747859+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv60_pigdm/metrics.json",
+      "baseline_git_blob_sha": "bb91e275e129f24adb2c0e91162a727484082641",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv60_pigdm/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv60_pigdm/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:27:02.831862+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv60_pigdm/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv60_pigdm/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv60_dc/metrics.json",
+      "bytes": 1065,
+      "sha256": "816bae783647caa2f5418d87cc349451a07d9d32bd4a9a97d548781b492682b6",
+      "mtime_utc": "2026-10-19T08:28:30.195517+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv60_dc/metrics.json",
+      "baseline_git_blob_sha": "a8755707119520be24d6d9880cecf51f8d2282b5",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv60_dc/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv60_dc/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:28:30.271520+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv60_dc/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv60_dc/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/unc4_sv30_dc/metrics.json",
+      "bytes": 1290,
+      "sha256": "3eef0c0c1c4d3cc05b307e7fc569c9bf669eddfbd4fe8f20f1a0fa773525410b",
+      "mtime_utc": "2026-10-19T10:06:20.723525+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/unc4_sv30_dc/metrics.json",
+      "baseline_git_blob_sha": "86ca06b4de41738bd348c64097ecb612d7f0adbe",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/unc4_sv30_dc/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/unc4_sv30_dc/config.yaml",
+      "bytes": 341,
+      "sha256": "4c44381f3588f3e1dccfc6cceadd9dee92498c108722bab8520f8e900298e8c5",
+      "mtime_utc": "2026-10-19T10:06:20.803525+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/unc4_sv30_dc/config.yaml",
+      "baseline_git_blob_sha": "b872bf5c3856a4d0c58cbf50025254bb056cfc57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/unc4_sv30_dc/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_3_ts0.4/metrics.json",
+      "bytes": 1055,
+      "sha256": "e8ea8e4999be6dd908f891f320e3cc29d090fcbedd6edd367bbad0d92bb4e4c4",
+      "mtime_utc": "2026-10-19T08:30:47.029105+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_3_ts0.4/metrics.json",
+      "baseline_git_blob_sha": "0e22b8d6a05bdc5152aaac892f18c1f52cf751e7",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_3_ts0.4/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_3_ts0.4/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:30:47.149110+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_3_ts0.4/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_3_ts0.4/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_3_ts0.5/metrics.json",
+      "bytes": 1051,
+      "sha256": "5aacce9b47b243e0d5e36272f78aeb18dbea697896388a1a05401755b3750fcb",
+      "mtime_utc": "2026-10-19T08:31:10.086033+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_3_ts0.5/metrics.json",
+      "baseline_git_blob_sha": "3acd393301323a8ad1782a9b14aef5da9b445ff4",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_3_ts0.5/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_3_ts0.5/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:31:10.202037+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_3_ts0.5/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_3_ts0.5/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_10_ts0.4/metrics.json",
+      "bytes": 1054,
+      "sha256": "2bfb6173dd5e32b6d8d021a539b2da274a94f72243b66aee22cb06056113e15b",
+      "mtime_utc": "2026-10-19T08:31:34.711020+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_10_ts0.4/metrics.json",
+      "baseline_git_blob_sha": "fd35cb6525e823e3b54d9bd37cc890b19b80bfe0",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_10_ts0.4/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_10_ts0.4/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:31:34.815024+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_10_ts0.4/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_10_ts0.4/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_10_ts0.5/metrics.json",
+      "bytes": 1053,
+      "sha256": "7dc8263bc7ab9cd1866d6b8dd450ea8d4b6ec108d033c4d10085d52d6f781e9a",
+      "mtime_utc": "2026-10-19T08:31:58.335963+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_10_ts0.5/metrics.json",
+      "baseline_git_blob_sha": "403e038bb0ec3d9ce8688d6d653805c284b4c2cf",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_10_ts0.5/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_10_ts0.5/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:31:58.443967+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_10_ts0.5/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_10_ts0.5/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_30_ts0.4/metrics.json",
+      "bytes": 1054,
+      "sha256": "ab60b533c28908de1c204e17b31bc0234e010847b70588ebc4c935d321877d5a",
+      "mtime_utc": "2026-10-19T08:32:22.604929+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_30_ts0.4/metrics.json",
+      "baseline_git_blob_sha": "a684deb05115d9094ce755d5d7222f97691b2ffd",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_30_ts0.4/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_30_ts0.4/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:32:22.712933+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_30_ts0.4/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_30_ts0.4/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_30_ts0.5/metrics.json",
+      "bytes": 1055,
+      "sha256": "958954b0e4f4a01781ce727e8eda6eb651465ebb77f7e7824fea4e11a4197f24",
+      "mtime_utc": "2026-10-19T08:32:46.097860+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_30_ts0.5/metrics.json",
+      "baseline_git_blob_sha": "a6fba0d0e22c178a8378c738cc478169779278ef",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_30_ts0.5/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_30_ts0.5/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:32:46.221865+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_30_ts0.5/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_30_ts0.5/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_100_ts0.1/metrics.json",
+      "bytes": 1057,
+      "sha256": "fca14a3319a1c09d6b93af8e4c96b05257314ca8225eb68fb2ebecdbb51b4595",
+      "mtime_utc": "2026-10-19T08:33:15.023003+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_100_ts0.1/metrics.json",
+      "baseline_git_blob_sha": "8d35e493e13c1e3ca796aa4d8c6f6ca645c6552d",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_100_ts0.1/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_100_ts0.1/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:33:15.123007+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_100_ts0.1/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_100_ts0.1/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_100_ts0.2/metrics.json",
+      "bytes": 1054,
+      "sha256": "137254591666cca60125ee2ac410f967ea003475d348c22e93f2df870ed4b086",
+      "mtime_utc": "2026-10-19T08:33:42.320077+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_100_ts0.2/metrics.json",
+      "baseline_git_blob_sha": "f9d351113f7a5bd56b3340e1060cd018d2ba3712",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_100_ts0.2/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_100_ts0.2/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:33:42.432081+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_100_ts0.2/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_100_ts0.2/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_100_ts0.3/metrics.json",
+      "bytes": 1056,
+      "sha256": "9fad124e308ece76fdcfeb4becc1db9a45e1897855c8ae108ad643dffca9359e",
+      "mtime_utc": "2026-10-19T08:34:08.149090+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_100_ts0.3/metrics.json",
+      "baseline_git_blob_sha": "d4e856b34137872b7889f9149de2fd7a24dadbf8",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_100_ts0.3/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_100_ts0.3/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:34:08.249094+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_100_ts0.3/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_100_ts0.3/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_100_ts0.4/metrics.json",
+      "bytes": 1057,
+      "sha256": "0a6c2176ab9a623ba0cef2ed92412008671dabaa451409b4576f085b8998715c",
+      "mtime_utc": "2026-10-19T08:34:32.314035+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_100_ts0.4/metrics.json",
+      "baseline_git_blob_sha": "b7bbbf41fed7519f2278ddf1add144014df3e902",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_100_ts0.4/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_100_ts0.4/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:34:32.406039+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_100_ts0.4/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_100_ts0.4/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_100_ts0.5/metrics.json",
+      "bytes": 1056,
+      "sha256": "e56fa70cb35cc8621e85e9467501a257a4a5cc05b1ff80de5ea7f5087de08079",
+      "mtime_utc": "2026-10-19T08:34:55.534941+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_100_ts0.5/metrics.json",
+      "baseline_git_blob_sha": "48ff7aaa4855e212fa98eb8d04cd24db3d2755fe",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_100_ts0.5/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_100_ts0.5/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:34:55.638945+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_100_ts0.5/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_100_ts0.5/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_300_ts0.1/metrics.json",
+      "bytes": 1055,
+      "sha256": "ecc9544285155e0a96932607505e88ae5d1ce4eb9962ae90e4c392810e8017aa",
+      "mtime_utc": "2026-10-19T08:35:23.464027+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_300_ts0.1/metrics.json",
+      "baseline_git_blob_sha": "a2a7a8313d62dd28a884e8c0398e719099a576fa",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_300_ts0.1/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_300_ts0.1/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:35:23.548031+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_300_ts0.1/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_300_ts0.1/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_300_ts0.2/metrics.json",
+      "bytes": 1056,
+      "sha256": "b3526137af04d70dc1415384448f807d7b4a9597b3aadbdf76935d98870ec589",
+      "mtime_utc": "2026-10-19T08:35:50.345070+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_300_ts0.2/metrics.json",
+      "baseline_git_blob_sha": "83633377d82c45d4ff6e2ffb2c82b2ae169a465a",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_300_ts0.2/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_300_ts0.2/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:35:50.449074+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_300_ts0.2/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_300_ts0.2/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_300_ts0.3/metrics.json",
+      "bytes": 1054,
+      "sha256": "003578af14c25497f9a7e478ffc4eb65a8e3c0afd224f9d18e613b07919c1a5d",
+      "mtime_utc": "2026-10-19T08:36:16.022063+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_300_ts0.3/metrics.json",
+      "baseline_git_blob_sha": "072ad46a6ec4412e4abe3f829cb315b192a5d473",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_300_ts0.3/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_300_ts0.3/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:36:16.126067+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_300_ts0.3/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_300_ts0.3/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_300_ts0.4/metrics.json",
+      "bytes": 1056,
+      "sha256": "e609b928ce32f324bd0bfd9392b023b4e6703e7e76c3c04c0181180a8ccc0f0a",
+      "mtime_utc": "2026-10-19T08:36:40.359002+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_300_ts0.4/metrics.json",
+      "baseline_git_blob_sha": "554990012f2959d04412f2fa3300785063ec6b0f",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_300_ts0.4/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_300_ts0.4/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:36:40.467006+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_300_ts0.4/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_300_ts0.4/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_300_ts0.5/metrics.json",
+      "bytes": 1054,
+      "sha256": "6760ac128883408ab329a0442f2d0abd61abec587492174196133d1b1db7ed65",
+      "mtime_utc": "2026-10-19T08:37:03.543895+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_300_ts0.5/metrics.json",
+      "baseline_git_blob_sha": "8da14b37ba7278aed37ef6631db3fd076167f2d6",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_300_ts0.5/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dps_300_ts0.5/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:37:03.647899+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dps_300_ts0.5/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dps_300_ts0.5/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dc_0.01/metrics.json",
+      "bytes": 1058,
+      "sha256": "50fb0054edd6604096b1564c56eec7c400f88551a9edfdaf14a2e53a3299f8dc",
+      "mtime_utc": "2026-10-19T08:37:29.652899+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dc_0.01/metrics.json",
+      "baseline_git_blob_sha": "e27d95bf5c7f8458b4efd61642b026f11fbf81e6",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dc_0.01/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dc_0.01/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:37:29.724901+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dc_0.01/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dc_0.01/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dc_0.03/metrics.json",
+      "bytes": 1059,
+      "sha256": "8b379a69b7026e1114236aab23128e4469fe2d108e55ec5b7ff4dd8450d08c2e",
+      "mtime_utc": "2026-10-19T08:37:55.481889+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dc_0.03/metrics.json",
+      "baseline_git_blob_sha": "abff9fe430c3a309e98e48b2416ebb4b407179a4",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dc_0.03/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dc_0.03/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:37:55.553892+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dc_0.03/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dc_0.03/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dc_0.1/metrics.json",
+      "bytes": 1056,
+      "sha256": "c71ecc474c3b0717cc64d30f4825105df77f3b0300f0bff8308790e7b23bc2d5",
+      "mtime_utc": "2026-10-19T08:38:21.450883+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dc_0.1/metrics.json",
+      "baseline_git_blob_sha": "0aea607b30076916c1d67fd232978a3c08879fe8",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dc_0.1/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_sv60_dc_0.1/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:38:21.522885+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_sv60_dc_0.1/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_sv60_dc_0.1/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_10_ts0.3/metrics.json",
+      "bytes": 1080,
+      "sha256": "2d374f6915a52a304809652510a529fc0829c53e1e76c2c44e04891b6308ac74",
+      "mtime_utc": "2026-10-19T08:38:48.623920+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_10_ts0.3/metrics.json",
+      "baseline_git_blob_sha": "d534cbff85a72ae597d91602924cbd5f7a5da312",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_10_ts0.3/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_10_ts0.3/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:38:48.747925+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_10_ts0.3/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_10_ts0.3/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_10_ts0.4/metrics.json",
+      "bytes": 1079,
+      "sha256": "586acd622f2d49e95e13de98d96fbdcd7534cbce8fe9a951877151ffed839f80",
+      "mtime_utc": "2026-10-19T08:39:14.411340+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_10_ts0.4/metrics.json",
+      "baseline_git_blob_sha": "51ec7a5680f1a953f05550885eceac47474c9266",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_10_ts0.4/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_10_ts0.4/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:39:14.535328+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_10_ts0.4/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_10_ts0.4/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_30_ts0.3/metrics.json",
+      "bytes": 1080,
+      "sha256": "c47525c78522b006581af27e6c78b9f832c9cb81cfcb980b46f5a7af90895e43",
+      "mtime_utc": "2026-10-19T08:39:41.768758+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_30_ts0.3/metrics.json",
+      "baseline_git_blob_sha": "95eaecc933281562a78c307902a5f8ece7fa0e8e",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_30_ts0.3/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_30_ts0.3/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:39:41.896746+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_30_ts0.3/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_30_ts0.3/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_30_ts0.4/metrics.json",
+      "bytes": 1081,
+      "sha256": "fd4010e23a72c5ea1de25326a5c932df0a3164ac215023526ab6ee8c4af7b349",
+      "mtime_utc": "2026-10-19T08:40:07.466483+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_30_ts0.4/metrics.json",
+      "baseline_git_blob_sha": "384842f5c7f7c48fcfab4ab5cfb7b6cfb28cb32f",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_30_ts0.4/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_30_ts0.4/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:40:07.590472+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_30_ts0.4/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_30_ts0.4/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_100_ts0.2/metrics.json",
+      "bytes": 1079,
+      "sha256": "9466749b4ec3f3a92b36a7ca1e73f321b22c8360a92a642ce5ab97443d71b349",
+      "mtime_utc": "2026-10-19T08:40:36.384088+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_100_ts0.2/metrics.json",
+      "baseline_git_blob_sha": "b9162799b50cba32cdfb81d0c63db2023cbd9ce2",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_100_ts0.2/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_100_ts0.2/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:40:36.480081+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_100_ts0.2/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_100_ts0.2/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_100_ts0.3/metrics.json",
+      "bytes": 1080,
+      "sha256": "7364df5b5dfd295b4321a6089982ebaaae01dd8e23b1fcc021642c1207d315d6",
+      "mtime_utc": "2026-10-19T08:41:03.394002+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_100_ts0.3/metrics.json",
+      "baseline_git_blob_sha": "69ed81ae438e4b26d753516c40adc3306c6bba78",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_100_ts0.3/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_100_ts0.3/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:41:03.485995+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_100_ts0.3/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_100_ts0.3/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_100_ts0.4/metrics.json",
+      "bytes": 1080,
+      "sha256": "dd014a95072b203936fbf7cbc0d9e2005865d942e120ee95e235d16d14ce3425",
+      "mtime_utc": "2026-10-19T08:41:28.664174+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_100_ts0.4/metrics.json",
+      "baseline_git_blob_sha": "5f1aadecab7f4c839f5bc61b278846522baee041",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_100_ts0.4/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_100_ts0.4/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:41:28.756168+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_100_ts0.4/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_100_ts0.4/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_pigdm_0.1/metrics.json",
+      "bytes": 1082,
+      "sha256": "7750cd045493163c7503bb33a9ec2af00951001403d18ded1a3c8a5c4e898100",
+      "mtime_utc": "2026-10-19T08:42:25.948446+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_pigdm_0.1/metrics.json",
+      "baseline_git_blob_sha": "50515be48af22ea60c037403498f62632a94cf9f",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_pigdm_0.1/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_pigdm_0.1/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:42:26.076438+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_pigdm_0.1/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_pigdm_0.1/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_pigdm_0.25/metrics.json",
+      "bytes": 1084,
+      "sha256": "fd429a13076f8899aefbe8176c5be9167dd0e1917f60cb63930ff87d9d43d5fa",
+      "mtime_utc": "2026-10-19T08:43:23.261242+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_pigdm_0.25/metrics.json",
+      "baseline_git_blob_sha": "ab697ae32fa987938dcb38e431b817ea406a3e52",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_pigdm_0.25/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_pigdm_0.25/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:43:23.365237+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_pigdm_0.25/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_pigdm_0.25/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dc_10/metrics.json",
+      "bytes": 1079,
+      "sha256": "4840eab87e9160f3461a5625fc8bea94b21cbe685c260586793ff678d5b49c24",
+      "mtime_utc": "2026-10-19T08:44:11.918893+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dc_10/metrics.json",
+      "baseline_git_blob_sha": "5fc031237a9a174e60de1d08dfe68a0958023fc1",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dc_10/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dc_10/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:44:11.998889+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dc_10/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dc_10/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dc_30/metrics.json",
+      "bytes": 1078,
+      "sha256": "152ecd086260aa68f4063d6b6157e7335e5a36c9b0600fd8b88671614a8d4acd",
+      "mtime_utc": "2026-10-19T08:45:00.464857+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dc_30/metrics.json",
+      "baseline_git_blob_sha": "1d5c0c9d01b348ca07325aa5e36555c938881a8c",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dc_30/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dc_30/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:45:00.544854+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dc_30/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dc_30/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dc_100/metrics.json",
+      "bytes": 1082,
+      "sha256": "0b3d2011cfd1d5e089045596570c284e7bf3dc4b7789cd4307005ae3d5d19243",
+      "mtime_utc": "2026-10-19T08:45:48.971102+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dc_100/metrics.json",
+      "baseline_git_blob_sha": "080a6f77e390fd20e30f535ea7e427288a3460ee",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dc_100/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dc_100/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:45:49.063099+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dc_100/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dc_100/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv30_dps_stale1/metrics.json",
+      "bytes": 1061,
+      "sha256": "862a0b1f59d348e6e713acea7cb2c835972d209f10d088a276001712e492aedd",
+      "mtime_utc": "2026-10-19T08:20:25.505948+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/main_sv30_dps_stale1/metrics.json",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/main_sv30_dps_stale1/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv30_dps_stale1/config.yaml",
+      "bytes": 341,
+      "sha256": "4c44381f3588f3e1dccfc6cceadd9dee92498c108722bab8520f8e900298e8c5",
+      "mtime_utc": "2026-10-19T08:20:25.589952+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/main_sv30_dps_stale1/config.yaml",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/main_sv30_dps_stale1/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv30_dps/metrics.json",
+      "bytes": 1066,
+      "sha256": "987b0861981237dbe8b440b788f43d774a39645cde0322117ea963dabafecc0f",
+      "mtime_utc": "2026-10-19T08:47:05.776831+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv30_dps/metrics.json",
+      "baseline_git_blob_sha": "f2cd93c4938c80dae97ffdd914aebf2c81bc73e0",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv30_dps/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv30_dps/config.yaml",
+      "bytes": 341,
+      "sha256": "4c44381f3588f3e1dccfc6cceadd9dee92498c108722bab8520f8e900298e8c5",
+      "mtime_utc": "2026-10-19T08:47:05.876829+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv30_dps/config.yaml",
+      "baseline_git_blob_sha": "b872bf5c3856a4d0c58cbf50025254bb056cfc57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv30_dps/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv60_dps_stale1/metrics.json",
+      "bytes": 1063,
+      "sha256": "04c8d4b795654da75a574a2040a52a9f0a53d0dfc4acc7fe2a6e6423a9826947",
+      "mtime_utc": "2026-10-19T08:24:55.542387+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/main_sv60_dps_stale1/metrics.json",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/main_sv60_dps_stale1/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv60_dps_stale1/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:24:55.630391+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/main_sv60_dps_stale1/config.yaml",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_project/01_diffusion_inverse/results/main_sv60_dps_stale1/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv60_dps/metrics.json",
+      "bytes": 1065,
+      "sha256": "b36949ae0ff905452c255879bc1e52a3043334e3efa6f29450b727d3c0ba7a35",
+      "mtime_utc": "2026-10-19T08:48:23.695087+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv60_dps/metrics.json",
+      "baseline_git_blob_sha": "84d80e2b60021287640cc8a7f399499313910e5b",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv60_dps/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv60_dps/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T08:48:23.795085+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv60_dps/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv60_dps/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv90_dps/metrics.json",
+      "bytes": 1062,
+      "sha256": "e446025f3c781421cc2896d985a9dd231bc7b7265a265baa7e34e1607c342318",
+      "mtime_utc": "2026-10-19T08:49:42.561814+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv90_dps/metrics.json",
+      "baseline_git_blob_sha": "c6a45b2c5aa8e520687bd4fa7ae292cb4856f2df",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv90_dps/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv90_dps/config.yaml",
+      "bytes": 341,
+      "sha256": "7d21c126c1c6ca63ebb647d25fa10b9574ba44df3b79c8e4bb4fd2a59f60b6e5",
+      "mtime_utc": "2026-10-19T08:49:42.661813+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv90_dps/config.yaml",
+      "baseline_git_blob_sha": "6f1101b764b40726b74ced830edf1ab8bd99afe1",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv90_dps/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv90_pigdm/metrics.json",
+      "bytes": 1068,
+      "sha256": "35d0a8b7bc836074aadf9ce2d7f2160ab17859eac46bcb0cd8395cafc80c87e2",
+      "mtime_utc": "2026-10-19T08:52:09.468529+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv90_pigdm/metrics.json",
+      "baseline_git_blob_sha": "b68e6b128411d18694e54eff0fa32b85ff27268f",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv90_pigdm/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv90_pigdm/config.yaml",
+      "bytes": 341,
+      "sha256": "7d21c126c1c6ca63ebb647d25fa10b9574ba44df3b79c8e4bb4fd2a59f60b6e5",
+      "mtime_utc": "2026-10-19T08:52:09.548529+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv90_pigdm/config.yaml",
+      "baseline_git_blob_sha": "6f1101b764b40726b74ced830edf1ab8bd99afe1",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv90_pigdm/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv90_dc/metrics.json",
+      "bytes": 1066,
+      "sha256": "f26e295d1ddc0e5b3abe2e2003f6ddcfcece0f27adde8bcf6f506f2bac21a058",
+      "mtime_utc": "2026-10-19T08:53:58.844311+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv90_dc/metrics.json",
+      "baseline_git_blob_sha": "492bf0d9ca03ea55f949f338835865aaa7062ae3",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv90_dc/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_sv90_dc/config.yaml",
+      "bytes": 341,
+      "sha256": "7d21c126c1c6ca63ebb647d25fa10b9574ba44df3b79c8e4bb4fd2a59f60b6e5",
+      "mtime_utc": "2026-10-19T08:53:58.920311+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_sv90_dc/config.yaml",
+      "baseline_git_blob_sha": "6f1101b764b40726b74ced830edf1ab8bd99afe1",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_sv90_dc/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_ld1e5_dps/metrics.json",
+      "bytes": 1089,
+      "sha256": "9569aade48eca6d8512f370a7922f79f7ba0c80ca4f91b9ef4227c2ff19b162e",
+      "mtime_utc": "2026-10-19T08:55:21.340481+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_ld1e5_dps/metrics.json",
+      "baseline_git_blob_sha": "24f529c1ce6e3d0ddb7ec31c0533fa309bfab39a",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_ld1e5_dps/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_ld1e5_dps/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:55:21.436481+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_ld1e5_dps/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_ld1e5_dps/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_ld1e5_pigdm/metrics.json",
+      "bytes": 1093,
+      "sha256": "4fc79b48a652aa5f3891893109a4cc8b3bc5b7878f2d0f4d19eebb8c04e5570a",
+      "mtime_utc": "2026-10-19T08:58:46.985870+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_ld1e5_pigdm/metrics.json",
+      "baseline_git_blob_sha": "3f9c4f037f2ea447fdaf3fc27aa4d2c406595be4",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_ld1e5_pigdm/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_ld1e5_pigdm/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T08:58:47.065871+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_ld1e5_pigdm/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_ld1e5_pigdm/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_ld1e5_dc/metrics.json",
+      "bytes": 1090,
+      "sha256": "e4b4ee95bb187beb07605a868275ca68cc08fc4eb13ab8a0f6ef33bad715e44a",
+      "mtime_utc": "2026-10-19T09:01:42.090026+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_ld1e5_dc/metrics.json",
+      "baseline_git_blob_sha": "154941318e0659a820db63e96103cbb3a90d9ba6",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_ld1e5_dc/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_ld1e5_dc/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T09:01:42.166027+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_ld1e5_dc/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_ld1e5_dc/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/nfe20_sv60_dps/metrics.json",
+      "bytes": 1065,
+      "sha256": "a125bdf75c99850bd928d122f88499b7a67968ac6005ec7f152ecf724bf0dac3",
+      "mtime_utc": "2026-10-19T09:02:17.518498+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/nfe20_sv60_dps/metrics.json",
+      "baseline_git_blob_sha": "9d088c471e67b4e95fa5cd949cc5e8eaa10c6105",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/nfe20_sv60_dps/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/nfe20_sv60_dps/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T09:02:17.610499+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/nfe20_sv60_dps/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/nfe20_sv60_dps/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/nfe20_sv60_pigdm/metrics.json",
+      "bytes": 1068,
+      "sha256": "e5481e3e93871184c094bd1076b4c042d224afd6a84fe52b2404fb338313598c",
+      "mtime_utc": "2026-10-19T09:03:12.427267+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/nfe20_sv60_pigdm/metrics.json",
+      "baseline_git_blob_sha": "7c806bc211e741755857988732a7b409c00d232c",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/nfe20_sv60_pigdm/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/nfe20_sv60_pigdm/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T09:03:12.511268+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/nfe20_sv60_pigdm/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/nfe20_sv60_pigdm/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/nfe20_sv60_dc/metrics.json",
+      "bytes": 1067,
+      "sha256": "ac12bdb8c81dd5c5f04aca44ff07087beb879731630c91d934a7e591aa61e6e0",
+      "mtime_utc": "2026-10-19T09:03:51.583841+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/nfe20_sv60_dc/metrics.json",
+      "baseline_git_blob_sha": "accc66f8f438df4a983399edcd2d3967d4992922",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/nfe20_sv60_dc/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/nfe20_sv60_dc/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T09:03:51.663843+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/nfe20_sv60_dc/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/nfe20_sv60_dc/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/nfe100_sv60_dps/metrics.json",
+      "bytes": 1063,
+      "sha256": "0e6c54dfc08b706869c3b4d094a47b173c7814cc8b89a599295e9e36b11e93d6",
+      "mtime_utc": "2026-10-19T09:06:20.850202+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/nfe100_sv60_dps/metrics.json",
+      "baseline_git_blob_sha": "f767587411c544c95d2afb6fb1a8d6d18137edc5",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/nfe100_sv60_dps/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/nfe100_sv60_dps/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T09:06:20.950203+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/nfe100_sv60_dps/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/nfe100_sv60_dps/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/nfe100_sv60_pigdm/metrics.json",
+      "bytes": 1067,
+      "sha256": "60ad1c9c309794cecb9b320f61bc68b5c4f2593f0d4b31a4cc00cb00d288c510",
+      "mtime_utc": "2026-10-19T09:10:28.614572+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/nfe100_sv60_pigdm/metrics.json",
+      "baseline_git_blob_sha": "bd1f610eeb086ac1f02608e3aa66b0e282b840d9",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/nfe100_sv60_pigdm/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/nfe100_sv60_pigdm/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T09:10:28.690573+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/nfe100_sv60_pigdm/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/nfe100_sv60_pigdm/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/nfe100_sv60_dc/metrics.json",
+      "bytes": 1065,
+      "sha256": "5a358fee3fd3ad520498c400bce279e3e21595e7fbef38f2c5953d33af736b21",
+      "mtime_utc": "2026-10-19T09:13:16.958263+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/nfe100_sv60_dc/metrics.json",
+      "baseline_git_blob_sha": "f916685a14733c480ecec5f0cd5bb5175c5f76c8",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/nfe100_sv60_dc/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/nfe100_sv60_dc/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T09:13:17.038272+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/nfe100_sv60_dc/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/nfe100_sv60_dc/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/unc8_sv60_dps/metrics.json",
+      "bytes": 1293,
+      "sha256": "cd4d784e43a612035111249237c4802608d410ccb491dedf4751bb0102a75bb8",
+      "mtime_utc": "2026-10-19T09:22:48.615153+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/unc8_sv60_dps/metrics.json",
+      "baseline_git_blob_sha": "11ea0fcff7cbf66d1fec144c2e99332997148026",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/unc8_sv60_dps/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/unc8_sv60_dps/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T09:22:48.711159+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/unc8_sv60_dps/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/unc8_sv60_dps/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/unc8_sv60_pigdm/metrics.json",
+      "bytes": 1294,
+      "sha256": "279babde8e32267c0e3ab83a70f4414d2cd290e2c022eb14a5393f134c57e2a3",
+      "mtime_utc": "2026-10-19T09:38:57.434344+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/unc8_sv60_pigdm/metrics.json",
+      "baseline_git_blob_sha": "7157f87d61c70bd88acdd9dcdd0b4d10f09e872b",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/unc8_sv60_pigdm/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/unc8_sv60_pigdm/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T09:38:57.510347+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/unc8_sv60_pigdm/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/unc8_sv60_pigdm/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/unc8_sv60_dc/metrics.json",
+      "bytes": 1293,
+      "sha256": "ea8d49c605de8b3ed223026361215aba99aee6bbff9b9f7fefaea6de429a76fa",
+      "mtime_utc": "2026-10-19T09:49:50.795429+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/unc8_sv60_dc/metrics.json",
+      "baseline_git_blob_sha": "b276e229aef94348b5bb0f3ca8e31e9c8a3d8742",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/unc8_sv60_dc/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/unc8_sv60_dc/config.yaml",
+      "bytes": 341,
+      "sha256": "276dbb2e74e4e7db9c371c8bca72acc55571b9bb6040c0894271b375be4fbe5a",
+      "mtime_utc": "2026-10-19T09:49:50.871423+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/unc8_sv60_dc/config.yaml",
+      "baseline_git_blob_sha": "2c80e19041de9db097616f8548a05c8a80eb1216",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/unc8_sv60_dc/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_ld1e4_dps/metrics.json",
+      "bytes": 1091,
+      "sha256": "742e0f3a03a4bd43335fcbb9a09bed9f0ad4d3e4dc4de66a08928f96a38147d2",
+      "mtime_utc": "2026-10-19T10:07:43.176058+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_ld1e4_dps/metrics.json",
+      "baseline_git_blob_sha": "50cd7a3382f7b8ccfbbc7141ff3735f3c5ecefea",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_ld1e4_dps/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_ld1e4_dps/config.yaml",
+      "bytes": 362,
+      "sha256": "3e265f667c9f4572e4234dccbd4bc32e72e2a6404c48b9908b85a2dcbd74e8f4",
+      "mtime_utc": "2026-10-19T10:07:43.280058+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_ld1e4_dps/config.yaml",
+      "baseline_git_blob_sha": "adb3770402cabf6b0e9c73feefc7f89eab3f7fcf",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_ld1e4_dps/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_ld1e4_pigdm/metrics.json",
+      "bytes": 1093,
+      "sha256": "6be991558f1763bf0f8a20c1e24e6d12f6779f4eb1a4b8f838ed9075da14278d",
+      "mtime_utc": "2026-10-19T10:11:08.942055+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_ld1e4_pigdm/metrics.json",
+      "baseline_git_blob_sha": "dcd6115353d8df902cbbe515fb3664a4782ecd43",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_ld1e4_pigdm/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_ld1e4_pigdm/config.yaml",
+      "bytes": 362,
+      "sha256": "3e265f667c9f4572e4234dccbd4bc32e72e2a6404c48b9908b85a2dcbd74e8f4",
+      "mtime_utc": "2026-10-19T10:11:09.030056+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_ld1e4_pigdm/config.yaml",
+      "baseline_git_blob_sha": "adb3770402cabf6b0e9c73feefc7f89eab3f7fcf",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_ld1e4_pigdm/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_ld1e4_dc/metrics.json",
+      "bytes": 1090,
+      "sha256": "74e0cbaeed32e7b49b66c04ff18a181feebc2b2cf96a1e7381092d8402bcc4ee",
+      "mtime_utc": "2026-10-19T10:14:03.976313+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_ld1e4_dc/metrics.json",
+      "baseline_git_blob_sha": "9d92cc63cb56c8a18070c5aed02b0f423b6367c8",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_ld1e4_dc/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/main_ld1e4_dc/config.yaml",
+      "bytes": 362,
+      "sha256": "3e265f667c9f4572e4234dccbd4bc32e72e2a6404c48b9908b85a2dcbd74e8f4",
+      "mtime_utc": "2026-10-19T10:14:04.060314+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/main_ld1e4_dc/config.yaml",
+      "baseline_git_blob_sha": "adb3770402cabf6b0e9c73feefc7f89eab3f7fcf",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/main_ld1e4_dc/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/fbpconvnet_sv30/metrics.json",
+      "bytes": 613,
+      "sha256": "b71854cd247d19ccbc66c4da1abb85e8100e1da094e6ede27a60e4de936a4086",
+      "mtime_utc": "2026-10-19T10:40:50.271313+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbpconvnet_sv30/metrics.json",
+      "baseline_git_blob_sha": "e3f0beac19024bfc0e82e83ea37c58fff4abb3c4",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbpconvnet_sv30/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/fbpconvnet_sv30/config.yaml",
+      "bytes": 677,
+      "sha256": "c2cf90a79d573fbe56fd051fe1c7f951f7946d94abc158e58351f21a89f96314",
+      "mtime_utc": "2026-10-19T00:51:10.168005+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbpconvnet_sv30/config.yaml",
+      "baseline_git_blob_sha": "cacc5f26bb45fb4a69b07c57b0d8d13f38a2e0db",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbpconvnet_sv30/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/fbpconvnet_sv60/metrics.json",
+      "bytes": 610,
+      "sha256": "88c2c570aefa1c1deaf5676155ba4bb89d52a33092dd93a470c0ac443b6ba32e",
+      "mtime_utc": "2026-10-19T11:07:33.442195+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbpconvnet_sv60/metrics.json",
+      "baseline_git_blob_sha": "e19af418da363a2f2de41b2f69760e6218fbc77e",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbpconvnet_sv60/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/fbpconvnet_sv60/config.yaml",
+      "bytes": 677,
+      "sha256": "5a3e21cc2d7f6f9eb296c9be10cf5daa972f403672af5c00622a2f74d3cac057",
+      "mtime_utc": "2026-10-19T00:51:10.171744+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbpconvnet_sv60/config.yaml",
+      "baseline_git_blob_sha": "25ca4436ae981632a18becff3f1b21e66a41cc05",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbpconvnet_sv60/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/fbpconvnet_sv90/metrics.json",
+      "bytes": 608,
+      "sha256": "3d5aadcf10b6576e472aadeb018ae7a3b12eeb438569b25be45cd1f7b411e3c5",
+      "mtime_utc": "2026-10-19T11:34:34.204906+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbpconvnet_sv90/metrics.json",
+      "baseline_git_blob_sha": "acb356994c118de83e626b5f4149afcf811a954c",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbpconvnet_sv90/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/fbpconvnet_sv90/config.yaml",
+      "bytes": 677,
+      "sha256": "eecbf7d36eef64d29a60c2df6264d628fefe4a46a8a631ac66ccd7a118cb1d80",
+      "mtime_utc": "2026-10-19T00:51:10.175174+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbpconvnet_sv90/config.yaml",
+      "baseline_git_blob_sha": "912d1880f03924482a713adf574567809e360f2e",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbpconvnet_sv90/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/fbpconvnet_ld1e5/metrics.json",
+      "bytes": 612,
+      "sha256": "29ff79eb8befed26704dd9d0174e50e69d5633fc5bc800e71fa6705788489a19",
+      "mtime_utc": "2026-10-19T12:02:40.928967+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbpconvnet_ld1e5/metrics.json",
+      "baseline_git_blob_sha": "395fab90efd35a3ea859985f7db93e661a6570c7",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbpconvnet_ld1e5/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/fbpconvnet_ld1e5/config.yaml",
+      "bytes": 684,
+      "sha256": "4d9fbf5546cd33b51610d314cc3ee019ffe6983d5e2405f31e582ccf1bc45d25",
+      "mtime_utc": "2026-10-19T00:51:10.178155+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbpconvnet_ld1e5/config.yaml",
+      "baseline_git_blob_sha": "dc6f1eda3d23c5329162af95a1c6a5b815ee89ae",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbpconvnet_ld1e5/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_10_ts0.5/metrics.json",
+      "bytes": 1081,
+      "sha256": "6b723500a3664b417ae53d3bf1c4d36f02579810aa8bce0aad3e16f3b56eee2f",
+      "mtime_utc": "2026-10-19T12:05:27.400074+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_10_ts0.5/metrics.json",
+      "baseline_git_blob_sha": "059e8d4f8135950b99d19d68cacd6da4212718be",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_10_ts0.5/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_10_ts0.5/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T12:05:27.508084+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_10_ts0.5/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_10_ts0.5/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_30_ts0.5/metrics.json",
+      "bytes": 1081,
+      "sha256": "1a7fb40fb5837b0ac3cda4be4cc88ac5c49d0ab3bdcd63e6c567e339af0cf0c2",
+      "mtime_utc": "2026-10-19T12:05:52.178487+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_30_ts0.5/metrics.json",
+      "baseline_git_blob_sha": "bbae2c00bc0e2357987be72040a1899cea0332c9",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_30_ts0.5/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_30_ts0.5/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T12:05:52.286497+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_30_ts0.5/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_30_ts0.5/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_100_ts0.5/metrics.json",
+      "bytes": 1082,
+      "sha256": "2da4deeb4b7b029273ed4276d24eb2416dbf425586268facaf8cde3a2b1e50e0",
+      "mtime_utc": "2026-10-19T12:06:16.552795+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_100_ts0.5/metrics.json",
+      "baseline_git_blob_sha": "4abc96faffdedb24a29cf58fe6aacb91c03e9331",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_100_ts0.5/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_dps_100_ts0.5/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T12:06:16.648804+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_dps_100_ts0.5/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_dps_100_ts0.5/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_pigdm_0.03/metrics.json",
+      "bytes": 1083,
+      "sha256": "91a296612fb8ff14cf9fe240471e82753c6bb229efb98efa6e5963afa0df5c96",
+      "mtime_utc": "2026-10-19T12:07:14.062001+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_pigdm_0.03/metrics.json",
+      "baseline_git_blob_sha": "4ddde39227e57fc854dae80408f5a45f1243fe8f",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_pigdm_0.03/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_pigdm_0.03/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T12:07:14.178011+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_pigdm_0.03/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_pigdm_0.03/config.yaml"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_pigdm_0.05/metrics.json",
+      "bytes": 1083,
+      "sha256": "dd3ca495643efacb6151449342e0038276b0edb408afc181a03bbac33faefd3c",
+      "mtime_utc": "2026-10-19T12:08:11.686908+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_pigdm_0.05/metrics.json",
+      "baseline_git_blob_sha": "ce3c5923fd02245ccaf9eb66ca7eb02831830c3e",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_pigdm_0.05/metrics.json"
+    },
+    {
+      "path": "original_project/01_diffusion_inverse/results/tune_ld1e5_pigdm_0.05/config.yaml",
+      "bytes": 363,
+      "sha256": "aecac7a70bc315894949db7ed75b43922043b435ba59c265cb7b36fde00551b8",
+      "mtime_utc": "2026-10-19T12:08:11.798917+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/tune_ld1e5_pigdm_0.05/config.yaml",
+      "baseline_git_blob_sha": "b48efac6a7814072b475594726085716b23c7a57",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/tune_ld1e5_pigdm_0.05/config.yaml"
+    },
+    {
+      "path": "original_project/shared/env/autodl_setup.sh",
+      "bytes": 3074,
+      "sha256": "4be71e12b52fc858690bbc635e96922d9bd01b1896c60f815f10d6b0ed348677",
+      "mtime_utc": "2026-10-18T15:49:14+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/env/autodl_setup.sh",
+      "baseline_git_blob_sha": "5c836a1105a061e85f3c04a23db9dd4cbb102577",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/env/autodl_setup.sh"
+    },
+    {
+      "path": "original_project/shared/env/requirements.txt",
+      "bytes": 262,
+      "sha256": "ef53936bd58471f85fb8b8ba4e132d0a704e355c7c837c901ad0d84354cbbc0a",
+      "mtime_utc": "2026-10-18T15:49:17+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "code/env/requirements.txt",
+      "baseline_git_blob_sha": "a6671583f56bcfe01d9d975c134774a4e2354808",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/code/env/requirements.txt"
+    },
+    {
+      "path": "original_checkpoints/01_diffusion_inverse/smoke_phantom/config.yaml",
+      "bytes": 358,
+      "sha256": "c6ca4b1156ca3475ef611132ed9a703d51df73562f060762588fe13d7f6f612d",
+      "mtime_utc": "2026-10-19T00:51:29.451545+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/smoke_phantom/config.yaml",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_checkpoints/01_diffusion_inverse/smoke_phantom/config.yaml"
+    },
+    {
+      "path": "original_checkpoints/01_diffusion_inverse/smoke_phantom/train_log.json",
+      "bytes": 512,
+      "sha256": "528cbb8b9f2695c3cfc4e9054915e8e7660cc24f5c0a8761cf5aba695f7328e2",
+      "mtime_utc": "2026-10-19T00:51:49.155110+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/smoke_phantom/train_log.json",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_checkpoints/01_diffusion_inverse/smoke_phantom/train_log.json"
+    },
+    {
+      "path": "original_checkpoints/01_diffusion_inverse/fbpconvnet_smoke/metrics.json",
+      "bytes": 584,
+      "sha256": "9081fc144fe139738fa6a8b042e0c272fa758206c2e96167ffa5c98439ee126e",
+      "mtime_utc": "2026-10-19T01:00:50.401826+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/fbpconvnet_smoke/metrics.json",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_checkpoints/01_diffusion_inverse/fbpconvnet_smoke/metrics.json"
+    },
+    {
+      "path": "original_checkpoints/01_diffusion_inverse/bench_prior256/config.yaml",
+      "bytes": 467,
+      "sha256": "1aaa6c443017b5213a65351deeac0c0813a3114dcfbcdc2e387b888926ab6c8e",
+      "mtime_utc": "2026-10-19T00:54:14.336984+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/bench_prior256/config.yaml",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_checkpoints/01_diffusion_inverse/bench_prior256/config.yaml"
+    },
+    {
+      "path": "original_checkpoints/01_diffusion_inverse/bench_prior256/train_log.json",
+      "bytes": 287,
+      "sha256": "4dda42baac2366efa6342f70b122bd9ac0e1114a9a0464a201eb09d08052be6e",
+      "mtime_utc": "2026-10-19T00:56:23.604416+00:00",
+      "comparison": "absent",
+      "baseline_path": "results/bench_prior256/train_log.json",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_checkpoints/01_diffusion_inverse/bench_prior256/train_log.json"
+    },
+    {
+      "path": "original_checkpoints/01_diffusion_inverse/prior_256/config.yaml",
+      "bytes": 552,
+      "sha256": "beeb41186c8c807b11d72496a1a99454c9323ad9e90a7da3edc7a98e0854cbc9",
+      "mtime_utc": "2026-10-19T01:46:51.148565+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/prior_256/config.yaml",
+      "baseline_git_blob_sha": "322b0d209545eb29f5df03235935445bb6fb15d0",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/prior_256/config.yaml"
+    },
+    {
+      "path": "original_checkpoints/01_diffusion_inverse/prior_256/train_log.json",
+      "bytes": 122786,
+      "sha256": "1ab1f9394696d0f3a9d4d44ab30a3bd220e399a87770adf9d5275f8d3111b7ee",
+      "mtime_utc": "2026-10-19T08:06:31.502150+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/prior_256/train_log.json",
+      "baseline_git_blob_sha": "328c302e42fe19e5d27f3d6d2fab5749d678b394",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/prior_256/train_log.json"
+    },
+    {
+      "path": "original_checkpoints/01_diffusion_inverse/fbpconvnet_sv30/metrics.json",
+      "bytes": 613,
+      "sha256": "b71854cd247d19ccbc66c4da1abb85e8100e1da094e6ede27a60e4de936a4086",
+      "mtime_utc": "2026-10-19T10:40:50.271313+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbpconvnet_sv30/metrics.json",
+      "baseline_git_blob_sha": "e3f0beac19024bfc0e82e83ea37c58fff4abb3c4",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbpconvnet_sv30/metrics.json"
+    },
+    {
+      "path": "original_checkpoints/01_diffusion_inverse/fbpconvnet_sv60/metrics.json",
+      "bytes": 610,
+      "sha256": "88c2c570aefa1c1deaf5676155ba4bb89d52a33092dd93a470c0ac443b6ba32e",
+      "mtime_utc": "2026-10-19T11:07:33.442195+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbpconvnet_sv60/metrics.json",
+      "baseline_git_blob_sha": "e19af418da363a2f2de41b2f69760e6218fbc77e",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbpconvnet_sv60/metrics.json"
+    },
+    {
+      "path": "original_checkpoints/01_diffusion_inverse/fbpconvnet_sv90/metrics.json",
+      "bytes": 608,
+      "sha256": "3d5aadcf10b6576e472aadeb018ae7a3b12eeb438569b25be45cd1f7b411e3c5",
+      "mtime_utc": "2026-10-19T11:34:34.204906+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbpconvnet_sv90/metrics.json",
+      "baseline_git_blob_sha": "acb356994c118de83e626b5f4149afcf811a954c",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbpconvnet_sv90/metrics.json"
+    },
+    {
+      "path": "original_checkpoints/01_diffusion_inverse/fbpconvnet_ld1e5/metrics.json",
+      "bytes": 612,
+      "sha256": "29ff79eb8befed26704dd9d0174e50e69d5633fc5bc800e71fa6705788489a19",
+      "mtime_utc": "2026-10-19T12:02:40.928967+00:00",
+      "comparison": "byte_identical",
+      "baseline_path": "results/fbpconvnet_ld1e5/metrics.json",
+      "baseline_git_blob_sha": "395fab90efd35a3ea859985f7db93e661a6570c7",
+      "baseline_url": "https://github.com/ZeroDevi1/flow-ct-guidance/blob/a9c29b4e6f2db2745034151f3d7a94dae699faa6/results/fbpconvnet_ld1e5/metrics.json"
+    },
+    {
+      "path": "original_checkpoints/01_diffusion_inverse_old_1792370884/bench_prior256/config.yaml",
+      "bytes": 433,
+      "sha256": "7b598b7bf7283c31ecbc46687f9fa77e25d0ddab54d4374f82478581560ca4a7",
+      "mtime_utc": "2026-10-19T00:44:32.864917+00:00",
+      "comparison": "unmapped",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_checkpoints/01_diffusion_inverse_old_1792370884/bench_prior256/config.yaml"
+    },
+    {
+      "path": "original_checkpoints/01_diffusion_inverse_old_1792370884/bench_prior256/train_log.json",
+      "bytes": 168,
+      "sha256": "1e37b1c4b176954b22f67fdbd1b5a40c92aa699358988e33bbb5ae781773b454",
+      "mtime_utc": "2026-10-19T00:46:28.804107+00:00",
+      "comparison": "unmapped",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_checkpoints/01_diffusion_inverse_old_1792370884/bench_prior256/train_log.json"
+    },
+    {
+      "path": "original_checkpoints/01_diffusion_inverse_old_1792370884/bench_prior256_mb16/config.yaml",
+      "bytes": 438,
+      "sha256": "164beaac8b373f91297d0447cd3f940233d662c8450905523ef53f1d96fedd11",
+      "mtime_utc": "2026-10-19T00:46:32.491871+00:00",
+      "comparison": "unmapped",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_checkpoints/01_diffusion_inverse_old_1792370884/bench_prior256_mb16/config.yaml"
+    },
+    {
+      "path": "original_checkpoints/01_diffusion_inverse_old_1792370884/bench_prior256_mb16/train_log.json",
+      "bytes": 83,
+      "sha256": "5cd86ce3e174a1416a728163db8befadc8a88d6b17f37c18d5c3dc615c72006b",
+      "mtime_utc": "2026-10-19T00:47:31.004431+00:00",
+      "comparison": "unmapped",
+      "archived_path": "docs/reproducibility/2026-10-30/historical/original_checkpoints/01_diffusion_inverse_old_1792370884/bench_prior256_mb16/train_log.json"
+    }
+  ],
+  "checkpoint_inventory": [
+    {
+      "path": "checkpoints/01_diffusion_inverse/bench_prior256/ema_final.pt",
+      "bytes": 79401227,
+      "sha256": "616bf843e921c3dd24af9cdf163d862e2510c0ce452cab04aef9d0dc1a47481a",
+      "mtime_utc": "2026-10-19T00:56:24.716416+00:00",
+      "included": false,
+      "deserialized": false,
+      "published_release_asset": null,
+      "backup_status": "metadata_only_binary_not_in_this_archive"
+    },
+    {
+      "path": "checkpoints/01_diffusion_inverse/bench_prior256/last.pt",
+      "bytes": 317566509,
+      "sha256": "d8f02c9d088416fd427afe7a9829d80ba74bf56b1b505022e577498edc8a4c7c",
+      "mtime_utc": "2026-10-19T00:56:24.580416+00:00",
+      "included": false,
+      "deserialized": false,
+      "published_release_asset": null,
+      "backup_status": "metadata_only_binary_not_in_this_archive"
+    },
+    {
+      "path": "checkpoints/01_diffusion_inverse/fbpconvnet_ld1e5/model.pt",
+      "bytes": 79376315,
+      "sha256": "51a251b116a834658cb4f2a431dc2c10dd50841aed6cada67ceabf9b8f03deab",
+      "mtime_utc": "2026-10-19T12:02:38.234226+00:00",
+      "included": false,
+      "deserialized": false,
+      "published_release_asset": {
+        "name": "fbpconvnet_ld1e5.pt",
+        "size": 79376315,
+        "digest": "sha256:51a251b116a834658cb4f2a431dc2c10dd50841aed6cada67ceabf9b8f03deab",
+        "url": "https://github.com/ZeroDevi1/flow-ct-guidance/releases/download/v1.0-phase1/fbpconvnet_ld1e5.pt"
+      },
+      "backup_status": "matching_binary_already_in_release"
+    },
+    {
+      "path": "checkpoints/01_diffusion_inverse/fbpconvnet_smoke/model.pt",
+      "bytes": 740667,
+      "sha256": "174025c3dada411d6d6ef764634a835c8070057c268db7b47459273ff62cb5ff",
+      "mtime_utc": "2026-10-19T01:00:49.486274+00:00",
+      "included": false,
+      "deserialized": false,
+      "published_release_asset": null,
+      "backup_status": "metadata_only_binary_not_in_this_archive"
+    },
+    {
+      "path": "checkpoints/01_diffusion_inverse/fbpconvnet_sv30/model.pt",
+      "bytes": 79376315,
+      "sha256": "593eec5cc34d6acaab35cfbdd81b526785430161a6674120e0ba95e04967e334",
+      "mtime_utc": "2026-10-19T10:40:47.771229+00:00",
+      "included": false,
+      "deserialized": false,
+      "published_release_asset": {
+        "name": "fbpconvnet_sv30.pt",
+        "size": 79376315,
+        "digest": "sha256:593eec5cc34d6acaab35cfbdd81b526785430161a6674120e0ba95e04967e334",
+        "url": "https://github.com/ZeroDevi1/flow-ct-guidance/releases/download/v1.0-phase1/fbpconvnet_sv30.pt"
+      },
+      "backup_status": "matching_binary_already_in_release"
+    },
+    {
+      "path": "checkpoints/01_diffusion_inverse/fbpconvnet_sv60/model.pt",
+      "bytes": 79376315,
+      "sha256": "a00400286d37b239eb7f4e21c634605efb66f83d1c602b955c9a8017546ac5be",
+      "mtime_utc": "2026-10-19T11:07:30.842175+00:00",
+      "included": false,
+      "deserialized": false,
+      "published_release_asset": {
+        "name": "fbpconvnet_sv60.pt",
+        "size": 79376315,
+        "digest": "sha256:a00400286d37b239eb7f4e21c634605efb66f83d1c602b955c9a8017546ac5be",
+        "url": "https://github.com/ZeroDevi1/flow-ct-guidance/releases/download/v1.0-phase1/fbpconvnet_sv60.pt"
+      },
+      "backup_status": "matching_binary_already_in_release"
+    },
+    {
+      "path": "checkpoints/01_diffusion_inverse/fbpconvnet_sv90/model.pt",
+      "bytes": 79376315,
+      "sha256": "b306eeabe7d48d118ad37c64eddb98c1f20065358f296ecfa0122cbdfba566b5",
+      "mtime_utc": "2026-10-19T11:34:31.664683+00:00",
+      "included": false,
+      "deserialized": false,
+      "published_release_asset": {
+        "name": "fbpconvnet_sv90.pt",
+        "size": 79376315,
+        "digest": "sha256:b306eeabe7d48d118ad37c64eddb98c1f20065358f296ecfa0122cbdfba566b5",
+        "url": "https://github.com/ZeroDevi1/flow-ct-guidance/releases/download/v1.0-phase1/fbpconvnet_sv90.pt"
+      },
+      "backup_status": "matching_binary_already_in_release"
+    },
+    {
+      "path": "checkpoints/01_diffusion_inverse/prior_256/ema_final.pt",
+      "bytes": 79401355,
+      "sha256": "0e04c3e70c3d904b6ef93025faec465bb3b6a896d1c594088c18e7cfac8f72bb",
+      "mtime_utc": "2026-10-19T08:06:34.442438+00:00",
+      "included": false,
+      "deserialized": false,
+      "published_release_asset": {
+        "name": "prior_256_ema_final.pt",
+        "size": 79401355,
+        "digest": "sha256:0e04c3e70c3d904b6ef93025faec465bb3b6a896d1c594088c18e7cfac8f72bb",
+        "url": "https://github.com/ZeroDevi1/flow-ct-guidance/releases/download/v1.0-phase1/prior_256_ema_final.pt"
+      },
+      "backup_status": "matching_binary_already_in_release"
+    },
+    {
+      "path": "checkpoints/01_diffusion_inverse/prior_256/last.pt",
+      "bytes": 317566637,
+      "sha256": "549e0af807eb45c93ad07e52e7c9b396f52440d575f0ee41cda58fe3fbd73068",
+      "mtime_utc": "2026-10-19T08:06:33.990394+00:00",
+      "included": false,
+      "deserialized": false,
+      "published_release_asset": null,
+      "backup_status": "metadata_only_binary_not_in_this_archive"
+    },
+    {
+      "path": "checkpoints/01_diffusion_inverse/smoke_phantom/ema_final.pt",
+      "bytes": 4821963,
+      "sha256": "9b5ce42b6fbcaf5c9292aa1288a0113096f29c3015648d4f4d099462a5a14a37",
+      "mtime_utc": "2026-10-19T00:51:49.351106+00:00",
+      "included": false,
+      "deserialized": false,
+      "published_release_asset": null,
+      "backup_status": "metadata_only_binary_not_in_this_archive"
+    },
+    {
+      "path": "checkpoints/01_diffusion_inverse/smoke_phantom/last.pt",
+      "bytes": 19268791,
+      "sha256": "3fceebe3733edfded98bafd1c9c33b8e8e9f3f5bda0188c856e514023ab98880",
+      "mtime_utc": "2026-10-19T00:51:49.343106+00:00",
+      "included": false,
+      "deserialized": false,
+      "published_release_asset": null,
+      "backup_status": "metadata_only_binary_not_in_this_archive"
+    },
+    {
+      "path": "checkpoints/01_diffusion_inverse_old_1792370884/bench_prior256/ema_final.pt",
+      "bytes": 178353099,
+      "sha256": "75f1c68ce29325d67af4c951a905c81e6808c20927502ff30cc8f8cde2d36fee",
+      "mtime_utc": "2026-10-19T00:46:30.424003+00:00",
+      "included": false,
+      "deserialized": false,
+      "published_release_asset": null,
+      "backup_status": "metadata_only_binary_not_in_this_archive"
+    },
+    {
+      "path": "checkpoints/01_diffusion_inverse_old_1792370884/bench_prior256/last.pt",
+      "bytes": 713370093,
+      "sha256": "865e43a72a517920e3c7e1cb9a411d6cf708863e67339567b60d1062d7f50a47",
+      "mtime_utc": "2026-10-19T00:46:30.188018+00:00",
+      "included": false,
+      "deserialized": false,
+      "published_release_asset": null,
+      "backup_status": "metadata_only_binary_not_in_this_archive"
+    },
+    {
+      "path": "precheck_40k.pt",
+      "bytes": 317566637,
+      "sha256": "a9e209ad3d98fca03704fc5202f921815622f67d2b696116678886d922f89808",
+      "included": false,
+      "deserialized": false,
+      "published_release_asset": null,
+      "backup_status": "metadata_only_binary_not_in_this_archive"
+    }
+  ],
+  "exclusions": [
+    "CT/image/NPY data",
+    "patient-level mappings and new patient CSV files",
+    "checkpoint binaries",
+    "credentials and environment variables",
+    "private instance identifiers and URLs"
+  ]
+}

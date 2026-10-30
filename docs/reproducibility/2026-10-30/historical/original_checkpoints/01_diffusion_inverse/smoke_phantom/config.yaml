@@ -1,0 +1,28 @@
+data:
+  n: 256
+  type: phantom
+model:
+  attn_res:
+  - 16
+  base_ch: 32
+  ch_mult:
+  - 1
+  - 2
+  - 2
+  image_size: 64
+  in_ch: 1
+  num_res: 1
+  out_ch: 1
+out_dir: checkpoints/smoke_phantom
+seed: 0
+train:
+  amp: false
+  batch_size: 16
+  ema: 0.99
+  log_every: 50
+  lr: 0.0002
+  max_steps: 300
+  num_workers: 0
+  sample_every: 300
+  sample_nfe: 20
+  warmup: 50

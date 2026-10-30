@@ -1,0 +1,19 @@
+-rw-r--r-- 1 root root 22596940315 Oct 19 09:41 /root/autodl-tmp/data/totalseg/raw/Images.zip
+[START] 1229 members
+[PROGRESS] checked 200/1229 bad=0
+[PROGRESS] checked 400/1229 bad=0
+[PROGRESS] checked 600/1229 bad=0
+[PROGRESS] checked 800/1229 bad=0
+[PROGRESS] checked 1000/1229 bad=0
+[PROGRESS] checked 1200/1229 bad=0
+[METRIC] bad members: 0
+[METRIC] still bad after repair: 0 []
+[PROGRESS] sha256
+Images.zip: OK
+[PROGRESS] unzip
+22G	extracted
+extracted/Images/s0338.nii.gz
+extracted/Images/s1394.nii.gz
+extracted/Images/s0899.nii.gz
+1228
+[DONE]
