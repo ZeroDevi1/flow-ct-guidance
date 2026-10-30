@@ -104,6 +104,8 @@ python scripts/analyze.py --results results --index results/index_test200.csv --
 
 方案是在采样器内部用沿投影角度扫描的状态空间模型（SSM）补全正弦图，并输出逐角度置信度来加权全角度数据一致性；再结合 Helgason–Ludwig 一致性条件，并把补全从插值推广到限角外推。设计见 [`docs/02_phase1b_angle_ssm_design.md`](docs/02_phase1b_angle_ssm_design.md)，新颖性核查见 [`docs/02_novelty_check.md`](docs/02_novelty_check.md)。相关代码已经写好，单元测试已通过，还没有在 GPU 上训练。
 
+后续研究优先级、阶段验收、数据隔离与新增文献定位见 [Research Roadmap](ROADMAP.md)（2026-10-30 更新）。该路线图补充现有 Phase 1b 设计，新增实验仍为待办。
+
 ## 致谢与声明
 
 - 数据：TotalSegmentator（Wasserthal et al., *Radiology: AI* 2023，CC-BY-4.0）。
