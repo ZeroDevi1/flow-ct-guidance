@@ -16,7 +16,7 @@
 - [`p1/deidentified_result.json`](p1/deidentified_result.json)：完整240次评估；患者级配对差与探索性 bootstrap。
 - [`p1/deidentified_cohort_audit.json`](p1/deidentified_cohort_audit.json)：精确同图 NFE/队列审计，不能简单把下降归因解剖。
 - [`baseline/evaluation/summary_anonymous.json`](baseline/evaluation/summary_anonymous.json)：固定 best 的120次配对预测。
-- [`baseline/training/`](baseline/training/)：每50步抽样训练曲线/完整验证曲线、停止原因、完整私有 checkpoint 的校验值（不是可公开权重资产）。
+- [`baseline/training/`](baseline/training/)：每50步抽样训练曲线/完整验证曲线、停止原因、原始完整 checkpoint 的校验值（完整二进制另见下方 Release，不写入 git）。
 - [`numerics/`](numerics/)：原始失败与同 solver 重复性；[`pilot/`](pilot/)：修订双门控与先导结果；[`cg_sensitivity/`](cg_sensitivity/)：真实开发子集 CG 敏感性。
 - [`reproducibility_manifest.json`](reproducibility_manifest.json)：源代码、数据文件校验值、环境和隐私范围；[`SHA256SUMS.txt`](SHA256SUMS.txt)：本目录数据文件校验。
 
@@ -26,6 +26,6 @@
 
 实验采用 GPU torch2.12.1+cu130/RTX5090；CPU测试是另一环境，不能冒充 GPU 确定性证明。代码保持历史阶段脚本用于溯源：**旧 `run_pilot.sh` 会请求关机；当前重现应阅读 `run_stage_v2.sh`/批次说明并设置自己的预算截止。** 示例日期是历史记录，不应原样用于新租机。
 
-完整checkpoint含模型、优化器、RNG、公开数据集编号和通用数据路径。用户已在知悉公开范围后澄清这些编号来自公开数据集，并授权发布原始完整 best/last 断点。秘密与官方数据许可检查通过；作为 GitHub Release 资产上传，不写入 git。文件 SHA 保持不变，见 [发布范围与数据署名](CHECKPOINT_PUBLICATION.md)；实际下载链接以最终 Release 为准。
+完整checkpoint含模型、优化器、RNG、公开数据集编号和通用数据路径。用户已在知悉公开范围后澄清这些编号来自公开数据集，并授权发布原始完整 best/last 断点。秘密与官方数据许可检查通过；作为 GitHub Release 资产上传，不写入 git。文件 SHA 保持不变，见 [发布范围与数据署名](CHECKPOINT_PUBLICATION.md)；完整文件已发布在 [Release v1.1-p1-dev-20261031](https://github.com/ZeroDevi1/flow-ct-guidance/releases/tag/v1.1-p1-dev-20261031)，包含原始 `best.pt`、`last.pt` 及校验清单；两个断点各 238,285,915 字节。此发布不改变本轮开发验证的证据边界。
 
 训练逐步原始JSONL的19800行未改写：git收录每50步原行以避免大API请求；原始行数/SHA见 `baseline/training/train_log_provenance.json`，完整匿名日志仍保留在源证据归档中。
