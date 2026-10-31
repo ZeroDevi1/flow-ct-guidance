@@ -81,6 +81,24 @@ docs/                  实验设计、新颖性核查、Phase 1b 设计、周报
 
 有了先验权重，就**不需要重新训练**，可以直接做后验采样实验。把它放到 `code/checkpoints/prior_256/ema_final.pt`，然后跳过下面复现步骤中的第 4 步。
 
+### 2026-10-31 完整续训断点 / Full training checkpoints
+
+本轮匹配低剂量 FBP 残差 U-Net 的原始完整断点已发布在 [Release v1.1-p1-dev-20261031](https://github.com/ZeroDevi1/flow-ct-guidance/releases/tag/v1.1-p1-dev-20261031)（预发布）。它们与上面的历史 Phase 1 推理权重用途不同，不能混用实验结论。
+
+The original full checkpoints of the matched low-dose FBP residual U-Net are available in [Release v1.1-p1-dev-20261031](https://github.com/ZeroDevi1/flow-ct-guidance/releases/tag/v1.1-p1-dev-20261031) (pre-release). These are distinct from the historical Phase 1 inference weights above.
+
+| 文件 / File | 内容 / Contents | 大小 / Bytes |
+|---|---|---:|
+| `best.pt` | 本轮最佳开发验证断点，含完整训练状态 / Best development-validation checkpoint with full training state | 238,285,915 |
+| `last.pt` | 本轮最后一步完整续训断点 / Last-step checkpoint for resuming training | 238,285,915 |
+| `checkpoint_manifest_nonprivate.json` | 文件大小与 SHA-256 校验清单 / File sizes and SHA-256 manifest | 252 |
+
+两个断点均保留模型、优化器、随机数（RNG）、配置及训练进度，也保留公开数据集的队列/切片索引和通用数据路径；没有打包原始 CT 图像。它们来自同一批开发验证，训练达到 20,000 步上限，不代表已经收敛、独立测试通过或达到 SOTA。下载后先核对 Release 显示的 SHA-256；完整训练格式只能在信任来源时加载，不能因为文件名相同就反序列化任意 checkpoint。
+
+Both files retain the model, optimizer, RNG, configuration and training progress, including public-dataset cohort/slice indices and a generic data path, but no raw CT images. The run reached its 20,000-step cap; it does not establish convergence, independent-test performance or SOTA. Verify SHA-256 before loading, and only deserialize trusted checkpoints.
+
+数据来源、许可和完整哈希见 [发布范围与数据署名](results/2026-10-31-budget-p1/CHECKPOINT_PUBLICATION.md)；复现与安全运行参见 [实验 README（英文原文与中文对照）](code/experiments/budget_pilot/README.md)。
+
 ## 复现
 
 ```bash
@@ -123,7 +141,7 @@ python scripts/analyze.py --results results --index results/index_test200.csv --
 
 方案是在采样器内部用沿投影角度扫描的状态空间模型（SSM）补全正弦图，并输出逐角度置信度来加权全角度数据一致性；再结合 Helgason–Ludwig 一致性条件，并把补全从插值推广到限角外推。设计见 [`docs/02_phase1b_angle_ssm_design.md`](docs/02_phase1b_angle_ssm_design.md)，新颖性核查见 [`docs/02_novelty_check.md`](docs/02_novelty_check.md)。相关代码已经写好，单元测试已通过，还没有在 GPU 上训练。
 
-后续研究优先级、阶段验收、数据隔离与新增文献定位见 [Research Roadmap](ROADMAP.md)（2026-10-30 更新）。该路线图补充现有 Phase 1b 设计，新增实验仍为待办。
+后续研究优先级、阶段验收、数据隔离与新增文献定位见 [Research Roadmap](ROADMAP.md)（2026-10-31 更新）。该路线图补充现有 Phase 1b 设计，新增实验仍为待办。
 
 ## 致谢与声明
 
