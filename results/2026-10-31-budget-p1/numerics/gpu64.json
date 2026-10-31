@@ -1,0 +1,363 @@
+{
+  "scope": "Failure diagnosis only; not pass/fail replacement",
+  "device": "cuda",
+  "size": 64,
+  "torch": "2.12.1+cu130",
+  "cuda": "13.0",
+  "rows": [
+    {
+      "setting": "sv60",
+      "n_iter": 5,
+      "lambda_absolute": 2.36112642288208,
+      "adjoint_repeat": [
+        {
+          "max_abs": 6.103515625e-05,
+          "rms": 6.012687784632917e-06,
+          "relative_l2": 1.6649842114080276e-08,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 6.103515625e-05,
+          "rms": 6.307962682401158e-06,
+          "relative_l2": 1.7467493155376202e-08,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "legacy_repeat": [
+        {
+          "max_abs": 3.11434268951416e-06,
+          "rms": 3.565253131554073e-07,
+          "relative_l2": 5.656582739779202e-07,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 3.2410025596618652e-06,
+          "rms": 3.4916497672843667e-07,
+          "relative_l2": 5.539804630468288e-07,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "weighted_repeat": [
+        {
+          "max_abs": 3.6954879760742188e-06,
+          "rms": 3.884858148459754e-07,
+          "relative_l2": 6.163663609891264e-07,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 3.7848949432373047e-06,
+          "rms": 3.7833445259072954e-07,
+          "relative_l2": 6.002603463722761e-07,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "cross": [
+        {
+          "max_abs": 3.032386302947998e-06,
+          "rms": 3.579070311537381e-07,
+          "relative_l2": 5.678504891986088e-07,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 3.300607204437256e-06,
+          "rms": 3.561573697104424e-07,
+          "relative_l2": 5.650745276395235e-07,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 3.0994415283203125e-06,
+          "rms": 3.554336302111794e-07,
+          "relative_l2": 5.639262032313652e-07,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "relative_equation_residual": {
+        "legacy": [
+          0.0038092923572690513,
+          0.0038092935591042235,
+          0.003809291406431048
+        ],
+        "weighted": [
+          0.0038092913675473535,
+          0.0038092905542654472,
+          0.003809291039420442
+        ]
+      }
+    },
+    {
+      "setting": "sv60",
+      "n_iter": 12,
+      "lambda_absolute": 2.36112642288208,
+      "adjoint_repeat": [
+        {
+          "max_abs": 6.103515625e-05,
+          "rms": 6.012687784632917e-06,
+          "relative_l2": 1.6649842114080276e-08,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 6.103515625e-05,
+          "rms": 6.307962682401158e-06,
+          "relative_l2": 1.7467493155376202e-08,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "legacy_repeat": [
+        {
+          "max_abs": 1.2226402759552002e-05,
+          "rms": 1.9921499283758e-06,
+          "relative_l2": 3.151461209000208e-06,
+          "original_allclose": false,
+          "finite": true
+        },
+        {
+          "max_abs": 1.2770295143127441e-05,
+          "rms": 1.5872066595841198e-06,
+          "relative_l2": 2.510865345573814e-06,
+          "original_allclose": false,
+          "finite": true
+        }
+      ],
+      "weighted_repeat": [
+        {
+          "max_abs": 1.2792646884918213e-05,
+          "rms": 2.155808332786364e-06,
+          "relative_l2": 3.410357802942978e-06,
+          "original_allclose": false,
+          "finite": true
+        },
+        {
+          "max_abs": 1.1473894119262695e-05,
+          "rms": 1.660819241614852e-06,
+          "relative_l2": 2.6273151345502003e-06,
+          "original_allclose": false,
+          "finite": true
+        }
+      ],
+      "cross": [
+        {
+          "max_abs": 1.1906027793884277e-05,
+          "rms": 1.6342183075384834e-06,
+          "relative_l2": 2.5852349413502433e-06,
+          "original_allclose": false,
+          "finite": true
+        },
+        {
+          "max_abs": 1.364201307296753e-05,
+          "rms": 2.619304322708167e-06,
+          "relative_l2": 4.1435795849278374e-06,
+          "original_allclose": false,
+          "finite": true
+        },
+        {
+          "max_abs": 1.4379620552062988e-05,
+          "rms": 1.6127050722941002e-06,
+          "relative_l2": 2.551202129436202e-06,
+          "original_allclose": false,
+          "finite": true
+        }
+      ],
+      "relative_equation_residual": {
+        "legacy": [
+          0.00046352685278489014,
+          0.00046352423376186993,
+          0.00046352783326627405
+        ],
+        "weighted": [
+          0.000463522834188412,
+          0.00046352484241711945,
+          0.00046352266431796865
+        ]
+      }
+    },
+    {
+      "setting": "la120",
+      "n_iter": 5,
+      "lambda_absolute": 4.638632011413574,
+      "adjoint_repeat": [
+        {
+          "max_abs": 0.0001220703125,
+          "rms": 1.3006383606897216e-05,
+          "relative_l2": 1.799621835527262e-08,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0001220703125,
+          "rms": 1.2615925364802315e-05,
+          "relative_l2": 1.745596273958945e-08,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "legacy_repeat": [
+        {
+          "max_abs": 2.1457672119140625e-06,
+          "rms": 3.046621269180073e-07,
+          "relative_l2": 4.93065238485696e-07,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 2.2202730178833008e-06,
+          "rms": 3.074905804031644e-07,
+          "relative_l2": 4.976428080914515e-07,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "weighted_repeat": [
+        {
+          "max_abs": 2.205371856689453e-06,
+          "rms": 3.2162552960517607e-07,
+          "relative_l2": 5.205188095437169e-07,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 2.2351741790771484e-06,
+          "rms": 3.0641673411655647e-07,
+          "relative_l2": 4.959048924456299e-07,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "cross": [
+        {
+          "max_abs": 2.25752592086792e-06,
+          "rms": 2.9847392379655157e-07,
+          "relative_l2": 4.830502494920045e-07,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 2.2649765014648438e-06,
+          "rms": 3.0318304895390917e-07,
+          "relative_l2": 4.906714556928e-07,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 2.384185791015625e-06,
+          "rms": 3.0744127770898524e-07,
+          "relative_l2": 4.975629762332342e-07,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "relative_equation_residual": {
+        "legacy": [
+          0.006481300080559337,
+          0.006481298583399817,
+          0.006481299973770079
+        ],
+        "weighted": [
+          0.0064812991314730055,
+          0.006481298154796918,
+          0.006481299240318004
+        ]
+      }
+    },
+    {
+      "setting": "la120",
+      "n_iter": 12,
+      "lambda_absolute": 4.638632011413574,
+      "adjoint_repeat": [
+        {
+          "max_abs": 0.0001220703125,
+          "rms": 1.3006383606897216e-05,
+          "relative_l2": 1.799621835527262e-08,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0001220703125,
+          "rms": 1.2615925364802315e-05,
+          "relative_l2": 1.745596273958945e-08,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "legacy_repeat": [
+        {
+          "max_abs": 1.0371208190917969e-05,
+          "rms": 1.3918747918283016e-06,
+          "relative_l2": 2.236699929530086e-06,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 1.2040138244628906e-05,
+          "rms": 1.3916221972096028e-06,
+          "relative_l2": 2.2362940177561534e-06,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "weighted_repeat": [
+        {
+          "max_abs": 1.1920928955078125e-05,
+          "rms": 1.3577445339715477e-06,
+          "relative_l2": 2.1818541306020186e-06,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 1.0009855031967163e-05,
+          "rms": 1.333299299831701e-06,
+          "relative_l2": 2.142571383555676e-06,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "cross": [
+        {
+          "max_abs": 9.506940841674805e-06,
+          "rms": 1.4250368408947257e-06,
+          "relative_l2": 2.2899903211985158e-06,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 1.1622905731201172e-05,
+          "rms": 1.4270983976230803e-06,
+          "relative_l2": 2.293303720052599e-06,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 1.2040138244628906e-05,
+          "rms": 1.316135904555421e-06,
+          "relative_l2": 2.1149902490519817e-06,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "relative_equation_residual": {
+        "legacy": [
+          0.0009489970888321733,
+          0.0009489966283182117,
+          0.000948995776921957
+        ],
+        "weighted": [
+          0.0009489968888543623,
+          0.0009489981174488416,
+          0.0009489959325924438
+        ]
+      }
+    }
+  ],
+  "wall_seconds": 0.7474937930237502,
+  "complete": true
+}

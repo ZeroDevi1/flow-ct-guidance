@@ -1,0 +1,16 @@
+{
+  "date_utc": "2026-10-31",
+  "device": "RTX 5090",
+  "torch": "2.12.1+cu130",
+  "size": 64,
+  "dtype": "float32",
+  "cg_iters": 12,
+  "failed_assertion": "unit pixel-weight CG differs",
+  "atol": 1e-05,
+  "exit_code": 1,
+  "started_utc": "2026-10-31T00:59:53Z",
+  "ended_utc": "2026-10-31T00:59:57Z",
+  "validation_started": false,
+  "interpretation": "Preserved failure. Same-solver GPU repetition also exceeds allclose in subsequent diagnostics; this is not an established unique cause.",
+  "privacy": "Runtime identifiers and paths omitted."
+}

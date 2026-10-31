@@ -1,0 +1,17 @@
+{
+  "processed": "/root/autodl-tmp/data/totalseg/processed",
+  "ckpt": "/root/autodl-tmp/checkpoints/01_diffusion_inverse/prior_256/ema_final.pt",
+  "patients": 20,
+  "slices_per_patient": 2,
+  "seeds": [0, 1, 2],
+  "nfe": 50,
+  "cg_iters": 30,
+  "cases": ["ld180_i1e5"],
+  "dc_lambdas": [3.0],
+  "wls_lambdas": [0.3],
+  "max_seconds": 3540,
+  "design": "Fixed development-validation cohort, first20 after seed20261031 patient shuffle, includes earlier4 pilot patients. Remaining validation patients reserved; test images never read.",
+  "selection": "Both methods had equal preliminary lambda candidates [.3,3] and CG [5,12,30] on 4 validation patients. Freeze DC3 and WLS.3 for this complete batch. Not globally optimal tuning and not independent holdout evidence.",
+  "numerics": "CG30 is a higher-accuracy fixed computational budget, not proof of exact convergence. Historical float32 CG12 unit-weight repeatability failure retained. Actual tiny GPU numerical variation remains possible.",
+  "interpretation": "Paired measurement/latent seeds across methods; seeds jointly vary Poisson noise and initialization. Do not infer independent noise-only or initialization-only variance. No clinical efficacy claim."
+}

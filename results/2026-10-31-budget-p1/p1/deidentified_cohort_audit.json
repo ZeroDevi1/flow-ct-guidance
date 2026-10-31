@@ -1,0 +1,62 @@
+{
+  "scope": "Post-hoc same-image NFE and cohort audit; not additional tuning or confirmatory testing",
+  "comparisons": {
+    "dc": {
+      "same4_first_slice_nfe20_psnr": 30.64324426651001,
+      "same4_first_slice_nfe50_psnr": 27.078811645507812,
+      "matched_nfe50_minus20_mean_db": -3.5644326210021973,
+      "matched_nfe_delta_range": [
+        -6.482383728027344,
+        -1.9722919464111328
+      ],
+      "original4_both_slices_nfe50_patient_macro_psnr": 28.311606884002686,
+      "other16_both_slices_nfe50_patient_macro_psnr": 25.22805565595627,
+      "other_patient_count": 16,
+      "nfe50_all_patient_psnr_quantiles": [
+        18.940975189208984,
+        21.19681625366211,
+        23.147801876068115,
+        24.892137050628662,
+        27.4156756401062,
+        32.98638582229614,
+        36.52072525024414
+      ]
+    },
+    "wls": {
+      "same4_first_slice_nfe20_psnr": 37.45884609222412,
+      "same4_first_slice_nfe50_psnr": 33.567219257354736,
+      "matched_nfe50_minus20_mean_db": -3.8916268348693848,
+      "matched_nfe_delta_range": [
+        -4.6686859130859375,
+        -2.8257904052734375
+      ],
+      "original4_both_slices_nfe50_patient_macro_psnr": 34.68035101890564,
+      "other16_both_slices_nfe50_patient_macro_psnr": 31.000526189804077,
+      "other_patient_count": 16,
+      "nfe50_all_patient_psnr_quantiles": [
+        24.579962730407715,
+        26.654412269592285,
+        28.522529125213623,
+        30.72363519668579,
+        34.415059089660645,
+        38.054045104980474,
+        41.5214958190918
+      ]
+    }
+  },
+  "selected_truth_range_audit": {
+    "n_images": 40,
+    "n_nonfinite": 0,
+    "minimum": -1.0,
+    "maximum": 1.0,
+    "fraction_outside_minus1_plus1": 0.0,
+    "fraction_at_minus1": 0.20873451232910156,
+    "fraction_at_plus1": 0.005115127563476563,
+    "note": "Checks stored normalized pixel values only; does not establish original HU calibration or diagnostic image quality."
+  },
+  "limitations": [
+    "Matched4 slice comparison changes NFE20 to50 with same seed/prior/data/CG/lambda; minor CUDA nondeterminism may remain.",
+    "Other16 anatomy not labelled here; lower values alone cannot identify anatomy or pathology causes.",
+    "Quantiles are development-patient summaries; no post-hoc parameter changes."
+  ]
+}

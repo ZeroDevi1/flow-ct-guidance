@@ -1,0 +1,30 @@
+[
+  {
+    "setting": "ld180_i1e5",
+    "method": "dc",
+    "lambda_relative": 3.0,
+    "wall_seconds": 286.6889737859601,
+    "peak_cuda_bytes": 401660416,
+    "n_images": 40,
+    "n_patients": 20,
+    "complete": true,
+    "eligible_for_comparison": true,
+    "patient_macro_psnr": 25.81499128341675,
+    "image_mean_psnr": 25.81499128341675,
+    "image_mean_ssim": 0.57105044843629
+  },
+  {
+    "setting": "ld180_i1e5",
+    "method": "wls",
+    "lambda_relative": 0.3,
+    "wall_seconds": 287.1278776261024,
+    "peak_cuda_bytes": 401844736,
+    "n_images": 40,
+    "n_patients": 20,
+    "complete": true,
+    "eligible_for_comparison": true,
+    "patient_macro_psnr": 31.723595714569093,
+    "image_mean_psnr": 31.723595714569093,
+    "image_mean_ssim": 0.723425118625164
+  }
+]

@@ -1,0 +1,67 @@
+{
+  "complete": true,
+  "eligible_for_comparison": true,
+  "n_patients": 20,
+  "n_slices_per_seed": 40,
+  "n_seeds": 3,
+  "n_fbpconvnet_predictions": 120,
+  "aggregates": {
+    "fbpconvnet": {
+      "psnr": 37.2845870812734,
+      "ssim": 0.9112904131412506,
+      "residual": 0.011103321608000746,
+      "weighted_residual_rms": 0.3332403016587099
+    },
+    "dc": {
+      "psnr": 25.83606493473053,
+      "ssim": 0.5716968146463235
+    },
+    "wls": {
+      "psnr": 31.714372205734254,
+      "ssim": 0.7234173203818501
+    },
+    "fbp": {
+      "psnr": 27.26675268809001,
+      "ssim": 0.6172367941588163
+    }
+  },
+  "paired_psnr": {
+    "fbpconvnet_minus_dc": {
+      "patient_mean_db": 11.448522146542867,
+      "patient_median_db": 12.245293299357096,
+      "fraction_patients_positive": 1.0,
+      "exploratory_patient_bootstrap95": [
+        9.92565991262595,
+        12.933971831003827
+      ]
+    },
+    "fbpconvnet_minus_wls": {
+      "patient_mean_db": 5.570214875539145,
+      "patient_median_db": 5.132733027140302,
+      "fraction_patients_positive": 0.95,
+      "exploratory_patient_bootstrap95": [
+        4.163962783813479,
+        6.997639708916347
+      ]
+    },
+    "fbpconvnet_minus_fbp": {
+      "patient_mean_db": 10.01783439318339,
+      "patient_median_db": 9.906786759694418,
+      "fraction_patients_positive": 1.0,
+      "exploratory_patient_bootstrap95": [
+        8.8269683611393,
+        11.190369044542313
+      ]
+    }
+  },
+  "prediction_seconds_mean": 0.011001663859739589,
+  "prediction_seconds_p95": 0.010570155049208552,
+  "limitations": [
+    "Same development cohort selected training checkpoint and prior-method parameters; not independent validation or clinical evidence.",
+    "Bootstrap resamples patients after averaging slices/seeds; intervals are exploratory and omit training-seed/checkpoint-selection uncertainty.",
+    "FBPConvNet is deterministic given each noisy input; P1 seeds additionally vary diffusion initialization.",
+    "Prediction timing excludes FBP generation; no claim of matched total computational cost."
+  ],
+  "checkpoint_step": 20000,
+  "wall_seconds": 4.055275009013712
+}

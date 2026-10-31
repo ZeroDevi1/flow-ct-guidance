@@ -1,0 +1,20 @@
+{
+  "sv60": {
+    "eligible_for_comparison": true,
+    "expected_groups": 3,
+    "observed_groups": 3,
+    "rule": "Compare only complete groups with identical fixed patient/slice cohorts; incomplete groups are not ranked."
+  },
+  "la120": {
+    "eligible_for_comparison": true,
+    "expected_groups": 3,
+    "observed_groups": 3,
+    "rule": "Compare only complete groups with identical fixed patient/slice cohorts; incomplete groups are not ranked."
+  },
+  "ld180_i1e5": {
+    "eligible_for_comparison": true,
+    "expected_groups": 6,
+    "observed_groups": 6,
+    "rule": "Compare only complete groups with identical fixed patient/slice cohorts; incomplete groups are not ranked."
+  }
+}

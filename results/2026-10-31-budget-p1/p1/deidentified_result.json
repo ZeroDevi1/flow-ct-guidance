@@ -1,0 +1,64 @@
+{
+  "complete": true,
+  "n_patients": 20,
+  "n_slices_per_seed": 40,
+  "n_seeds": 3,
+  "n_method_image_evaluations": 240,
+  "settings": {
+    "nfe": 50,
+    "cg_iters": 30,
+    "cases": [
+      "ld180_i1e5"
+    ],
+    "dc_lambdas": [
+      3.0
+    ],
+    "wls_lambdas": [
+      0.3
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ]
+  },
+  "aggregates": {
+    "dc": {
+      "psnr": 25.83606493473053,
+      "ssim": 0.5716968146463235,
+      "residual": 0.010140145538995664,
+      "weighted_residual_rms": 0.6872162237763404,
+      "count_floor_fraction": 0.0,
+      "seconds_mean": 7.142302749077984,
+      "seconds_p95": 7.189950460253749
+    },
+    "wls": {
+      "psnr": 31.714372205734254,
+      "ssim": 0.7234173203818501,
+      "residual": 0.010210010583978147,
+      "weighted_residual_rms": 0.4560542782147726,
+      "count_floor_fraction": 0.0,
+      "seconds_mean": 7.158855747112344,
+      "seconds_p95": 7.19255448464537
+    }
+  },
+  "fbp_patient_macro_psnr": 27.26675268809001,
+  "paired_wls_minus_dc_psnr": {
+    "patient_mean_db": 5.878307271003723,
+    "patient_median_db": 5.535234212875366,
+    "patient_min_db": 2.8505051930745466,
+    "patient_max_db": 8.930209795633953,
+    "fraction_patients_positive": 1.0,
+    "exploratory_patient_bootstrap95": [
+      5.160448881586393,
+      6.602994816303252
+    ]
+  },
+  "wall_seconds": 1729.1876982599497,
+  "limitations": [
+    "Development cohort includes four tuning patients; not an independent performance estimate.",
+    "Bootstrap resamples patients after averaging slices and seeds; only20 patients, exploratory interval, not clinical inference.",
+    "NFE50 CG30 frozen settings, no guarantee globally optimal lambdas or exact convergence.",
+    "Seeds jointly vary measurement noise and initialization. No image or patient identifier exported."
+  ]
+}

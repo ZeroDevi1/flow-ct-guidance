@@ -1,0 +1,7 @@
+{
+  "original_rows": 19800,
+  "original_sha256": "7c1d703cb0f46081671a006d0609796d241559b3d4ca20bf82450d1449badf26",
+  "published_rows": 396,
+  "selection": "Every recorded optimizer step divisible by50; exact unmodified source rows. Full19800-step JSONL retained in the anonymized evidence archive, not duplicated in git.",
+  "original_filename": "train.jsonl"
+}

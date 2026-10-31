@@ -1,0 +1,363 @@
+{
+  "scope": "Failure diagnosis only; not pass/fail replacement",
+  "device": "cpu",
+  "size": 32,
+  "torch": "2.15.0+cpu",
+  "cuda": null,
+  "rows": [
+    {
+      "setting": "sv60",
+      "n_iter": 5,
+      "lambda_absolute": 2.201483917236328,
+      "adjoint_repeat": [
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "legacy_repeat": [
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "weighted_repeat": [
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "cross": [
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "relative_equation_residual": {
+        "legacy": [
+          0.003757578457413948,
+          0.003757578457413948,
+          0.003757578457413948
+        ],
+        "weighted": [
+          0.003757578457413948,
+          0.003757578457413948,
+          0.003757578457413948
+        ]
+      }
+    },
+    {
+      "setting": "sv60",
+      "n_iter": 12,
+      "lambda_absolute": 2.201483917236328,
+      "adjoint_repeat": [
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "legacy_repeat": [
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "weighted_repeat": [
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "cross": [
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "relative_equation_residual": {
+        "legacy": [
+          0.00028523716368446944,
+          0.00028523716368446944,
+          0.00028523716368446944
+        ],
+        "weighted": [
+          0.00028523716368446944,
+          0.00028523716368446944,
+          0.00028523716368446944
+        ]
+      }
+    },
+    {
+      "setting": "la120",
+      "n_iter": 5,
+      "lambda_absolute": 4.426916599273682,
+      "adjoint_repeat": [
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "legacy_repeat": [
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "weighted_repeat": [
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "cross": [
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "relative_equation_residual": {
+        "legacy": [
+          0.006233614018125289,
+          0.006233614018125289,
+          0.006233614018125289
+        ],
+        "weighted": [
+          0.006233614018125289,
+          0.006233614018125289,
+          0.006233614018125289
+        ]
+      }
+    },
+    {
+      "setting": "la120",
+      "n_iter": 12,
+      "lambda_absolute": 4.426916599273682,
+      "adjoint_repeat": [
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "legacy_repeat": [
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "weighted_repeat": [
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "cross": [
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        },
+        {
+          "max_abs": 0.0,
+          "rms": 0.0,
+          "relative_l2": 0.0,
+          "original_allclose": true,
+          "finite": true
+        }
+      ],
+      "relative_equation_residual": {
+        "legacy": [
+          0.0006883903568040923,
+          0.0006883903568040923,
+          0.0006883903568040923
+        ],
+        "weighted": [
+          0.0006883903568040923,
+          0.0006883903568040923,
+          0.0006883903568040923
+        ]
+      }
+    }
+  ],
+  "wall_seconds": 0.7046169700001883,
+  "complete": true
+}

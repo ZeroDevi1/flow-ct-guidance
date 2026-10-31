@@ -1,0 +1,35 @@
+{
+  "device": "cpu",
+  "size": 32,
+  "controls": [
+    {
+      "setting": "sv60",
+      "lambda_absolute": 2.201483917236328,
+      "sparse_ata_scale": 7.338279724121094,
+      "full_ata_scale": 21.94863510131836,
+      "measured_forward_max_abs": 0.0,
+      "matched_max_abs": 1.4781951904296875e-05,
+      "raw_grid_matched_max_abs": 1.4036893844604492e-05,
+      "raw_angle_max_abs": 2.384185791015625e-07,
+      "historical_same_relative_max_abs": 0.15834130346775055,
+      "atol_scaled": 0.0003314907431602478,
+      "passed": true
+    },
+    {
+      "setting": "la120",
+      "lambda_absolute": 4.426916599273682,
+      "sparse_ata_scale": 14.756388664245605,
+      "full_ata_scale": 21.94863510131836,
+      "measured_forward_max_abs": 0.0,
+      "matched_max_abs": 0.0,
+      "raw_grid_matched_max_abs": 0.00848323106765747,
+      "raw_angle_max_abs": 1.1920928955078125e-07,
+      "historical_same_relative_max_abs": 0.04963099956512451,
+      "atol_scaled": 0.00043000810146331784,
+      "passed": true
+    }
+  ],
+  "all_passed": true,
+  "scope": "Synthetic numerical controls; not clinical or held-out evaluation.",
+  "wall_seconds": 0.6412859940000999
+}

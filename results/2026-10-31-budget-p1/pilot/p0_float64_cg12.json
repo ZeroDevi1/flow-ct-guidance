@@ -1,0 +1,41 @@
+{
+  "device": "cuda",
+  "size": 64,
+  "dtype": "torch.float64",
+  "cg_iters": 12,
+  "controls": [
+    {
+      "setting": "sv60",
+      "lambda_absolute": 2.3611263920490613,
+      "sparse_ata_scale": 7.870421306830204,
+      "full_ata_scale": 23.445808528337942,
+      "measured_forward_max_abs": 0.0,
+      "matched_max_abs": 8.274586682510687e-09,
+      "raw_grid_matched_max_abs": 1.683637124161308e-08,
+      "raw_angle_max_abs": 2.220446049250313e-16,
+      "historical_same_relative_max_abs": 0.19488583282988026,
+      "atol_scaled": 0.00036629035313119135,
+      "passed": true,
+      "unit_weight_max_abs": 1.0749112988595044e-08,
+      "unit_weight_allclose": true
+    },
+    {
+      "setting": "la120",
+      "lambda_absolute": 4.638631869074511,
+      "sparse_ata_scale": 15.46210623024837,
+      "full_ata_scale": 23.445808528337942,
+      "measured_forward_max_abs": 0.0,
+      "matched_max_abs": 3.301149589796104e-09,
+      "raw_grid_matched_max_abs": 3.342518622995172e-09,
+      "raw_angle_max_abs": 4.440892098500626e-16,
+      "historical_same_relative_max_abs": 0.051769452498924715,
+      "atol_scaled": 0.00044157868807845574,
+      "passed": true,
+      "unit_weight_max_abs": 3.3095491486223594e-09,
+      "unit_weight_allclose": true
+    }
+  ],
+  "all_passed": true,
+  "scope": "Synthetic numerical controls; not clinical or held-out evaluation.",
+  "wall_seconds": 0.9602111879503354
+}

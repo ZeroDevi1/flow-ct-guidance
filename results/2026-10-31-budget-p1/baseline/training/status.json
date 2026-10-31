@@ -1,0 +1,18 @@
+{
+  "step": 20000,
+  "reason": "max_steps",
+  "wall_seconds": 2073.237009232049,
+  "timed_train_steps": 19800,
+  "mean_train_step_seconds": 0.10062668762467872,
+  "last_validation": {
+    "step": 20000,
+    "patient_macro_psnr": 37.276539373397824,
+    "image_mean_ssim": 0.9112109616398811,
+    "n_images": 40,
+    "n_patients": 20,
+    "complete": true
+  },
+  "peak_cuda_bytes": 9833995264,
+  "convergence_claim": false,
+  "note": "Plateau is this fixed development cohort only, not external convergence."
+}

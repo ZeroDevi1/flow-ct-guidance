@@ -1,0 +1,25 @@
+{
+  "complete": true,
+  "seeds": [
+    {
+      "seed": 0,
+      "exit_code": 0,
+      "complete": true,
+      "wall_seconds": 573.5739063499495
+    },
+    {
+      "seed": 1,
+      "exit_code": 0,
+      "complete": true,
+      "wall_seconds": 575.732411267003
+    },
+    {
+      "seed": 2,
+      "exit_code": 0,
+      "complete": true,
+      "wall_seconds": 574.8172241089633
+    }
+  ],
+  "wall_seconds": 1729.1876982599497,
+  "scope": "Development validation only; paired methods within seed, not independent holdout results"
+}

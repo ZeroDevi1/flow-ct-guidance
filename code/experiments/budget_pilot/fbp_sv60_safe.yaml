@@ -1,0 +1,33 @@
+seed: 20261031
+data:
+  processed_dir: /root/autodl-tmp/data/totalseg/processed
+physics:
+  n_angles: 60
+  i0: null
+  sigma: 0.0
+  mu_scale: 0.06
+model:
+  in_ch: 1
+  out_ch: 1
+  base_ch: 64
+  ch_mult: [1, 1, 2, 2, 4]
+  num_res: 2
+  attn_res: [16]
+  image_size: 256
+validation:
+  patients: 20
+  slices_per_patient: 2
+  selection_seed: 20261031
+  noise_seed: 0
+train:
+  batch_size: 8
+  lr: 0.0002
+  lr_min: 0.00001
+  warmup: 500
+  max_steps: 20000
+  weight_decay: 0.01
+  eval_every: 500
+  save_every: 250
+  min_steps: 3000
+  patience: 6
+  min_delta_db: 0.01
