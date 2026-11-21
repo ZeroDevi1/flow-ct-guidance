@@ -19,7 +19,8 @@ class SliceDataset(Dataset):
     def __init__(self, processed_dir: str | Path, split: str = "train", augment: bool = True,
                  max_items: int | None = None, subsample: str = "head"):
         """subsample: max_items 生效时取前 N 张（"head"）或在整个划分上等间隔取 N 张（"even"，覆盖更多病人）。"""
-        processed_dir = Path(processed_dir)
+        env_dir = os.environ.get("MFP_PROCESSED_DIR")
+        processed_dir = Path(env_dir) if env_dir else Path(processed_dir)
         self.x = np.load(processed_dir / f"slices_{split}.npy", mmap_mode="r")
         if max_items is not None and max_items < self.x.shape[0]:
             if subsample == "even":

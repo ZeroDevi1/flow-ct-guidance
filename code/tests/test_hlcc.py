@@ -40,6 +40,24 @@ def test_projection_removes_low_order_bias_on_missing_rows():
     assert hlcc_residual(out) < hlcc_residual(corrupt)
 
 
+def test_limited_angle_la90_no_oscillation():
+    """限角 la90（连续缺口 90°）下加权 HLCC 投影带岭正则后不应因高阶谐波振荡而恶化误差。"""
+    s = _sino()
+    a, d = s.shape[-2:]
+    measured = torch.zeros(a, dtype=torch.bool); measured[:90] = True
+    r = torch.linspace(-1, 1, d)
+    bias = (0.25 + 0.15 * r) * s.abs().mean()
+    corrupt = s.clone(); corrupt[..., ~measured, :] += bias
+    w = torch.where(measured, 1.0, 0.05)[None]
+    out = hlcc_project(corrupt, measured, weight=w, n_max=6)
+    err_before = (corrupt - s)[..., ~measured, :].norm()
+    err_after = (out - s)[..., ~measured, :].norm()
+    assert torch.equal(out[..., measured, :], corrupt[..., measured, :])
+    assert err_after < err_before, (err_before, err_after)
+    assert hlcc_residual(out) < hlcc_residual(corrupt)
+
+
 if __name__ == "__main__":
     test_legendre_orthogonal(); test_true_sinogram_nearly_consistent()
-    test_projection_removes_low_order_bias_on_missing_rows(); print("all hlcc tests passed")
+    test_projection_removes_low_order_bias_on_missing_rows()
+    test_limited_angle_la90_no_oscillation(); print("all hlcc tests passed")

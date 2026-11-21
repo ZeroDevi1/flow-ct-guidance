@@ -38,22 +38,28 @@ def circle_mask(n: int, device=None, dtype=torch.float32, radius: float = 1.0) -
     return ((xx ** 2 + yy ** 2) <= radius ** 2).to(dtype)[None, None]
 
 
-def radon(u: torch.Tensor, angles: torch.Tensor) -> torch.Tensor:
-    """u: [B,1,N,N] -> sinogram [B,1,A,N]。angles 单位弧度。"""
+def radon(u: torch.Tensor, angles: torch.Tensor, grid: torch.Tensor | None = None) -> torch.Tensor:
+    """u: [B,1,N,N] -> sinogram [B,1,A,N]。angles 单位弧度；传入缓存的 grid [A,N,N,2] 可避免重复构造。"""
     b, _, n, _ = u.shape
-    a = angles.numel()
-    grid = _rot_grid(n, angles, u.device, u.dtype)  # [A,N,N,2]
+    a = grid.shape[0] if grid is not None else angles.numel()
+    if grid is None:
+        grid = _rot_grid(n, angles, u.device, u.dtype)  # [A,N,N,2]
+    elif grid.device != u.device or grid.dtype != u.dtype:
+        grid = grid.to(device=u.device, dtype=u.dtype)
     grid = grid[None].expand(b, a, n, n, 2).reshape(b * a, n, n, 2)
     rep = u.repeat_interleave(a, dim=0)  # [B*A,1,N,N]
     rot = F.grid_sample(rep, grid, mode="bilinear", padding_mode="zeros", align_corners=False)
     return rot.sum(dim=-2).reshape(b, 1, a, n)
 
 
-def backproject(sino: torch.Tensor, angles: torch.Tensor) -> torch.Tensor:
+def backproject(sino: torch.Tensor, angles: torch.Tensor, grid: torch.Tensor | None = None) -> torch.Tensor:
     """近似伴随（旋转回去并涂抹），用于 FBP。精确伴随请用 CTOperator.A_lin_T。"""
     b, _, a, n = sino.shape
     smear = sino.reshape(b * a, 1, 1, n).expand(b * a, 1, n, n)
-    grid = _rot_grid(n, -angles, sino.device, sino.dtype)
+    if grid is None:
+        grid = _rot_grid(n, -angles, sino.device, sino.dtype)
+    elif grid.device != sino.device or grid.dtype != sino.dtype:
+        grid = grid.to(device=sino.device, dtype=sino.dtype)
     grid = grid[None].expand(b, a, n, n, 2).reshape(b * a, n, n, 2)
     back = F.grid_sample(smear, grid, mode="bilinear", padding_mode="zeros", align_corners=False)
     return back.reshape(b, a, n, n).sum(dim=1, keepdim=True)
@@ -75,10 +81,11 @@ def ramp_filter(sino: torch.Tensor, kind: str = "ram-lak") -> torch.Tensor:
     return out
 
 
-def fbp(sino: torch.Tensor, angles: torch.Tensor, kind: str = "ram-lak") -> torch.Tensor:
+def fbp(sino: torch.Tensor, angles: torch.Tensor, kind: str = "ram-lak",
+        back_grid: torch.Tensor | None = None) -> torch.Tensor:
     """滤波反投影，返回物理域 u ∈ R[B,1,N,N]。角度假设在 [0, π) 内近似等距。"""
     filt = ramp_filter(sino, kind)
-    recon = backproject(filt, angles)
+    recon = backproject(filt, angles, grid=back_grid)
     return recon * (math.pi / angles.numel())
 
 
@@ -91,11 +98,14 @@ class CTOperator:
         self.angles = torch.linspace(0, angle_range, n_angles + 1, device=device, dtype=dtype)[:-1] + angle_offset
         self.mask = circle_mask(n, device, dtype)
         self.device, self.dtype = device, dtype
+        # 缓存正/反旋转采样网格，避免 CG 与训练循环中反复构造 [A, N, N, 2] 网格
+        self._grid = _rot_grid(n, self.angles, device, dtype)
+        self._back_grid = _rot_grid(n, -self.angles, device, dtype)
         with torch.no_grad():
-            self.offset = radon(self.mask / 2, self.angles)  # R(mask/2)，[1,1,A,N]
+            self.offset = radon(self.mask / 2, self.angles, grid=self._grid)  # R(mask/2)，[1,1,A,N]
             # 离散化 + 双线性插值会让 FBP 幅值有百分之几的系统偏差，用均匀圆盘标定一次
             inner = circle_mask(n, device, dtype, radius=0.8).bool()
-            rec = fbp(self.offset, self.angles)
+            rec = fbp(self.offset, self.angles, back_grid=self._back_grid)
             self.fbp_scale = float((self.mask / 2)[inner].mean() / rec[inner].mean().clamp(min=1e-6))
             # A_lin 的能量尺度，用于让正则权重与角度数无关：随机高斯 x 下 E||A x||² = tr(AᵀA)，
             # 故 ata_scale = tr(AᵀA)/像素数（AᵀA 平均对角元），aat_scale = tr(AAᵀ)/测量数。16 个样本，相对误差约 1%。
@@ -113,24 +123,26 @@ class CTOperator:
         return (u * 2 - 1) * self.mask + (-1.0) * (1 - self.mask)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        return radon(self.x_to_u(x), self.angles)
+        return radon(self.x_to_u(x), self.angles, grid=self._grid)
 
     __call__ = forward
 
-    def A_lin(self, x: torch.Tensor) -> torch.Tensor:
-        return radon(self.mask * x / 2, self.angles)
+    def A_lin(self, x: torch.Tensor, active: torch.Tensor | None = None) -> torch.Tensor:
+        grid = self._grid if active is None else self._grid[active]
+        angles = self.angles if active is None else self.angles[active]
+        return radon(self.mask * x / 2, angles, grid=grid)
 
-    def A_lin_T(self, y: torch.Tensor) -> torch.Tensor:
+    def A_lin_T(self, y: torch.Tensor, active: torch.Tensor | None = None) -> torch.Tensor:
         """精确伴随：∇_x <A_lin x, y>。"""
         x = torch.zeros(y.shape[0], 1, self.n, self.n, device=y.device, dtype=y.dtype, requires_grad=True)
         with torch.enable_grad():
-            out = (self.A_lin(x) * y).sum()
+            out = (self.A_lin(x, active=active) * y).sum()
             g, = torch.autograd.grad(out, x)
         return g
 
     # ---- 解析重建 ----
     def fbp(self, y: torch.Tensor, kind: str = "ram-lak") -> torch.Tensor:
-        u = fbp(y, self.angles, kind) * self.fbp_scale
+        u = fbp(y, self.angles, kind, back_grid=self._back_grid) * self.fbp_scale
         return self.u_to_x(u).clamp(-1, 1)
 
     # ---- 噪声模型 ----
@@ -181,16 +193,27 @@ def weighted_cg_dc(op: "CTOperator", x0: torch.Tensor, y: torch.Tensor, w: torch
     """逐角度加权的近端数据一致性：argmin_x ‖W^{1/2}(A x − y)‖² + λ‖x − x0‖²。
 
     op 为全角度算子；y 为全角度"伪测量"（已测行是实测值，未测行是补全值）；w [B, A] 为逐行权重
-    （已测行通常为 1，未测行为补全置信度）。relative=True 时 λ 以 op.ata_scale 为单位，与 cg_data_consistency 一致。
-    正规方程 (Aᵀ W A + λI) x = Aᵀ W (y − b) + λ x0 用 CG 求解；W 只对角作用在正弦图行上，保持对称正定。
+    （已测行通常为 1，未测行为补全置信度）。relative=True 时 λ 以加权有效能量 w̄·op.ata_scale 为单位，
+    使未测行权重趋近 0 时与仅在已测角上运行的 cg_data_consistency 严格等价。
+    正规方程 (Aᵀ W A + λI) x = Aᵀ W (y − b) + λ x0 用 CG 求解；全 batch 权重为 0 的行自动跳过计算。
     """
+    active = (w > 0).any(dim=0)
+    if not active.any():
+        return x0.clone()
     if relative:
-        lam = lam * op.ata_scale
-    wv = w[:, None, :, None]
-    rhs = op.A_lin_T(wv * (y - op.offset)) + lam * x0
+        w_mean = w.mean(dim=1).clamp(min=1e-6)
+        lam_t = (lam * op.ata_scale * w_mean).view(-1, 1, 1, 1)
+    else:
+        lam_t = lam
+    use_sub = not bool(active.all())
+    act = active if use_sub else None
+    wv = (w[:, active] if use_sub else w)[:, None, :, None]
+    y_act = y[:, :, active] if use_sub else y
+    off_act = op.offset[:, :, active] if use_sub else op.offset
+    rhs = op.A_lin_T(wv * (y_act - off_act), active=act) + lam_t * x0
 
     def Aop(v):
-        return op.A_lin_T(wv * op.A_lin(v)) + lam * v
+        return op.A_lin_T(wv * op.A_lin(v, active=act), active=act) + lam_t * v
 
     x = x0.clone()
     r = rhs - Aop(x)

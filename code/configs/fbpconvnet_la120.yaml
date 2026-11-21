@@ -1,0 +1,29 @@
+# B1 FBPConvNet（la120）：限角 0–120° 监督基线，骨架与先验相同。
+seed: 0
+out_dir: checkpoints/fbpconvnet_la120
+data:
+  type: slices
+  processed_dir: /root/autodl-tmp/data/totalseg/processed
+  test_split: test200
+  n_test: 200
+physics:
+  n_angles: 120
+  angle_range: 2.0943951023931953
+  i0: null
+  sigma: 0.0
+  mu_scale: 0.06
+model:
+  in_ch: 1
+  out_ch: 1
+  base_ch: 64
+  ch_mult: [1, 1, 2, 2, 4]
+  num_res: 2
+  attn_res: [16]
+  image_size: 256
+train:
+  batch_size: 16
+  lr: 2.0e-4
+  lr_min: 1.0e-5
+  warmup: 500
+  max_steps: 10000
+  num_workers: 6

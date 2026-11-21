@@ -25,9 +25,13 @@ train:
   p_limited: 0.4
   p_dc: 0.5
   dc_lam: 0.3
+  dc_lam_range: [0.1, 1.0]
   beta_hlcc: 0.1
-  t_min: 0.05
+  nll_weight: 0.01
+  t_min: 0.0
   log_every: 100
   val_every: 1000
+  save_every: 5000
   num_workers: 6
   amp: true
+  compile_prior: true

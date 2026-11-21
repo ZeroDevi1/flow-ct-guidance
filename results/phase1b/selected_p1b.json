@@ -1,0 +1,11 @@
+{
+  "la_m2_zeta": 0.5,
+  "la_m3_lam": 0.1,
+  "sv_m3_lam": 0.3,
+  "kappa_interp_sv60": 0.05,
+  "kappa_interp_la120": 0.05,
+  "kappa_pred_sv60": 0.05,
+  "kappa_pred_la120": 0.05,
+  "kappa_ssm_sv60": 0.05,
+  "kappa_ssm_la120": 0.05
+}

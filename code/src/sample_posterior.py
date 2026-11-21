@@ -135,8 +135,12 @@ def _dcfull_step(full: dict, x1: torch.Tensor, t0: torch.Tensor, b: int, dc_lam:
     if full["mode"] == "ssm":
         y_hat, logvar = full["completer"](s_pred, y_full, mask, t0.expand(b))
         if full["use_conf"]:
-            # σ² 以补全器内部的归一化单位计；κ/σ² 截断到 ≤1，未测行的权重不超过实测行
-            w_un = (full["kappa"] * torch.exp(-logvar)).clamp(max=1.0)
+            # 按设计公式 w_θ = κ · σ̄² / σ²_θ（相对未测行均值方差归一化），避免 logvar≪0 时权重全部饱和到 1.0
+            sigma2 = logvar.clamp(-10.0, 4.0).exp()
+            un = ~mask
+            if un.any():
+                sigma2_bar = sigma2[:, un].mean(dim=1, keepdim=True).clamp(min=1e-8)
+                w_un = (full["kappa"] * (sigma2_bar / sigma2.clamp(min=1e-8))).clamp(min=1e-4, max=1.0)
     elif full["mode"] == "interp":
         y_hat = full["y_interp"]
     elif full["mode"] == "pred":
@@ -145,19 +149,21 @@ def _dcfull_step(full: dict, x1: torch.Tensor, t0: torch.Tensor, b: int, dc_lam:
         raise ValueError(full["mode"])
     w = torch.where(mask.view(1, a), torch.ones_like(w_un), w_un)
     if full["hlcc"]:
-        y_hat = hlcc_project(y_hat, mask, weight=w)
+        y_hat = hlcc_project(y_hat, mask, weight=w, n_max=full.get("hlcc_nmax", 6))
     return weighted_cg_dc(op, x1, y_hat, w, lam=dc_lam, n_iter=dc_iters, relative=True)
 
 
-def build_full_context(cfg, n, device, y, mode, completer_ckpt=None, kappa=0.3, use_conf=True, use_hlcc=False):
+def build_full_context(cfg, n, device, y, mode, completer_ckpt=None, kappa=0.3, use_conf=True, use_hlcc=False,
+                       hlcc_nmax: int = 6, op_full: CTOperator | None = None, mask: torch.Tensor | None = None):
     """为 dcfull 构造上下文：180 角全算子、已测掩码、全网格上的 y、可选补全器 / 插值结果。"""
     p = cfg["physics"]
-    mask = measured_mask(180, p.get("n_angles", 180), p.get("angle_range", 3.141592653589793)).to(device)
-    op = CTOperator(n, n_angles=180, device=device)
+    if mask is None:
+        mask = measured_mask(180, p.get("n_angles", 180), p.get("angle_range", 3.141592653589793)).to(device)
+    op = op_full if op_full is not None else CTOperator(n, n_angles=180, device=device)
     y_full = y.new_zeros(y.shape[0], 1, 180, y.shape[-1])
     y_full[:, :, mask] = y
     ctx = {"op": op, "mask": mask, "y_full": y_full, "mode": mode, "kappa": kappa, "use_conf": use_conf,
-           "hlcc": use_hlcc, "completer": None, "y_interp": None}
+           "hlcc": use_hlcc, "hlcc_nmax": hlcc_nmax, "completer": None, "y_interp": None}
     if mode == "interp":
         ctx["y_interp"] = interp_missing_rows(y_full, mask)
     if mode == "ssm":
@@ -175,11 +181,14 @@ def main():
     ap.add_argument("--kappa", type=float, default=0.3, help="dcfull 未测行的基准权重")
     ap.add_argument("--no-conf", action="store_true", help="dcfull/ssm 不用预测置信度，未测行权重固定为 κ")
     ap.add_argument("--hlcc", action="store_true", help="dcfull 中对 ŷ 做 HLCC 投影")
+    ap.add_argument("--hlcc-nmax", type=int, default=6, help="HLCC 投影最大矩阶数")
     ap.add_argument("--out", required=True)
     ap.add_argument("--nfe", type=int, default=None)
     ap.add_argument("--zeta", type=float, default=None)
     ap.add_argument("--n-samples", type=int, default=None, help="每张测试图采样次数（不确定性）")
     ap.add_argument("--n-test", type=int, default=None)
+    ap.add_argument("--batch-size", type=int, default=None, help="覆盖 sampling.batch_size")
+    ap.add_argument("--data-dir", default=None, help="覆盖 data.processed_dir")
     ap.add_argument("--dc-lam", type=float, default=None, help="覆盖 sampling.dc_lam（相对量纲）")
     ap.add_argument("--split", default=None, help="覆盖 data.split；调参用 val，主表用 test200")
     ap.add_argument("--t-start", type=float, default=None, help="覆盖 sampling.t_start_guidance：t 小于该值的步不加引导")
@@ -187,6 +196,8 @@ def main():
     args = ap.parse_args()
 
     cfg = yaml.safe_load(open(args.config))
+    if args.data_dir:
+        cfg["data"]["processed_dir"] = args.data_dir
     s = cfg["sampling"]
     nfe = args.nfe or s.get("nfe", 50)
     zeta = args.zeta if args.zeta is not None else s.get("zeta", 1.0)
@@ -195,7 +206,7 @@ def main():
     t_guid = args.t_start if args.t_start is not None else s.get("t_start_guidance", 0.0)
     n_samples = args.n_samples or s.get("n_samples", 1)
     n_test = args.n_test or cfg["data"].get("n_test", 200)
-    bs = s.get("batch_size", 8)
+    bs = args.batch_size or s.get("batch_size", 8)
     set_seed(cfg.get("seed", 0))
     device = "cuda" if torch.cuda.is_available() else "cpu"
     out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
@@ -224,6 +235,12 @@ def main():
 
     agg = {"psnr": [], "ssim": [], "lpips": [], "dc": [], "psnr_fbp": [], "ssim_fbp": [], "lpips_fbp": [],
            "psnr_mean_of_samples": [], "pixel_std": []}
+    # 复用 180 角全算子与掩码，避免每个 batch 重复构造旋转网格与标定
+    op_full, full_mask = None, None
+    if args.guidance == "dcfull":
+        p = cfg["physics"]
+        full_mask = measured_mask(180, p.get("n_angles", 180), p.get("angle_range", 3.141592653589793)).to(device)
+        op_full = CTOperator(n, n_angles=180, device=device)
     first_batch, worst = None, []
     t_start = time.time()
     for i0 in range(0, len(ds), bs):
@@ -234,7 +251,8 @@ def main():
         full = None
         if args.guidance == "dcfull":
             full = build_full_context(cfg, n, device, y, args.full_mode, completer, kappa=args.kappa,
-                                      use_conf=not args.no_conf, use_hlcc=args.hlcc)
+                                      use_conf=not args.no_conf, use_hlcc=args.hlcc, hlcc_nmax=args.hlcc_nmax,
+                                      op_full=op_full, mask=full_mask)
         samples = []
         for _ in range(n_samples):
             xs = posterior_sample(model, op, y, x.shape, args.guidance, nfe, zeta=zeta,

@@ -1,0 +1,59 @@
+{
+  "guidance": "dcfull",
+  "nfe": 50,
+  "zeta": 1.0,
+  "dc_lam": 0.3,
+  "t_start_guidance": 0.0,
+  "n_samples": 1,
+  "split": "test200",
+  "n_test": 200,
+  "ckpt": "checkpoints/prior_256/ema_final.pt",
+  "full_mode": "ssm",
+  "kappa": 0.05,
+  "use_conf": true,
+  "hlcc": true,
+  "completer": "checkpoints/completer_ssm/completer.pt",
+  "physics": {
+    "n_angles": 60,
+    "i0": null,
+    "sigma": 0.0
+  },
+  "metrics": {
+    "psnr": {
+      "mean": 35.958689002990724,
+      "std": 6.11049295239527,
+      "n": 200
+    },
+    "ssim": {
+      "mean": 0.8623676036298275,
+      "std": 0.12408272529607552,
+      "n": 200
+    },
+    "lpips": {
+      "mean": 0.08132203412242234,
+      "std": 0.051579746639010715,
+      "n": 200
+    },
+    "dc": {
+      "mean": 0.0011017433388042263,
+      "std": 0.0011180197138553488,
+      "n": 200
+    },
+    "psnr_fbp": {
+      "mean": 28.503285779953003,
+      "std": 2.556632910557862,
+      "n": 200
+    },
+    "ssim_fbp": {
+      "mean": 0.6349508751928806,
+      "std": 0.08989254674351083,
+      "n": 200
+    },
+    "lpips_fbp": {
+      "mean": 0.22174920957535504,
+      "std": 0.06378950442872952,
+      "n": 200
+    }
+  },
+  "minutes": 3.2773433407147725
+}

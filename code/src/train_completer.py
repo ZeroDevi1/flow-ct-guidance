@@ -15,7 +15,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import random
+import shutil
 import time
 from pathlib import Path
 
@@ -56,23 +58,31 @@ def fixed_mask(name: str) -> torch.Tensor:
 
 
 @torch.no_grad()
-def make_inputs(prior, op, x, mask, t, p_dc: float, dc_lam: float):
+def make_inputs(prior, op, x, mask, t, p_dc: float, dc_lam: float, use_amp: bool = True,
+                dc_lam_range: tuple[float, float] | None = None, rng: random.Random | None = None):
     """构造一个 batch 的 (s_true, y_full, s_pred)。所有张量 [B,1,180,D]。"""
     s_true = op(x)
     y_full = s_true * mask.view(1, 1, -1, 1)
     eps = torch.randn_like(x)
     tt = t.view(-1, 1, 1, 1)
     xt = (1 - tt) * eps + tt * x
-    x1 = (xt + (1 - tt) * prior(xt, t)).clamp(-1, 1)
+    with torch.autocast("cuda", dtype=torch.bfloat16, enabled=x.is_cuda and use_amp):
+        v = prior(xt, t).float()
+    x1 = (xt + (1 - tt) * v).clamp(-1, 1)
     if p_dc > 0:
         sel = torch.rand(x.shape[0], device=x.device) < p_dc
         if sel.any():
+            lam = dc_lam
+            if dc_lam_range is not None:
+                lo, hi = math.log(dc_lam_range[0]), math.log(dc_lam_range[1])
+                u = rng.random() if rng is not None else random.random()
+                lam = math.exp(lo + u * (hi - lo))
             w = mask.to(x.dtype).view(1, -1).expand(int(sel.sum()), -1)
-            x1[sel] = weighted_cg_dc(op, x1[sel], y_full[sel], w, lam=dc_lam, n_iter=5).clamp(-1, 1)
+            x1[sel] = weighted_cg_dc(op, x1[sel], y_full[sel], w, lam=lam, n_iter=5, relative=True).clamp(-1, 1)
     return s_true, y_full, op(x1)
 
 
-def loss_fn(y_hat, logvar, s_true, y_full, mask, beta_hlcc: float):
+def loss_fn(y_hat, logvar, s_true, y_full, mask, beta_hlcc: float, nll_weight: float = 0.01):
     m = mask.to(y_hat.dtype)
     # 与补全器内部一致的逐样本尺度：已测行的均方根
     scale = ((y_full[:, 0] ** 2 * m[None, :, None]).sum((1, 2)) / (m.sum() * y_hat.shape[-1])).clamp(min=1e-6).sqrt()
@@ -80,26 +90,58 @@ def loss_fn(y_hat, logvar, s_true, y_full, mask, beta_hlcc: float):
     row_mse = err.mean(-1)  # [B, A]
     un = ~mask
     mse = row_mse[:, un].mean()
-    nll = (row_mse[:, un] / logvar[:, un].exp() + logvar[:, un]).mean()
+    # 均值与方差梯度解耦：stop-grad 防止高置信度行放大均值梯度、压低限角缺口深处的学习
+    lv = logvar[:, un].clamp(-10.0, 4.0)
+    nll = (row_mse[:, un].detach() / lv.exp() + lv).mean()
     hl = hlcc_residual(y_hat).mean() if beta_hlcc > 0 else y_hat.new_zeros(())
-    return mse + nll + beta_hlcc * hl, {"mse": float(mse), "nll": float(nll), "hlcc": float(hl)}
+    total = mse + nll_weight * nll + beta_hlcc * hl
+    return total, {"mse": float(mse), "nll": float(nll), "hlcc": float(hl)}
+
+
+def _sync_outputs(out: Path, sync_dir: Path | None):
+    """将轻量权重与日志复制到同步目录（如 Google Drive），避免 Colab 断连丢失进度。"""
+    if sync_dir is None:
+        return
+    sync_dir.mkdir(parents=True, exist_ok=True)
+    for p in out.iterdir():
+        if p.is_file() and p.suffix in (".pt", ".json", ".yaml"):
+            shutil.copy2(p, sync_dir / p.name)
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", required=True)
     ap.add_argument("--max-steps", type=int, default=None)
+    ap.add_argument("--batch-size", type=int, default=None)
+    ap.add_argument("--data-dir", default=None)
+    ap.add_argument("--prior-ckpt", default=None)
+    ap.add_argument("--out-dir", default=None)
+    ap.add_argument("--sync-dir", default=None, help="每轮校验后将权重与日志同步到此目录（如 Google Drive）")
+    ap.add_argument("--resume", action="store_true", help="若 out_dir/ckpt_last.pt 存在则断点续训")
+    ap.add_argument("--no-compile", action="store_true", help="关闭对冻结先验的 torch.compile")
     args = ap.parse_args()
     cfg = yaml.safe_load(open(args.config))
     if args.max_steps:
         cfg["train"]["max_steps"] = args.max_steps
+    if args.batch_size:
+        cfg["train"]["batch_size"] = args.batch_size
+    if args.data_dir:
+        cfg["data"]["processed_dir"] = args.data_dir
+    if args.prior_ckpt:
+        cfg["prior_ckpt"] = args.prior_ckpt
+    if args.out_dir:
+        cfg["out_dir"] = args.out_dir
     tc = cfg["train"]
     set_seed(cfg.get("seed", 0)); rng = random.Random(cfg.get("seed", 0))
     device = "cuda" if torch.cuda.is_available() else "cpu"
     out = Path(cfg["out_dir"]); out.mkdir(parents=True, exist_ok=True)
+    sync_dir = Path(args.sync_dir) if args.sync_dir else None
     yaml.safe_dump(cfg, open(out / "config.yaml", "w"))
 
     prior, pcfg = load_ema(cfg["prior_ckpt"], device)
+    use_amp = bool(tc.get("amp", True))
+    if device == "cuda" and tc.get("compile_prior", True) and not args.no_compile:
+        prior = torch.compile(prior)
     n = pcfg["model"]["image_size"]
     op = CTOperator(n, n_angles=N_FULL, device=device)
     d = cfg["data"]
@@ -112,23 +154,42 @@ def main():
                     num_workers=tc.get("num_workers", 4), pin_memory=device == "cuda")
     model = AngleCompleter(n_det=n, **cfg["model"]).to(device)
     opt = torch.optim.AdamW(model.parameters(), lr=tc["lr"], weight_decay=tc.get("wd", 0.0))
-    print(f"completer {cfg['model'].get('mixer', 'ssm')}: {count_params(model):.2f}M params, device={device}")
+    print(f"completer {cfg['model'].get('mixer', 'ssm')}: {count_params(model):.2f}M params, device={device}, bs={tc['batch_size']}")
 
     step, t0, log, vlog = 0, time.time(), [], []
+    resume_path = out / "ckpt_last.pt"
+    if args.resume and resume_path.exists():
+        ck = torch.load(resume_path, map_location=device)
+        model.load_state_dict(ck["model"])
+        opt.load_state_dict(ck["opt"])
+        step = int(ck["step"])
+        if (out / "train_log.json").exists():
+            log = json.load(open(out / "train_log.json"))
+        if (out / "val_log.json").exists():
+            vlog = json.load(open(out / "val_log.json"))
+        print(f"[RESUME] from step={step} ({resume_path})", flush=True)
+
     max_steps = tc["max_steps"]
+    save_every = tc.get("save_every", 5000)
+    nll_weight = float(tc.get("nll_weight", 0.01))
+    dc_lam_range = tuple(tc["dc_lam_range"]) if tc.get("dc_lam_range") else None
+    t_min = float(tc.get("t_min", 0.0))
     model.train()
     while step < max_steps:
         for x in dl:
             x = x.to(device, non_blocking=True)
             mask, desc = sample_mask(rng, tc.get("p_limited", 0.4))
             mask = mask.to(device)
-            t = torch.rand(x.shape[0], device=device) * (1 - tc.get("t_min", 0.05)) + tc.get("t_min", 0.05)
-            s_true, y_full, s_pred = make_inputs(prior, op, x, mask, t, tc.get("p_dc", 0.5), tc.get("dc_lam", 0.3))
+            t = torch.rand(x.shape[0], device=device) * (1.0 - t_min) + t_min
+            s_true, y_full, s_pred = make_inputs(
+                prior, op, x, mask, t, tc.get("p_dc", 0.5), tc.get("dc_lam", 0.3),
+                use_amp=use_amp, dc_lam_range=dc_lam_range, rng=rng)
             for g in opt.param_groups:
                 g["lr"] = lr_at(step, tc)
-            with torch.autocast("cuda", dtype=torch.bfloat16, enabled=device == "cuda" and tc.get("amp", True)):
+            with torch.autocast("cuda", dtype=torch.bfloat16, enabled=device == "cuda" and use_amp):
                 y_hat, logvar = model(s_pred, y_full, mask, t)
-            loss, parts = loss_fn(y_hat.float(), logvar.float(), s_true, y_full, mask, tc.get("beta_hlcc", 0.0))
+            loss, parts = loss_fn(y_hat.float(), logvar.float(), s_true, y_full, mask,
+                                  tc.get("beta_hlcc", 0.0), nll_weight=nll_weight)
             opt.zero_grad(set_to_none=True); loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0); opt.step()
             step += 1
@@ -137,10 +198,15 @@ def main():
                 log.append(rec); print(json.dumps(rec), flush=True)
                 json.dump(log, open(out / "train_log.json", "w"))
             if step % tc.get("val_every", 1000) == 0 or step == max_steps:
-                vlog.append({"step": step, **validate(model, prior, op, va, device, tc)})
+                vlog.append({"step": step, **validate(model, prior, op, va, device, tc, use_amp=use_amp)})
                 print("[VAL]", json.dumps(vlog[-1]), flush=True)
                 json.dump(vlog, open(out / "val_log.json", "w"))
-                torch.save({"model": model.state_dict(), "cfg": cfg, "step": step}, out / "completer.pt")
+                payload = {"model": model.state_dict(), "cfg": cfg, "step": step}
+                torch.save(payload, out / "completer.pt")
+                torch.save({**payload, "opt": opt.state_dict()}, resume_path)
+                if save_every and (step % save_every == 0 or step == max_steps):
+                    torch.save(payload, out / f"completer_step{step}.pt")
+                _sync_outputs(out, sync_dir)
                 model.train()
             if step >= max_steps:
                 break
@@ -148,7 +214,7 @@ def main():
 
 
 @torch.no_grad()
-def validate(model, prior, op, va, device, tc):
+def validate(model, prior, op, va, device, tc, use_amp: bool = True):
     """固定掩码（sv60 / sv30 / la120 / la90）、固定 t=0.8 下，未测行的相对误差：补全器 vs 环形插值 vs 先验预测。"""
     model.eval()
     x = torch.stack([va[i] for i in range(len(va))]).to(device)
@@ -157,8 +223,10 @@ def validate(model, prior, op, va, device, tc):
         mask = fixed_mask(name).to(device)
         torch.manual_seed(0)
         t = torch.full((x.shape[0],), 0.8, device=device)
-        s_true, y_full, s_pred = make_inputs(prior, op, x, mask, t, 1.0, tc.get("dc_lam", 0.3))
-        y_hat, _ = model(s_pred, y_full, mask, t)
+        s_true, y_full, s_pred = make_inputs(prior, op, x, mask, t, 1.0, tc.get("dc_lam", 0.3), use_amp=use_amp)
+        with torch.autocast("cuda", dtype=torch.bfloat16, enabled=device == "cuda" and use_amp):
+            y_hat, _ = model(s_pred, y_full, mask, t)
+        y_hat = y_hat.float()
         un = ~mask
         den = s_true[..., un, :].norm()
         res[name] = {"completer": float((y_hat - s_true)[..., un, :].norm() / den),

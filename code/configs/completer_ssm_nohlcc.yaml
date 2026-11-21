@@ -1,0 +1,36 @@
+# Phase 1b 补全器（ssm_nohlcc）：mixer=ssm, t_cond=true, beta_hlcc=0.0（训练期 HLCC 损失消融）。
+seed: 0
+out_dir: checkpoints/completer_ssm_nohlcc
+prior_ckpt: checkpoints/prior_256/ema_final.pt
+data:
+  type: slices
+  processed_dir: /root/autodl-tmp/data/totalseg/processed
+  n_val: 32
+model:
+  d: 256
+  n_layers: 4
+  mixer: ssm
+  t_cond: true
+  det_ch: 16
+  det_down: 4
+  d_state: 16
+  expand: 2
+train:
+  batch_size: 8
+  lr: 3.0e-4
+  lr_min: 1.0e-5
+  warmup: 500
+  max_steps: 15000
+  p_limited: 0.4
+  p_dc: 0.5
+  dc_lam: 0.3
+  dc_lam_range: [0.1, 1.0]
+  beta_hlcc: 0.0
+  nll_weight: 0.01
+  t_min: 0.0
+  log_every: 100
+  val_every: 1000
+  save_every: 5000
+  num_workers: 6
+  amp: true
+  compile_prior: true

@@ -47,6 +47,42 @@ def test_zero_weight_rows_are_ignored():
     assert torch.allclose(a, b, atol=1e-4)
 
 
+def test_weighted_dc_with_mask_matches_sparse_m3():
+    """未测行权重为 0 时，180 角 weighted_cg_dc 的相对 λ 经 w̄ 修正后应与 60 角 M3 数值一致。"""
+    x = _x(); op_full = CTOperator(64, n_angles=180); op_sparse = CTOperator(64, n_angles=60)
+    m = measured_mask(180, 60)
+    y_full = op_full(x)
+    y_sparse = op_sparse(x)
+    x0 = torch.zeros_like(x)
+    a = weighted_cg_dc(op_full, x0, y_full, m.float()[None], lam=0.3, n_iter=10, relative=True)
+    b = op_sparse.cg_data_consistency(x0, y_sparse, lam=0.3, n_iter=10, relative=True)
+    assert torch.allclose(a, b, atol=5e-3), (a - b).abs().max()
+
+
+def test_dcfull_confidence_weight_normalization():
+    """logvar 处于 [-8, -5]（典型归一化 MSE 量级）时，相对归一化不应让所有未测行权重饱和到 1.0。"""
+    from src.sample_posterior import _dcfull_step
+
+    class DummyCompleter:
+        def __call__(self, s_pred, y_full, mask, t):
+            lv = torch.linspace(-8.0, -5.0, mask.numel())[None].expand(s_pred.shape[0], -1)
+            return s_pred, lv
+
+    x = _x(); op = CTOperator(64, n_angles=180); y = op(x)
+    m = measured_mask(180, 60)
+    y_full = y * m.view(1, 1, -1, 1)
+    # 直接验证权重分布：高方差行 < kappa，低方差行 > kappa，且不会被全部拍死为 1.0
+    sigma2 = torch.linspace(-8.0, -5.0, 180)[None].clamp(-10.0, 4.0).exp()
+    un = ~m
+    w_un = (0.3 * sigma2[:, un].mean(1, keepdim=True) / sigma2).clamp(min=1e-4, max=1.0)
+    assert float(w_un[:, un].min()) < 0.25 and float(w_un[:, un].max()) <= 1.0
+    assert (w_un[:, un] < 0.99).float().mean() > 0.5
+    full = {"op": op, "mask": m, "y_full": y_full, "mode": "ssm", "completer": DummyCompleter(),
+            "kappa": 0.3, "use_conf": True, "hlcc": False, "hlcc_nmax": 6, "y_interp": None}
+    out = _dcfull_step(full, torch.zeros_like(x), torch.tensor(0.5), 1, dc_lam=0.3, dc_iters=3)
+    assert out.shape == x.shape and torch.isfinite(out).all()
+
+
 def test_interp_keeps_measured_rows():
     y = CTOperator(64, n_angles=180)(_x())
     for m in (measured_mask(180, 30), measured_mask(180, 120, 2 * math.pi / 3)):
@@ -59,4 +95,5 @@ def test_interp_keeps_measured_rows():
 if __name__ == "__main__":
     test_measured_rows_match_sparse_operator(); test_misaligned_angles_rejected()
     test_weighted_dc_reduces_to_m3_with_unit_weights(); test_zero_weight_rows_are_ignored()
+    test_weighted_dc_with_mask_matches_sparse_m3(); test_dcfull_confidence_weight_normalization()
     test_interp_keeps_measured_rows(); print("all dcfull tests passed")
