@@ -74,12 +74,13 @@ docs/                  实验设计、新颖性核查、Phase 1b 设计、周报
 
 ## 模型权重
 
-训练好的权重发布在 [Release v1.0-phase1](https://github.com/ZeroDevi1/flow-ct-guidance/releases/tag/v1.0-phase1)，附有 `SHA256SUMS.txt`：
+训练好的权重发布在 [Release v1.0-phase1](https://github.com/ZeroDevi1/flow-ct-guidance/releases/tag/v1.0-phase1) 与 [Release v1.1-phase1b](https://github.com/ZeroDevi1/flow-ct-guidance/releases/tag/v1.1-phase1b)，均附有 `SHA256SUMS.txt`：
 
-| 文件 | 内容 |
+| Release / 文件 | 内容 |
 |---|---|
-| `prior_256_ema_final.pt` | 流匹配先验，19.8M 参数，12 万步的 EMA 权重 |
-| `fbpconvnet_{sv30,sv60,sv90,ld1e5}.pt` | 各采集协议下的 FBPConvNet 基线，各训练 10k 步 |
+| `v1.0-phase1` · `prior_256_ema_final.pt` | 流匹配先验，19.8M 参数，12 万步的 EMA 权重 |
+| `v1.0-phase1` · `fbpconvnet_{sv30,sv60,sv90,ld1e5}.pt` | 各采集协议下的 FBPConvNet 基线，各训练 10k 步 |
+| `v1.1-phase1b` · `completer_ssm_15k.pt` | Phase 1b 双向角度序列 SSM 正弦图补全器，2.57M 参数，15k 步权重及训练/验证日志 |
 
 有了先验权重，就**不需要重新训练**，可以直接做后验采样实验。把它放到 `code/checkpoints/prior_256/ema_final.pt`，然后跳过下面复现步骤中的第 4 步。
 
@@ -141,7 +142,7 @@ python scripts/analyze.py --results results --index results/index_test200.csv --
 
 ## Phase 1b 探针与后续方向
 
-已在 Colab A100 上完成限角（120° / 90°）基线对照及采样器内 1D 角度 SSM 正弦图补全 + HLCC 探针（详见 [`results/phase1b/`](results/phase1b/) 与论文第 5.6 节）。实验表明 1D 正弦图补全无法超越 2D 图像流先验自身的 Radon 投影，已按预设 0.3 dB 止损线收口；后续将转向 2D 图像域条件流微调与噪声感知似然调度。
+已在 Colab A100 上完成限角（120° / 90°）基线对照及采样器内 1D 角度 SSM 正弦图补全 + HLCC 探针（详见 [`results/phase1b/`](results/phase1b/) 与论文第 5.6 节）。实验表明 1D 正弦图补全无法超越 2D 图像流先验自身的 Radon 投影，已按预设 0.3 dB 止损线收口；后续双轨升级与剩余 180 CU 算力分配见 [`docs/03_roadmap_v2.md`](docs/03_roadmap_v2.md)（Track 1：噪声感知 Poisson-WLS 与混合引导调度完成 Paper 1 投稿；Track 2：2D 条件流 + 真实扇束/3D 底座冲刺 2027 顶会）。
 
 后续研究优先级、阶段验收、数据隔离与新增文献定位见 [Research Roadmap](ROADMAP.md)（2026-10-31 更新）。该路线图补充现有 Phase 1b 设计，新增实验仍为待办。
 
