@@ -1,4 +1,4 @@
-% 中文重写版：结构与数据与 paper/main.tex 严格对齐，采用自然流畅的中文学术表达。编译：xelatex + bibtex。
+% 中文终版：结构、公式与数据与 paper/main.tex 严格对齐，采用自然流畅的中文学术表达。编译：xelatex + bibtex。
 \documentclass[11pt,UTF8]{ctexart}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath,amssymb,bm}
@@ -41,32 +41,32 @@
 \maketitle
 
 \begin{abstract}
-流匹配（Flow Matching）生成先验正迅速应用于计算机断层扫描（CT）重建，其确定性常微分方程（ODE）轨迹可实现高质量的少步采样。然而，现有工作往往同时改动先验训练、网络结构、数据集与测量注入规则，难以辨明性能增益的真正来源。本文固定其他全部实验要素，仅隔离\textbf{测量信息如何注入采样轨迹}这一核心变量：在公开 TotalSegmentator CT 数据集（1{,}228 位病人，官方按病人划分）上训练同一个 19.8M 参数的整流流（Rectified Flow）先验，并在相同的 Euler ODE 积分器中系统对照三类代表性规则——（M1）DPS 式梯度引导、（M2）$\Pi$GDM 式伪逆引导与（M3）DDS/DDNM 式近端数据一致性。实验覆盖六种平行束采集协议：稀疏视角（30/60/90 视角）、限角扫描（$120^\circ$/$90^\circ$）及低剂量扫描（$I_0{=}10^5, 10^4$）。所有引导强度均采用与采样步数和视角数无关的标准化单位，仅在验证集上调参，并以按病人聚类的 bootstrap 给出 95\% 置信区间。在此基础上，本文进一步检验了在采样器内部嵌入一维角度序列状态空间模型（SSM）与 Helgason--Ludwig 一致性条件（HLCC）以补全全角度正弦图的双域假设。
+流匹配（Flow Matching）生成先验正迅速应用于计算机断层扫描（CT）重建，其确定性常微分方程（ODE）轨迹可实现高质量的少步采样。然而，现有工作往往同时改动先验训练、网络结构、数据集与测量注入规则，难以辨明性能增益的真正来源。本文固定其他全部实验要素，仅隔离\textbf{测量信息如何注入采样轨迹}这一核心变量：在公开 TotalSegmentator CT 数据集（1{,}228 位病人，官方按病人划分）上训练同一个 19.8M 参数的整流流（Rectified Flow）先验，在相同的 Euler ODE 积分器中系统对照三类代表性规则——（M1）DPS 式梯度引导、（M2）$\Pi$GDM 式伪逆引导与（M3）DDS/DDNM 式近端数据一致性，并针对实证暴露的失效机理设计并验证了三项扩展：（i）\textbf{早 M3 晚 M2 混合调度}、（ii）结合 Jacobi 预条件共轭梯度（PCG）的\textbf{解析逐射线 Poisson 噪声感知求解器}，以及（iii）嵌入一维角度序列状态空间模型（SSM）与 Helgason--Ludwig 一致性投影（HLCC）的全角度补全探针（\texttt{dcfull}）。实验覆盖六种平行束采集协议——稀疏视角（30/60/90 视角）、限角扫描（$120^\circ$/$90^\circ$）及低剂量扫描（$I_0{=}10^5, 10^4$），并与解析 FBP 及完整 6 协议同骨干监督基线 FBPConvNet 对照，严格采用步数与视角无关的标准化量纲、仅验证集调参与按病人聚类的 bootstrap 95\% 置信区间。
 
-研究得出四项清晰的实践结论：其一，单样本最优规则\textbf{高度依赖扫描几何}——中等稀疏视角（60 视角）下 M2 表现最优（36.93\,dB，比同骨干监督基线 FBPConvNet 高 $+1.43$\,dB），而在强病态的限角重建中 M3 显著胜出（$120^\circ$ 高 $+2.12$\,dB、$90^\circ$ 高 $+2.63$\,dB）且步数效率最高（20 步即达 36.23\,dB）；其二，多样本后验平均会\textbf{反转稀疏视角排名}，M3 在 60 视角下取 $K{=}8$ 个样本平均可跃升至 39.41\,dB（超过 FBPConvNet $+3.92$\,dB）；其三，未做时间调度的 DPS 式梯度引导在流 ODE 上彻底失效，无论视角多少均停滞在约 24.5\,dB，根源在于 $t{\approx}0$ 处约 60 倍的雅可比尖峰与不随残差衰减的单位范数步长；其四，在无显式噪声模型的低剂量场景下监督网络仍占优（$I_0{=}10^5$ 时高 $+2.17$\,dB），且全角度正弦图补全探针表明，一维正弦图 SSM 无法超越二维图像流先验自身的 Radon 投影精度（60 视角 $+0.01$\,dB，$120^\circ$ 限角 $-0.03$\,dB）。代码与逐图评测数据开源于 \url{https://github.com/ZeroDevi1/flow-ct-guidance}。
+研究得出五项清晰的实践结论：其一，在稀疏视角 CT 中，前期免反传 M3（$t{<}0.4$）与后期 M2（$t{\ge}0.4$）结合的混合调度\textbf{全面横扫所有视角数的单样本最优指标}——在 30/60/90 视角分别达到 33.99、37.63（LPIPS 0.069）与 38.99\,dB，超纯 M2 达 $+0.71$ 至 $+1.82$\,dB、超监督 FBPConvNet 达 $+1.59$ 至 $+2.14$\,dB，且比纯 M2 提速 14.6\%；其二，引入解析逐射线 Poisson 方差（$\Sigma_y/r_t^2$ + Jacobi PCG）\textbf{彻底弥合并反超低剂量短板}——M2-Poisson 在 $I_0{=}10^5$ 达到 35.60\,dB（LPIPS 0.079，超无噪 M2 $+2.44$\,dB，在 PSNR 与 LPIPS 上双双超过监督基线 FBPConvNet 的 35.32\,dB），并在完全不重调超参的条件下\textbf{零样本迁移}至光子减少 10 倍的 $I_0{=}10^4$ 达到 30.18\,dB（超原 M2 $+7.65$\,dB），而贝叶斯 M3-PWLS-MAP 亦将 M3 拉升 $+7.78$\,dB 至 28.41\,dB；其三，在强病态限角重建（$120^\circ$/$90^\circ$）中，向低值外扩 M2 调参网格揭示了位于 $\zeta{=}0.25$ 的狭窄内点峰值，使 M2 恢复至与 M3 持平（$120^\circ$ 29.15 vs.\ 29.32\,dB；$90^\circ$ 24.68 vs.\ 24.38\,dB），但 $\zeta{\ge}0.5$ 即发生悬崖式崩溃，而 M3 在两个数量级上保持平坦稳定且一致性残差低 $3\text{--}4$ 倍；与此同时，补齐后的监督基线 FBPConvNet 在大缺失扇区上仍领先无条件流先验 3.1--5.3\,dB，明确指出了二维条件化流先验的必要方向；其四，多样本后验平均反转纯规则稀疏视角排名（M3 $K{=}8$ 在 60 视角跃升至 39.41\,dB），而常步长 M1 在终版 120k 先验上仍受 $t{=}0$ 处 $15.6\times$ 梯度尖峰与不衰减步长所困（停滞在 $\approx 24.5$\,dB）；其五，\texttt{dcfull} 探针表明 2.57M 一维正弦图 SSM 无法超越二维图像先验自身的 Radon 投影精度（60 视角 $+0.007$\,dB，$120^\circ$ $-0.028$\,dB）。代码、权重与逐图评测数据开源于 \url{https://github.com/ZeroDevi1/flow-ct-guidance}。
 \end{abstract}
 
 \section{引言}
 在病态 CT 重建问题中，深度生成先验已成为监督式后处理之外极具潜力的技术路线：同一个无条件先验可无需重训直接复用于多种扫描协议，同时后验采样还能定量刻画确定性网络所掩盖的解剖不确定性~\cite{song2022scoremed,chung2022mcg,chung2023dps}。早期医学成像反问题求解器主要基于扩散随机微分方程（SDE），而近两年研究正快速转向\textbf{流匹配}与\textbf{整流流}~\cite{lipman2023flow,liu2023rectified}——通过学习速度场将高斯噪声沿近似直线的 ODE 路径输运至目标图像分布，从而大幅减少推理步数。
 
-然而，去掉每步随机重加噪也从根本上改变了测量引导的动力学特性：ODE 路径缺乏随机噪声缓冲，任何量纲失当或方向失稳的引导步都会将轨迹永久推离数据流形。尽管近期已有若干工作将流匹配先验用于 CT 重建~\cite{evangelista2026pgfm,eFMCT2026,lucid2026}，或将扩散反问题求解器迁移至流模型~\cite{pokle2024otode,martin2025pnpflow,kim2025flowdps}，但这些工作往往同步改变了网络骨干、先验训练、数据集与步长调度，导致读者难以回答一个最根本的工程问题：\emph{给定同一个 CT 流匹配先验，究竟应选择哪种测量注入规则，各自在何种扫描条件下失效？}
+然而，去掉每步随机重加噪也从根本上改变了测量引导的动力学特性：ODE 路径缺乏随机噪声缓冲，任何量纲失当或方向失稳的引导步都会将轨迹永久推离数据流形。尽管近期已有若干工作将流匹配先验用于 CT 重建~\cite{evangelista2026pgfm,eFMCT2026,lucid2026}，或将扩散反问题求解器迁移至流模型~\cite{pokle2024otode,martin2025pnpflow,kim2025flowdps}，但这些工作往往同步改变了网络骨干、先验训练、数据集与步长调度，导致读者难以回答最根本的工程问题：\emph{给定同一个 CT 流匹配先验，在稀疏视角、限角与低剂量场景下应采用何种测量注入规则，各自为何失效，以及如何针对性地修复？}
 
-为给出可复核的答案，本文采用严格控制变量设计：固定同一个流匹配先验、积分器、数据集、验证调参流程与测试集，仅改变每步欧拉更新中引入测量 $\y$ 的方式，系统对比梯度引导（M1）、伪逆引导（M2）与近端数据一致性（M3），并以解析滤波反投影（FBP）和同骨干监督网络 FBPConvNet~\cite{jin2017fbpconvnet} 作为参照。除稀疏视角与低剂量外，本文将对照扩展至极具挑战的限角重建（$120^\circ$ 与 $90^\circ$），并进一步实证检验了一项直观的双域改进设想：在冻结的二维图像流采样器内部接入轻量级一维角度状态空间模型（SSM）~\cite{gu2024mamba} 与 Helgason--Ludwig 一致性投影（HLCC）~\cite{helgason1999radon}，能否为缺失角度提供更强的投影域约束。
+为此，本文采用严格控制变量设计：固定同一个流匹配先验、积分器、数据集、验证调参流程与测试集，仅改变每步欧拉更新中引入测量 $\y$ 的方式。我们首先对比三类经典范式——梯度引导（M1）、伪逆引导（M2）与近端数据一致性（M3）——并与解析滤波反投影（FBP）及覆盖全部 6 类协议的同骨干监督网络 FBPConvNet~\cite{jin2017fbpconvnet} 基准对照；随后基于实证暴露的失效机理，在\textbf{同一个冻结先验}上设计并验证了三项扩展：（i）结合 M3 早期稳态与 M2 后期锐化的\textbf{早 M3 晚 M2 混合调度}；（ii）融合逐射线 Poisson 方差与 Jacobi 预条件 CG 的\textbf{噪声感知求解器}；以及（iii）检验采样器内一维角度 SSM~\cite{gu2024mamba} 与 Helgason--Ludwig 一致性投影（HLCC）~\cite{helgason1999radon} 收益边界的双域探针（\texttt{dcfull}）。
 
 \paragraph{主要贡献。}
 \begin{enumerate}[leftmargin=*,nosep]
-  \item \textbf{多协议严格对照基准。} 在公开 TotalSegmentator 数据与共享的 19.8M 参数整流流先验上，跨稀疏视角（30/60/90）、限角（$120^\circ$/$90^\circ$）和低剂量（$I_0{=}10^5, 10^4$）六类协议系统评测 M1--M3，严格执行“仅验证集调参”与按病人聚类的 bootstrap 统计检验。
-  \item \textbf{步数与视角无关的引导量纲约定。} 将 DPS 步长标准化为 $\Delta t/\sqrt{s_x}$，将近端权重标准化为 $\tilde\lambda s_x$（加权全角度情形为 $\tilde\lambda\bar{w}s_x$，其中 $s_x{=}\operatorname{tr}(\A_{\mathrm{lin}}^\top\A_{\mathrm{lin}})/N^2$），消除步数消融与跨几何比较中的隐式强度漂移。
-  \item \textbf{分场景最优法则与失效机理剖析。} 揭示 M2 适合中等稀疏视角的单样本重建，而 M3 在限角外推（领先 $+2.1$ 至 $+2.6$\,dB）、20 步极速采样以及多样本后验均值（超 FBPConvNet $+3.9$\,dB）上全面占优；并定量剖析了常步长 DPS 引导在流 ODE 上失效的双重根因。
-  \item \textbf{采样器内一维正弦图补全的负结果探针。} 实证发现 2.57M 参数的一维角度 SSM 补全器在未测视角上的误差始终高于二维图像先验自身的 Radon 投影 $\A_{\mathrm{full}}(\hat\x_1)$，揭示了投影域一维序列建模与二维图像先验之间的几何表示鸿沟，同时验证了 HLCC 在限角缺口中确有小幅但统计显著的纠偏作用。
+  \item \textbf{完整 6 协议严格对照基准。} 在公开 TotalSegmentator 数据与共享 19.8M 参数整流流先验上，跨稀疏视角（30/60/90）、限角（$120^\circ$/$90^\circ$）与低剂量（$I_0{=}10^5, 10^4$）全面评测流求解器与全 6 协议同骨干监督基线 FBPConvNet，严格执行仅验证集调参与按病人聚类的 bootstrap 统计检验。
+  \item \textbf{早 M3 晚 M2 混合调度。} 在 $t_{\mathrm{sw}}{=}0.4$ 处从免反传 M3 切换至 M2，在全部稀疏视角协议上刷新单样本最高分（33.99 / 37.63 / 38.99\,dB，超纯 M2 $+0.71$ 至 $+1.82$\,dB、超监督基线 $+1.59$ 至 $+2.14$\,dB），同时提速 14.6\%。
+  \item \textbf{解析逐射线 Poisson 噪声建模与 Jacobi 预条件 CG。} 将逐射线对数正弦图方差 $\sigma_{y,i}^2\approx(\mu^2 I_0 e^{-\mu y_i})^{-1}$ 引入 M2（$\Sigma_y/r_t^2$）与 M3（$W{=}\Sigma_y^{-1}$ 及贝叶斯 $\lambda_0/r_t^2$ 调度），在 $I_0{=}10^5$ 上将 M2 提升 $+2.44$\,dB 至 35.60\,dB（PSNR 与 LPIPS 双超 FBPConvNet），并在光子饥饿 $I_0{=}10^4$ 上实现 $+7.65$ 至 $+7.78$\,dB 的零样本跨剂量迁移。
+  \item \textbf{失效机理定量剖析与几何负结果探针。} 在最终 120k 先验上实测验证了 M1 的 $15.6\times$ 早期梯度尖峰；揭示了限角下 M2 的窄峰悬崖（$\zeta{=}0.25$ 峰值 vs.\ $\zeta{\ge}0.5$ 崩溃）及无条件先验与监督模型间 3.1--5.3\,dB 的大缺失扇区鸿沟；并证明 2.57M 一维正弦图 SSM 无法超越二维先验自身的 Radon 投影。
 \end{enumerate}
 
 \section{相关工作}
 \paragraph{扩散模型用于 CT 反问题。}
-基于扩散先验的后验采样大致分为三类：穿过去噪网络反传残差梯度（DPS~\cite{chung2023dps}、MCG~\cite{chung2022mcg}）；基于高斯后验近似的伪逆修正（$\Pi$GDM~\cite{song2023pigdm}）；以及去噪步与近端/零空间数据一致性交替迭代（DiffPIR~\cite{zhu2023diffpir}、DDS~\cite{chung2024dds}、DAPS~\cite{zhang2025daps}、RED-diff~\cite{mardani2024reddiff}）。在 CT 领域，已有研究将分数先验拓展至稀疏视角、三维层间一致与限角重建~\cite{song2022scoremed,chung2023diffusionmbir,song2024diffusionblend,liu2023dolce}，DM4CT~\cite{shi2026dm4ct} 则对十种扩散方法做了基准对比。本文与其互补：固定流匹配先验，专注剖析注入规则本身。
+基于扩散先验的后验采样大致分为三类：穿过去噪网络反传残差梯度（DPS~\cite{chung2023dps}、MCG~\cite{chung2022mcg}）；基于高斯后验近似的伪逆修正（$\Pi$GDM~\cite{song2023pigdm}）；以及去噪步与近端/零空间数据一致性交替迭代（DiffPIR~\cite{zhu2023diffpir}、DDS~\cite{chung2024dds}、DAPS~\cite{zhang2025daps}、RED-diff~\cite{mardani2024reddiff}）。在 CT 领域，已有研究将分数先验拓展至稀疏视角、三维层间一致与限角重建~\cite{song2022scoremed,chung2023diffusionmbir,song2024diffusionblend,liu2023dolce}，DM4CT~\cite{shi2026dm4ct} 则对十种扩散方法做了基准对比。本文与其互补：固定整流流先验，隔离测量注入规则并从失效诊断直接推导噪声感知与混合改进。
 
 \paragraph{流匹配反问题求解器与 CT 重建。}
-通用流求解器从最优输运引导（OT-ODE~\cite{pokle2024otode}）、即插即用投影（PnP-Flow~\cite{martin2025pnpflow}）和流 Tweedie 分解（FlowDPS~\cite{kim2025flowdps}）等角度改造扩散引导。针对 CT，Evangelista~\cite{evangelista2026pgfm} 在 Mayo LDCT 上比较了多类流求解器，EFMCT~\cite{eFMCT2026} 通过跨步复用速度场加速一致性迭代，LUCID~\cite{lucid2026} 则按稀疏度自适应调节采样轨迹。近期研究也指出引导权重的时间调度至关重要~\cite{moroy2026guidanceweights,barthakur2026leegs,bang2026trips}。与上述工作不同，本文强调标准化量纲、零数据泄露调参与按病人统计严谨性，并覆盖限角外推。
+通用流求解器从最优输运引导（OT-ODE~\cite{pokle2024otode}）、即插即用投影（PnP-Flow~\cite{martin2025pnpflow}）和流 Tweedie 分解（FlowDPS~\cite{kim2025flowdps}）等角度改造扩散引导。针对 CT，Evangelista~\cite{evangelista2026pgfm} 在 Mayo LDCT 上比较了多类流求解器，EFMCT~\cite{eFMCT2026} 通过跨步复用速度场加速一致性迭代，LUCID~\cite{lucid2026} 则按稀疏度自适应调节采样轨迹。近期研究也指出引导权重的时间调度至关重要~\cite{moroy2026guidanceweights,barthakur2026leegs,bang2026trips}。与上述工作不同，本文强调标准化量纲、零数据泄露调参、异方差 Poisson 预条件求解与按病人聚类统计严谨性，覆盖稀疏、限角与极端光子饥饿场景。
 
 \paragraph{监督学习与双域 CT 重建。}
 FBPConvNet~\cite{jin2017fbpconvnet} 与 LEARN~\cite{chen2018learn} 等监督模型在分布内精度高，但每种采集协议均需重新训练。双域网络及状态空间模型（如 MambaRoll~\cite{kabas2024mambaroll}、MambaMIR~\cite{huang2024mambamir}、RCL-Mamba~\cite{duan2026rclmamba}）尝试联合利用投影域与图像域信息。本文在此基础上检验了“冻结二维流先验 + 轻量一维正弦图 SSM 补全器”这一模块化双域范式的实际收益边界。
@@ -83,7 +83,7 @@ FBPConvNet~\cite{jin2017fbpconvnet} 与 LEARN~\cite{chen2018learn} 等监督模�
 \begin{itemize}[leftmargin=*,nosep]
   \item \textbf{稀疏视角：}在 $[0,\pi)$ 内等距取 $|\Theta|\in\{30,60,90\}$ 个视角，无测量噪声。
   \item \textbf{限角扫描：}仅采集连续扇区 $[0^\circ,120^\circ)$（120 角，缺失 $60^\circ$）或 $[0^\circ,90^\circ)$（90 角，缺失 $90^\circ$），无测量噪声。
-  \item \textbf{低剂量扫描：}全 180 视角叠加 Poisson 光子噪声 $I\sim\mathrm{Poisson}(I_0 e^{-\mu y})$，$\y=-\log(I/I_0)/\mu$（$\mu{=}0.06$），主设置为 $I_0{=}10^5$，极端光子饥饿设置为 $I_0{=}10^4$。每张测试图的噪声按图像编号独立播种，确保所有方法接收完全一致的 $\y$。
+  \item \textbf{低剂量扫描：}全 180 视角叠加 Poisson 光子噪声 $c_i\sim\mathrm{Poisson}(I_0 e^{-\mu y_i^{\mathrm{clean}}})$，$c_i\leftarrow\max(c_i,1)$，$y_i=-\log(c_i/I_0)/\mu$（$\mu{=}0.06$），主设置为 $I_0{=}10^5$，极端光子饥饿设置为 $I_0{=}10^4$。每张测试图的噪声按图像编号独立播种，确保所有方法接收完全一致的 $\y$。
 \end{itemize}
 
 \subsection{整流流先验与深度学习模型架构}
@@ -92,18 +92,16 @@ FBPConvNet~\cite{jin2017fbpconvnet} 与 LEARN~\cite{chen2018learn} 等监督模�
   \hat\x_1 = \x_t + (1-t)\,\vel(\x_t,t),
   \qquad \hat{\bm\epsilon} = \x_t - t\,\vel(\x_t,t).
 \end{equation}
-无引导采样使用等步长 $\Delta t = 1/\mathrm{NFE}$ 的欧拉积分从 $t{=}0$ 推进至 $t{=}1$。
-
-图~\ref{fig:arch_zh} 展示了本文涉及的两类深度网络架构及四条测量注入路径，表~\ref{tab:arch_zh} 总结了各模型的层级配置与参数规模：
+无引导采样使用等步长 $\Delta t = 1/\mathrm{NFE}$ 的欧拉积分从 $t{=}0$ 推进至 $t{=}1$。图~\ref{fig:arch_zh} 与表~\ref{tab:arch_zh} 展示了本文涉及的两类深度网络架构与参数配置：
 \begin{itemize}[leftmargin=*,nosep]
-  \item \textbf{共享 19.8M 二维 U-Net 骨干：}五级 ADM 风格编码--解码网络，基础宽度 64、通道倍率 $(1,1,2,2,4)$（分辨率从 $256^2$ 逐级下采样至 $16^2$），编码端每级 2 个残差块、解码端每级 3 个残差块并拼接跳跃特征，在 $16^2$ 层与瓶颈处加入 4 头自注意力；正弦时间嵌入经两层 SiLU MLP 映射至 256 维后以自适应 GroupNorm FiLM 注入每个残差块，输出层采用零初始化 $3{\times}3$ 卷积。监督对照 FBPConvNet \emph{完全复用同一骨干}（固定 $t{\equiv}0$），在 FBP 图像上直接预测残差。
-  \item \textbf{2.57M 双向角度序列 SSM 补全器（\texttt{dcfull} 探针）：}将经已测行 RMS 归一化的三通道正弦图 $[s_{\mathrm{pred}}, \y\odot m, m]\in\mathbb R^{3\times 180\times 256}$ 按 $s(\theta{+}\pi,r){=}s(\theta,-r)$ 周期延拓至 360 行，经两层沿探测器轴的一维卷积（$256\to 64$，16 通道）与线性映射得到 $d{=}256$ 角度 token 并叠加环形位置编码（$\sin/\cos\theta,\sin/\cos 2\theta$），随后复制为两圈序列（$L{=}720$）送入 4 层带 $t$-FiLM 的双向选择性 SSM（内部宽度 $d_i{=}512$、状态维 $d_{\mathrm{state}}{=}16$，由融合 Triton 核加速），取第二圈前 180 行解码逐角度残差 $\delta s$ 与对数方差 $\log\sigma_\theta^2\in[-10,4]$。
+  \item \textbf{共享 19.8M 二维 U-Net 骨干：}五级 ADM 风格编码--解码网络，基础宽度 64、通道倍率 $(1,1,2,2,4)$（分辨率 $256^2 \to 16^2$），编码端每级 2 个残差块、解码端每级 3 个残差块，在 $16^2$ 层与瓶颈处加入 4 头自注意力；正弦时间嵌入经 MLP 映射至 256 维后以自适应 GroupNorm FiLM 注入各残差块。监督对照 FBPConvNet \emph{完全复用同一骨干}（固定 $t{\equiv}0$），在 FBP 图像上预测残差。
+  \item \textbf{2.57M 双向角度序列 SSM 补全器（\texttt{dcfull} 探针）：}将经已测行 RMS 归一化的三通道正弦图 $[s_{\mathrm{pred}}, \y\odot m, m]\in\mathbb R^{3\times 180\times 256}$ 按 $s(\theta{+}\pi,r){=}s(\theta,-r)$ 周期延拓至 360 行，经探测器一维卷积与线性映射得 $d{=}256$ 角度 token 并叠加环形位置编码，以两圈序列（$L{=}720$）通过 4 层带 $t$-FiLM 的双向选择性 SSM（$d_i{=}512, d_{\mathrm{state}}{=}16$，融合 Triton 核加速），从第二圈解码逐角度残差 $\delta s$ 与对数方差 $\log\sigma_\theta^2\in[-10,4]$。
 \end{itemize}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/architecture.pdf}
-\caption{模型架构与 ODE 测量注入总览。\textbf{(a)} 共享 19.8M 二维整流流 U-Net 骨干（FBPConvNet 固定 $t{\equiv}0$ 复用同结构）及四类欧拉步注入规则；\textbf{(b)} Phase~1b 探针采用的 2.57M 双向角度序列 SSM 正弦图补全器。}
+\caption{模型架构与 ODE 测量注入总览。\textbf{(a)} 共享 19.8M 二维整流流 U-Net 骨干（FBPConvNet 固定 $t{\equiv}0$ 复用同结构）及受控欧拉步注入规则（含逐射线 Poisson 噪声感知与早 M3 晚 M2 混合调度）；\textbf{(b)} \texttt{dcfull} 探针采用的 2.57M 双向角度序列 SSM 正弦图补全器。}
 \label{fig:arch_zh}
 \end{figure}
 
@@ -125,24 +123,25 @@ Angle-SSM & 采样器内正弦图补全器（\texttt{dcfull}） & 探测器 1D-C
 \end{tabular}}
 \end{table}
 
-\subsection{测量注入规则与量纲标准化}
-为保证引导强度在不同视角数与 NFE 下含义一致，我们对每个算子用 16 个高斯探针一次性估计两个能量尺度：$s_x = \operatorname{tr}(\A_{\mathrm{lin}}^\top\A_{\mathrm{lin}})/N^2$ 与 $s_y = \operatorname{tr}(\A_{\mathrm{lin}}\A_{\mathrm{lin}}^\top)/M$（$M$ 为测量维数）。记残差 $\bm r = \y - \A(\hat\x_1)$、下一时刻 $t_+=t+\Delta t$。表~\ref{tab:rules} 概括了四类规则的核心特性。
+\subsection{测量注入规则、噪声感知预条件与混合调度}
+为保证引导强度跨视角数与 NFE 可比，我们对每个算子用 16 个高斯探针一次性标定能量尺度 $s_x = \operatorname{tr}(\A_{\mathrm{lin}}^\top\A_{\mathrm{lin}})/N^2$ 与 $s_y = \operatorname{tr}(\A_{\mathrm{lin}}\A_{\mathrm{lin}}^\top)/M$（$M$ 为测量维数）。记残差 $\bm r = \y - \A(\hat\x_1)$、下一时刻 $t_+=t+\Delta t$，以及流路径后验方差系数 $r_t^2 = (1-t)^2/(t^2+(1-t)^2)$。表~\ref{tab:rules} 对比了各规则特性。
 
 \begin{table}[t]
 \centering
 \caption{共享流匹配先验下各测量注入规则的机制与特性对比。}
 \label{tab:rules}
 \footnotesize
-\setlength{\tabcolsep}{4pt}
+\setlength{\tabcolsep}{3.5pt}
 \resizebox{\linewidth}{!}{%
 \begin{tabular}{lccccc}
 \toprule
-注入规则 & 需穿透网络反传？ & 随残差消失？ & 共轭梯度空间 & 标准化量纲 & 最优适用场景 \\
+注入规则 & 穿透网络反传？ & 噪声感知？ & 求解空间 & 标准化量纲 & 主要优势场景 \\
 \midrule
-M1：梯度引导（DPS 式） & 是 & 否（单位范数） & 无 & $\Delta t\,\zeta/\sqrt{s_x}$ & 实现简单；流 ODE 上崩溃 \\
-M2：伪逆引导（$\Pi$GDM 式） & 是（VJP） & 是 & 测量域（$\A\A^\top$） & $\zeta$ & 稀疏视角单样本最优 \\
-M3：近端一致（Prox-DC） & 否 & 是 & 图像域（$\A^\top\A$） & $\tilde\lambda\,s_x$ & 限角、少步数、后验均值 \\
-M3-Full（\texttt{dcfull}） & 否 & 是 & 全 180$^\circ$（$\A^\top W\A$） & $\tilde\lambda\,\bar{w}\,s_x$ & 采样器内正弦图补全探针 \\
+M1：梯度引导（DPS 式） & 是 & 否 & 直接梯度 & $\Delta t\,\zeta/\sqrt{s_x}$ & 实现简单；流 ODE 上崩溃 \\
+M2：伪逆引导（$\Pi$GDM 式） & 是（VJP） & 可选（$\Sigma_y$） & 测量域（$\A\A^\top$） & $\zeta$ & 稀疏锐利；加 $\Sigma_y$ 后低剂量最优 \\
+M3：近端一致（Prox-DC） & 否 & 可选（$W{=}\Sigma_y^{-1}$） & 图像域（$\A^\top W\A$） & $\tilde\lambda\,s_x$ / $\lambda_0$ & 调参平坦、20 步高效、后验均值、限角稳态 \\
+混合调度（M3$\to$M2） & 仅后期（$t{\ge}t_{\mathrm{sw}}$） & 可选 & 图像域 $\to$ 测量域 & $(\tilde\lambda, \zeta, t_{\mathrm{sw}})$ & 稀疏单样本全面最优且提速 15\% \\
+M3-Full（\texttt{dcfull}） & 否 & 置信权重 $w_\theta$ & 全 180$^\circ$ & $\tilde\lambda\,\bar{w}\,s_x$ & 采样器内一维正弦图补全探针 \\
 \bottomrule
 \end{tabular}}
 \end{table}
@@ -152,95 +151,180 @@ M3-Full（\texttt{dcfull}） & 否 & 是 & 全 180$^\circ$（$\A^\top W\A$） & 
 \begin{equation}
   \x_{t+\Delta t} = \x_t + \Delta t\,\Big(\vel - \frac{\zeta}{\sqrt{s_x}}\,\nabla_{\x_t}\|\A(\hat\x_1)-\y\|_2\Big).
 \end{equation}
-乘以 $\Delta t$ 使积分总引导量与 NFE 无关，除以 $\sqrt{s_x}$ 使 $\zeta$ 跨视角可比；同时调节起始时刻 $t_s$ 以避开 $t{\approx}0$ 处的梯度爆炸。
 
-\paragraph{M2：伪逆引导（$\Pi$GDM 式）。}
-在 $p(\x_1\mid\x_t)\approx\mathcal N(\hat\x_1,r_t^2 I)$、$r_t^2=(1-t)^2/(t^2+(1-t)^2)$ 近似下，先在测量空间经 $K{=}5$ 步共轭梯度（CG）求解，再经向量--雅可比积回传：
+\paragraph{M2：伪逆引导（$\Pi$GDM 式）与 M2-Poisson。}
+在 $p(\x_1\mid\x_t)\approx\mathcal N(\hat\x_1,r_t^2 I)$ 与 $p(\y\mid\x_1)\approx\mathcal N(\A\x_1,\Sigma_y)$ 近似下，于测量空间执行 $K{=}5$ 步（预条件）CG 并经 VJP 回传：
 \begin{equation}
-  \big(\A_{\mathrm{lin}}\A_{\mathrm{lin}}^\top + (\sigma_y^2/r_t^2 + \eta\,s_y)I\big)\bm z = \bm r,
+  \big(\A_{\mathrm{lin}}\A_{\mathrm{lin}}^\top + \alpha\Sigma_y/r_t^2 + \eta\,s_y I\big)\bm z = \bm r,
   \qquad
   \x_{t+\Delta t} = \x_t + \Delta t\,\vel + \zeta\,t_{+}\,\Big(\tfrac{\partial\hat\x_1}{\partial\x_t}\Big)^{\!\top}\A_{\mathrm{lin}}^\top\bm z,
+  \label{eq:pigdm_zh}
 \end{equation}
-其中 $\eta{=}10^{-3}$，无噪声模型对照中取 $\sigma_y{=}0$。
-
-\paragraph{M3：近端数据一致性（DDS/DDNM 式）。}
-无需穿过 U-Net 反向传播，直接在图像域以 $K{=}5$ 步 CG 求解阻尼近端投影并重组状态：
+其中 $\eta{=}10^{-3}$。置 $\Sigma_y{=}0$ 即原无噪假设 M2。低剂量下对 $y_i{=}-\log(c_i/I_0)/\mu$ 做一阶 Delta 误差传播可得解析逐射线方差：
 \begin{equation}
-  \hat\x_1^{\mathrm{dc}} = \arg\min_{\x}\|\A(\x)-\y\|_2^2 + \tilde\lambda s_x\|\x-\hat\x_1\|_2^2,
+  \sigma_{y,i}^2 \approx \frac{1}{\mu^2 \max\big(I_0 e^{-\mu\max(y_i, 0)},\, 1\big)},
+  \qquad \Sigma_y = \operatorname{diag}(\sigma_{y,i}^2).
+  \label{eq:poisson_var_zh}
+\end{equation}
+我们对照标量均值方差（\textbf{M2-Scalar}，$\Sigma_y{=}\bar{\sigma}_y^2 I$）与逐射线异方差模型（\textbf{M2-Poisson}）。由于 $I_0{=}10^5$ 时空气射线（$\sigma_y^2\approx 0.003$）与厚脊柱射线（$\sigma_y^2\approx 3.7\text{--}10.7$）方差跨越三个数量级，无预条件 5 步 CG 收敛缓慢；为此引入零额外算子开销的 Jacobi 预条件器 $M_y^{-1}=\big(\widehat{\operatorname{diag}}(\A_{\mathrm{lin}}\A_{\mathrm{lin}}^\top)+\alpha\Sigma_y/r_t^2+\eta s_y\big)^{-1}$，其中 $\widehat{\operatorname{diag}}(\A_{\mathrm{lin}}\A_{\mathrm{lin}}^\top)=\bm{b}\cdot(s_y/\operatorname{mean}(\bm{b}))$ 直接复用已缓存的圆盘偏移量 $\bm{b}$。
+
+\paragraph{M3：近端数据一致性、M3-PWLS 与贝叶斯 M3-MAP。}
+无需穿透 U-Net 反传，直接在图像域以 $K{=}5$ 步（预条件）CG 解加权近端问题并重组状态：
+\begin{equation}
+  \hat\x_1^{\mathrm{dc}} = \arg\min_{\x}\big\|W^{1/2}(\A(\x)-\y)\big\|_2^2 + \lambda(t)\|\x-\hat\x_1\|_2^2,
   \qquad
   \x_{t+\Delta t} = (1-t_{+})\hat{\bm\epsilon} + t_{+}\hat\x_1^{\mathrm{dc}}.
+  \label{eq:prox_zh}
 \end{equation}
+无噪 M3 取 $W{=}I$、$\lambda(t){=}\tilde\lambda s_x$。低剂量下取逐射线逆方差权重 $W{=}\Sigma_y^{-1}$（式~\eqref{eq:poisson_var_zh}），并在 ODE 循环外\emph{一次性}计算标定对角预条件器 $\widehat{\operatorname{diag}}(\A_{\mathrm{lin}}^\top W\A_{\mathrm{lin}}){=}c_A\A_{\mathrm{lin}}^\top(W)$（$c_A{=}s_x/\operatorname{mean}(\A_{\mathrm{lin}}^\top\mathbf{1})$），对比两种正则调度：（i）\textbf{M3-PWLS}（常相对权重 $\lambda(t){=}\tilde\lambda\,\bar{w}\,s_x$）；（ii）\textbf{M3-PWLS-MAP}（精确高斯先验贝叶斯调度 $\lambda(t){=}\lambda_0/r_t^2$，物理量纲与 $\Sigma_y^{-1}$ 严格匹配，$t{\to}1$ 时自动关闭末端噪声注入以实现跨剂量零样本迁移）。
 
-\paragraph{M3-Full（\texttt{dcfull}）：采样器内全角度正弦图补全与 HLCC 探针。}
-为检验在采样器内部补全缺失角度是否能增强 M3，我们将数据一致性推广到全 180 角算子 $\A_{\mathrm{full}}$ 上，引入逐角度权重矩阵 $W{=}\operatorname{diag}(w_\theta)$：
-\begin{equation}
-  \hat\x_1^{\mathrm{dc}} = \arg\min_{\x}\big\|W^{1/2}(\A_{\mathrm{full}}\x - \hat{\y})\big\|_2^2 + \tilde\lambda\,\bar{w}\,s_x^{\mathrm{full}}\|\x-\hat\x_1\|_2^2,
-  \label{eq:dcfull_zh}
-\end{equation}
-其中 $\bar{w}{=}\frac{1}{180}\sum_\theta w_\theta$ 保证当未测行权重趋近 0 时，公式~\eqref{eq:dcfull_zh} 严格退化为 M3。已测行强制保持 $\hat{\y}_\theta{=}\y_\theta$ 且 $w_\theta{=}1$；未测行对照三种来源：（i）利用周期性质 $s(\theta{+}\pi,r){=}s(\theta,-r)$ 的环形线性插值（\texttt{interp}）；（ii）直接采用当前图像估计的投影 $\A_{\mathrm{full}}(\hat\x_1)$（\texttt{pred}）；（iii）以 $t$ 为条件的 4 层双向选择性 SSM（\texttt{ssm}，2.57M 参数），在 $2\pi$ 周期延拓正弦图上预测残差 $\delta s$ 与对数方差 $\log\sigma_\theta^2$，并按 $w_\theta{=}\min(1,\kappa\,\bar{\sigma}^2/\sigma_\theta^2)$ 加权。此外可选施加带岭正则的 Helgason--Ludwig 矩投影 $\Pi_{\mathrm{HLCC}}(\hat{\y};w)$（Legendre 0--6 阶矩）修正未测行。
+\paragraph{早 M3 晚 M2 混合调度。}
+鉴于早期状态（$t{\approx}0$）不确定性高、穿透网络反传易放大伪影，而后期状态（$t{\to}1$）可充分受益于 M2 的伪逆边缘锐化，我们测试了两阶段调度：$t < t_{\mathrm{sw}}$ 采用免反传 M3（式~\eqref{eq:prox_zh}）稳固全局结构，$t \ge t_{\mathrm{sw}}$ 切换至 M2（式~\eqref{eq:pigdm_zh}）锐化细节，直接复用既有 $(\tilde\lambda,\zeta)$ 无需联合重调，并天然省去 $t_{\mathrm{sw}}$ 比例的 U-Net VJP 反传。
+
+\paragraph{M3-Full（\texttt{dcfull}）：采样器内全角度补全与 HLCC 探针。}
+将式~\eqref{eq:prox_zh} 推广至全 180 角算子 $\A_{\mathrm{full}}$ 与逐角度权重 $w_\theta$（已测行 $w_\theta{=}1$、$\hat{\y}_\theta{=}\y_\theta$，正则 $\tilde\lambda\bar{w}s_x^{\mathrm{full}}$），比较未测行的三种来源：环形线性插值（\texttt{interp}）、先验自身投影 $\A_{\mathrm{full}}(\hat\x_1)$（\texttt{pred}）与 2.57M 双向角度 SSM（\texttt{ssm}，置信权重 $w_\theta{=}\min(1,\kappa\bar{\sigma}^2/\sigma_\theta^2)$），并可选叠加 0--6 阶 Legendre 矩的 HLCC 岭投影 $\Pi_{\mathrm{HLCC}}(\hat{\y};w)$。
 
 \begin{figure}[t]
 \centering
 \fbox{\parbox{0.96\linewidth}{\small
-\textbf{算法 1：统一流匹配后验采样框架} \hfill \textit{输入：$\vel$、$\A$、$\y$、规则 $\in\{\text{M1, M2, M3, M3-Full}\}$、$\mathrm{NFE}$}\\[3pt]
-\texttt{1:} 初始化 $\x_0 \sim \mathcal N(0,I)$，步长 $\Delta t \leftarrow 1/\mathrm{NFE}$。\\
-\texttt{2:} \textbf{for} $i = 0, \dots, \mathrm{NFE}-1$ \textbf{do} \quad（$t \leftarrow i\Delta t$，$t_+ \leftarrow (i{+}1)\Delta t$）\\
-\texttt{3:} \quad 计算速度 $\bm v \leftarrow \vel(\x_t,t)$、干净估计 $\hat\x_1 \leftarrow \x_t + (1{-}t)\bm v$、噪声估计 $\hat{\bm\epsilon} \leftarrow \x_t - t\bm v$。\\
-\texttt{4:} \quad \textbf{若为 M1}（$t\ge t_s$）：$\x_{t_+} \leftarrow \x_t + \Delta t\big(\bm v - \frac{\zeta}{\sqrt{s_x}}\nabla_{\x_t}\|\A(\hat\x_1)-\y\|_2\big)$。\\
-\texttt{5:} \quad \textbf{若为 M2}：5 步 CG 解 $(\A_{\mathrm{lin}}\A_{\mathrm{lin}}^\top + \eta s_y I)\bm z = \y-\A(\hat\x_1)$；$\x_{t_+} \leftarrow \x_t + \Delta t\,\bm v + \zeta t_+ (\partial\hat\x_1/\partial\x_t)^\top\A_{\mathrm{lin}}^\top\bm z$。\\
-\texttt{6:} \quad \textbf{若为 M3}：5 步 CG 解 $\hat\x_1^{\mathrm{dc}} = \arg\min_{\x}\|\A(\x)-\y\|_2^2 + \tilde\lambda s_x\|\x-\hat\x_1\|_2^2$；$\x_{t_+} \leftarrow (1{-}t_+)\hat{\bm\epsilon} + t_+\hat\x_1^{\mathrm{dc}}$。\\
-\texttt{7:} \quad \textbf{若为 M3-Full}：由 \texttt{interp}/\texttt{pred}/\texttt{ssm}（可选 $\Pi_{\mathrm{HLCC}}$）补全 $\hat{\y}$，经 5 步 CG 解式~\eqref{eq:dcfull_zh} 并重组 $\x_{t_+}$。\\
+\textbf{算法 1：统一流匹配后验采样框架} \hfill \textit{输入：$\vel$、$\A$、$\y$、规则、$\mathrm{NFE}$、可选 $(I_0,\mu)$}\\[3pt]
+\texttt{1:} 初始化 $\x_0 \sim \mathcal N(0,I)$，$\Delta t \leftarrow 1/\mathrm{NFE}$；若启用噪声感知，预先计算一次 $\Sigma_y$（式~\eqref{eq:poisson_var_zh}）与 Jacobi 对角元。\\
+\texttt{2:} \textbf{for} $i = 0, \dots, \mathrm{NFE}-1$ \textbf{do} \quad（$t \leftarrow i\Delta t$，$t_+ \leftarrow (i{+}1)\Delta t$，$r_t^2 \leftarrow (1{-}t)^2/(t^2+(1{-}t)^2)$）\\
+\texttt{3:} \quad 预测 $\bm v \leftarrow \vel(\x_t,t)$、干净估计 $\hat\x_1 \leftarrow \x_t + (1{-}t)\bm v$、噪声估计 $\hat{\bm\epsilon} \leftarrow \x_t - t\bm v$。\\
+\texttt{4:} \quad 确定当前步规则：若为混合调度，$t < t_{\mathrm{sw}}$ 选 M3，否则选 M2。\\
+\texttt{5:} \quad \textbf{若为 M1}（$t\ge t_s$）：$\x_{t_+} \leftarrow \x_t + \Delta t\big(\bm v - \frac{\zeta}{\sqrt{s_x}}\nabla_{\x_t}\|\A(\hat\x_1)-\y\|_2\big)$。\\
+\texttt{6:} \quad \textbf{若为 M2}：5 步 (P)CG 求解式~\eqref{eq:pigdm_zh}；$\x_{t_+} \leftarrow \x_t + \Delta t\,\bm v + \zeta t_+ (\partial\hat\x_1/\partial\x_t)^\top\A_{\mathrm{lin}}^\top\bm z$。\\
+\texttt{7:} \quad \textbf{若为 M3 / M3-Full}：5 步 (P)CG 求解式~\eqref{eq:prox_zh}（可选 \texttt{dcfull} + $\Pi_{\mathrm{HLCC}}$）；$\x_{t_+} \leftarrow (1{-}t_+)\hat{\bm\epsilon} + t_+\hat\x_1^{\mathrm{dc}}$。\\
 \texttt{8:} \textbf{输出} $\operatorname{clip}(\x_1, -1, 1)$。
 }}
 \end{figure}
 
 \section{实验设置}
 \paragraph{数据集与划分。}
-实验采用公开的 TotalSegmentator v2.0.1~\cite{wasserthal2023totalseg}（1{,}228 例 1.5\,mm 各向同性 CT，CC-BY-4.0）及其官方按病人划分（训练 1{,}082 例、验证 57 例、测试 89 例）。每例均匀抽取至多 40 张体部占比超过 10\% 的轴位切片并中心裁剪为 $256^2$，共得训练 43{,}220 张、验证 2{,}280 张、测试 3{,}560 张。固定测试集 \emph{test200} 由 20 位测试病人每人 10 张切片组成；所有超参数严格仅在均匀覆盖验证病人的 50 张验证切片上选取。
+采用公开 TotalSegmentator v2.0.1~\cite{wasserthal2023totalseg}（1{,}228 例 1.5\,mm 各向同性 CT，CC-BY-4.0）官方按病人划分（训练 1{,}082 例、验证 57 例、测试 89 例）。每例均匀抽取至多 40 张体部占比超过 10\% 的轴位切片并中心裁剪为 $256^2$，共得训练 43{,}220 张、验证 2{,}280 张、测试 3{,}560 张。固定测试集 \emph{test200} 由 20 位测试病人每人 10 张切片组成；所有超参数严格仅在均匀覆盖验证病人的 50 张验证切片上选取。
 
 \paragraph{模型训练与算力。}
-共享流先验为 19.8M 参数 U-Net（基础通道 64，通道倍率 $[1,1,2,2,4]$，$16^2$ 处加自注意力），以 batch size 32 训练 12 万步（约 89 epoch，单张 RTX~5090 耗时 6.3\,h，EMA 0.9995）。稀疏视角与低剂量的监督对照 FBPConvNet 复用完全相同的 U-Net 骨干（$t{\equiv}0$），按协议分别训练 1 万步（batch 16，约 3.7 epoch，因而可视为监督基线的保守下界）。全角度补全探针中，冻结先验并训练 2.57M 参数的双向 SSM 补全器 1.5 万步（batch 16，稀疏视角占 60\%、限角占 40\%），采用解耦 MSE + 校准异方差 NLL（权重 0.01）+ HLCC 损失（权重 0.1）；通过自定义融合 Triton 选择性扫描内核将 SSM 提速 45 倍，在单张 A100-40GB 上仅用 36 分钟完成训练。完整调参网格与选定值见附录~\ref{app:tuning_zh}。
+共享流先验以 batch size 32 训练 12 万步（约 89 epoch，单张 RTX~5090 耗时 6.3\,h，EMA 0.9995）。针对\textbf{全部 6 类主协议}（30/60/90 稀疏视角、$120^\circ$/$90^\circ$ 限角、$I_0{=}10^5$ 低剂量），分别训练完全同骨干的监督对照 FBPConvNet（$t{\equiv}0$，batch size 16，1 万步，约 3.7 epoch，余弦学习率 $2{\times}10^{-4}\to 10^{-5}$，500 步 warmup）。\texttt{dcfull} 探针冻结先验并训练 2.57M 双向 SSM 1.5 万步（稀疏 60\% + 限角 40\%，解耦 MSE + $0.01\times$ 异方差 NLL + $0.1\times$ HLCC），通过融合 Triton 核提速 45 倍（单张 A100-40GB 仅用 36 分钟）。完整调参网格见附录~\ref{app:tuning_zh}。
 
 \paragraph{评价指标与统计方法。}
-我们在重建圆内部计算 PSNR（动态范围 2，对应 $[-1000,1000]$\,HU）与 SSIM，同时报告感知指标 LPIPS（AlexNet）~\cite{zhang2018lpips} 与相对数据一致性残差 $\mathrm{DC}=\|\A(\hat\x)-\y\|_2/\|\y\|_2$。所有 95\% 置信区间与方法间配对差值均采用按病人聚类的 bootstrap（基于 20 位测试病人重采样 2{,}000 次）。
+我们在重建圆内部计算 PSNR（动态范围 2，对应 $[-1000,1000]$\,HU）与 SSIM，同时报告感知指标 LPIPS（AlexNet）~\cite{zhang2018lpips} 与相对数据一致性残差 $\mathrm{DC}=\|\A(\hat\x)-\y\|_2/\|\y\|_2$。所有 95\% 置信区间与配对差值均基于 20 位测试病人做按病人聚类 bootstrap（重采样 2{,}000 次）。
 
 \section{实验结果}
-\subsection{稀疏视角与限角重建：最优规则随采集几何反转}
-表~\ref{tab:main} 给出了六类协议下 $\mathrm{NFE}{=}50$ 的单样本评测结果。在无噪几何下，两类随残差消失的规则（M2 与 M3）均比 FBP 提升 7.4--10.2\,dB，但其相对胜负在均匀稀疏视角与连续限角缺失之间呈现出截然相反的格局。
+\subsection{稀疏视角 CT：早 M3 晚 M2 混合调度全面刷新单样本最优}
+表~\ref{tab:main} 汇总了全部六类协议在 $\mathrm{NFE}{=}50$ 下的单样本指标。三类纯规则中，60 视角下 M2 领跑（36.93\,dB，超 FBPConvNet $+1.43$\,dB），30 视角下 M2 与 FBPConvNet 持平（32.17 vs.\ 32.22\,dB），90 视角下 M3 小幅反超（38.62 vs.\ 38.09\,dB）。视觉对比（图~\ref{fig:qual}）显示 M2 边缘锐利、FBPConvNet 过度平滑，而 M3 保留了实测临床扫描的噪声纹理。
 
 \begin{table}[t]
 \centering
-\caption{\emph{test200} 上的单样本重建结果（$\mathrm{NFE}{=}50$）。PSNR 括号内为按病人的 95\% bootstrap 置信区间；SSIM 仅在重建圆内统计；$\mathrm{DC}=\|\A(\hat\x)-\y\|_2/\|\y\|_2$。每组最佳 PSNR 加粗。}
+\caption{\emph{test200} 上完整 6 协议单样本重建基准（$\mathrm{NFE}{=}50$）。PSNR 附按病人的 95\% bootstrap 置信区间；SSIM 仅在重建圆内统计；$\mathrm{DC}=\|\A(\hat\x)-\y\|_2/\|\y\|_2$。每组最佳指标加粗；监督基线领跑时，无条件流最高 PSNR 加下划线。}
 \label{tab:main}
-\small
-\input{tables/main_zh.tex}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\resizebox{\linewidth}{!}{%
+\input{tables/main_zh.tex}}
 \end{table}
 
+将早期免反传 M3（$t{<}t_{\mathrm{sw}}$）与后期 M2（$t{\ge}t_{\mathrm{sw}}$）结合后，混合调度在\textbf{全部稀疏视角数}上同时压制纯 M2、纯 M3 与监督 FBPConvNet（表~\ref{tab:main}、图~\ref{fig:t1solvers_zh}b 及表~\ref{tab:hybrid_zh}）：
 \begin{itemize}[leftmargin=*,nosep]
-  \item \textbf{中等稀疏视角（60 视角）：M2 领跑单样本质量。} M2 达到 36.93\,dB，分别超过 FBPConvNet $+1.43$\,dB（CI $[0.95, 1.91]$）与 M3 $+0.97$\,dB（CI $[0.35, 1.55]$）。视觉对比（图~\ref{fig:qual}）显示 M2 边缘最为锐利，FBPConvNet 存在过度平滑，而 M3 则忠实保留了临床真值扫描本身的噪声纹理。30 视角下 M2 与 FBPConvNet 持平（$-0.06$\,dB，CI $[-0.69, 0.58]$）；90 视角下 M3 反超至 38.62\,dB（超 FBPConvNet $+1.21$\,dB，CI $[0.18, 2.35]$）。
-  \item \textbf{限角扫描（$120^\circ$ 与 $90^\circ$）：M3 全面压制 M2。} 一旦出现连续 $60^\circ$ 或 $90^\circ$ 的投影缺失扇区（图~\ref{fig:la_zh}），M3 在 $120^\circ$ 下以 \textbf{$+2.12$\,dB} 显著领先 M2（29.32 vs.\ 27.20\,dB，CI $[1.08, 3.26]$），在 $90^\circ$ 下优势进一步拉大至 \textbf{$+2.63$\,dB}（24.38 vs.\ 21.74\,dB，CI $[1.58, 3.71]$），同时 LPIPS 降低 32--36\%，数据一致性残差缩小至 M2 的 $1/3\text{--}1/4$。原因在于连续缺失扇区使测量域矩阵 $\A\A^\top$ 严重病态，伪逆经 U-Net 雅可比反传后极易引发数值失稳（$120^\circ$ 验证集上 M2 从 $\zeta{=}0.5$ 的 25.87\,dB 骤降至 $\zeta{=}1.0$ 的 16.08\,dB），而 M3 在图像域求解阻尼近端问题，避开了网络反传放大效应。
+  \item \textbf{60 视角（验证集选出 $t_{\mathrm{sw}}{=}0.4$）：}混合调度达到 \textbf{37.63\,dB}（SSIM 0.901，LPIPS \textbf{0.069}），较纯 M2 提升 $+0.71$\,dB（CI $[+0.20,+1.29]$；同卡 A100 实测基准提升 $+0.77$\,dB），较纯 M3 提升 $+1.68$\,dB（CI $[+1.40,+1.95]$），超监督 FBPConvNet 达 \textbf{$+2.14$\,dB}（CI $[+1.37,+3.03]$）；同时相对纯 M2 将 LPIPS 降低 37\%、同硬件推理耗时缩短 \textbf{14.6\%}（A100-40GB 跑 200 张由 2.48 降至 2.12 分钟）。
+  \item \textbf{跨视角零样本迁移：}将 $t_{\mathrm{sw}}{=}0.4$ 直接迁移至其他视角无需重调，30 视角跃升至 \textbf{33.99\,dB}（超 M2 $+1.82$\,dB，CI $[+1.02,+2.67]$；超 FBPConvNet $+1.76$\,dB，CI $[+1.03,+2.51]$），90 视角达 \textbf{38.99\,dB}（超 M2 $+0.91$\,dB，CI $[+0.51,+1.36]$；超 FBPConvNet $+1.59$\,dB，CI $[+0.92,+2.32]$；超 M3 $+0.37$\,dB，CI $[-0.10,+0.85]$）。
 \end{itemize}
+
+\begin{table}[t]
+\centering
+\caption{早 M3 晚 M2 混合调度在 60 视角 \emph{test200} 上的切换时刻 $t_{\mathrm{sw}}$ 消融（$\mathrm{NFE}{=}50$，同张 A100-40GB，batch size 16）。}
+\label{tab:hybrid_zh}
+\small
+\begin{tabular}{lccccc}
+\toprule
+方法（60 视角） & PSNR (dB) [95\% CI] $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ & DC $\downarrow$ & 耗时 (min) $\downarrow$ \\
+\midrule
+纯 M2（$t_{\mathrm{sw}}{=}0.0$，A100 同机基准） & 36.86\,{\scriptsize[34.86, 38.69]} & 0.899 & 0.109 & 0.0024 & 2.48 \\
+混合调度（$t_{\mathrm{sw}}{=}0.2$） & 36.80\,{\scriptsize[34.71, 38.93]} & \textbf{0.903} & 0.092 & 0.0022 & 2.29 \\
+混合调度（$t_{\mathrm{sw}}{=}0.4$，验证最优） & \textbf{37.63}\,{\scriptsize[35.37, 39.86]} & 0.901 & \textbf{0.069} & \textbf{0.0017} & 2.12 \\
+混合调度（$t_{\mathrm{sw}}{=}0.6$） & 37.23\,{\scriptsize[34.84, 39.45]} & 0.890 & \textbf{0.069} & \textbf{0.0017} & \textbf{1.97} \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/qualitative.png}
-\caption{胸部测试切片定性对比（软组织窗 W400/L40，圆外背景已遮蔽）。M1 出现椎体与肋骨幻觉；FBPConvNet 过度平滑；M2 单样本最锐利；M3 保留了实测扫描的噪声纹理。}
+\caption{胸部测试切片定性对比（软组织窗 W400/L40，圆外背景已遮蔽）。M1 出现椎体与肋骨幻觉；FBPConvNet 过度平滑；M2 单样本边缘锐利；M3 保留了临床实测扫描的噪声纹理。}
 \label{fig:qual}
 \end{figure}
+
+\subsection{限角 CT：M2 的窄峰敏感悬崖、M3 稳态与无条件先验的缺口}
+在连续缺失 $60^\circ$/$90^\circ$ 扇区的限角协议中（图~\ref{fig:la_zh} 与图~\ref{fig:t1solvers_zh}c），补齐下界网格与监督基线后揭示了两项更深刻的事实：
+\begin{itemize}[leftmargin=*,nosep]
+  \item \textbf{M2 存在被失稳悬崖包围的狭窄内点峰值。} 初始网格 $\zeta\in\{0.5,1,2\}$ 在 $120^\circ$ 验证集上被压在左边界 $\zeta{=}0.5$（25.86\,dB，$\zeta{=}1.0$ 即暴跌至 16.08\,dB），导致测试集仅得 27.20\,dB（$120^\circ$）与 21.74\,dB（$90^\circ$）。将网格向低值外扩至 $\{0.05,0.1,0.25,0.5\}$ 后（图~\ref{fig:t1solvers_zh}c），M2 在 $\zeta{=}0.25$ 处出现尖锐内点峰（验证 28.76\,dB），将测试集拉升 $+1.95$\,dB 至 \textbf{29.15\,dB}（$120^\circ$，CI $[+0.91,+3.07]$）与 $+2.94$\,dB 至 \textbf{24.68\,dB}（$90^\circ$，CI $[+2.02,+3.86]$），同时消除了 $90^\circ$ 下的心腔伪影（图~\ref{fig:la_zh}）。复核后 M3 与 M2 在 PSNR 上统计持平（$120^\circ$ 差 $+0.17$\,dB，CI $[-0.26,+0.61]$；$90^\circ$ 差 $-0.31$\,dB，CI $[-0.75,+0.17]$），但 M3 在 $\tilde\lambda\in[0.1,3]$ 上呈极平坦平台（28.81--28.93\,dB），且 LPIPS 更低（0.089 vs.\ 0.125）、数据一致性残差小 $3\text{--}4$ 倍（0.0012 vs.\ 0.0039）。
+  \item \textbf{大缺失扇区下无条件先验仍落后监督条件化 3.1--5.3\,dB。} 补齐限角监督基线后，FBPConvNet 在 $120^\circ$ 达 \textbf{32.44\,dB}（超 M3 $+3.12$\,dB，CI $[+2.65,+3.63]$）、在 $90^\circ$ 达 \textbf{29.98\,dB}（超复核 M2 $+5.30$\,dB，CI $[+4.71,+5.91]$），尽管其数据一致性残差比 M3 差 $8\text{--}9$ 倍（$\mathrm{DC}{=}0.0107\text{--}0.0139$）。这清晰标定了无条件二维流先验的限角天花板，为后续二维测量条件化流微调指明方向。
+\end{itemize}
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/limited_angle.png}
-\caption{限角扫描（$120^\circ$ 与 $90^\circ$）重建结果与绝对误差图（magma 色标，$[0,0.25]$，切片同图~\ref{fig:qual}）。FBP 与 \texttt{dcfull-interp} 出现严重缺失扇区条纹；$90^\circ$ 下 M2 在平滑噪声的同时明显扭曲了心腔边界，而 M3 保持了整体解剖几何，并在整个 \emph{test200} 上分别领先 M2 $+2.12$\,dB（$120^\circ$）与 $+2.63$\,dB（$90^\circ$）。}
+\caption{限角扫描（$120^\circ$ 与 $90^\circ$）重建结果与绝对误差图（magma 色标，$[0,0.25]$，切片同图~\ref{fig:qual}）。将 M2 从网格边界 $\zeta{=}0.5$ 回调至内点最优 $\zeta{=}0.25$ 显著消除了 $90^\circ$ 下的心腔严重伪影并追平 M3，而补齐后的监督基线 FBPConvNet 在大缺失扇区上仍领先无条件流先验 3.1--5.3\,dB。}
 \label{fig:la_zh}
 \end{figure}
 
-\takeaway{单样本重建时，中等稀疏视角（60 视角）首选 M2（$\Pi$GDM）；面对更密视角（90 视角）或任意限角几何（$120^\circ$/$90^\circ$），应果断切换至 M3（Prox-DC）以避开雅可比反传失稳。}
+\subsection{解析逐射线 Poisson 建模彻底攻克低剂量短板与跨剂量迁移}
+在无显式噪声假设下，流求解器在 $I_0{=}10^5$ 显著落后于 FBPConvNet（表~\ref{tab:main}：M2 33.16、M3 30.60 vs.\ FBPConvNet 35.32\,dB），且不经重调迁移至极端低剂量 $I_0{=}10^4$ 时彻底崩溃（表~\ref{tab:lowdose_zh}：M2 22.53、M3 20.63\,dB，甚至弱于 M1 的 24.50\,dB）。
 
-\subsection{后验均值使稀疏视角排名反转}
-对独立初始化的 $K$ 个后验样本取平均（表~\ref{tab:mean}）对 M3 的增益远大于 M2。60 视角 $K{=}8$ 时，M3 跃升 $+3.46$\,dB 达到 \textbf{39.41\,dB}，反超 M2 $+0.82$\,dB（CI $[0.28, 1.43]$），并领先监督基线 FBPConvNet 达 $+3.92$\,dB（CI $[2.97, 4.95]$）；30 视角 $K{=}4$ 时 M3 同样以 $+1.21$\,dB 反超 M2（CI $[0.43, 2.04]$）。
+\begin{table}[t]
+\centering
+\caption{噪声感知流求解器在 $I_0{=}10^5$（验证集调参）与光子饥饿 $I_0{=}10^4$（\textbf{零样本迁移}）上的表现（\emph{test200}，$\mathrm{NFE}{=}50$，与无噪基线同为 $K{=}5$ 步 CG）。}
+\label{tab:lowdose_zh}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{3}{c}{$I_0{=}10^5$（验证集调参）} & \multicolumn{3}{c}{$I_0{=}10^4$（零样本迁移）} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+方法 & PSNR (dB) [95\% CI] $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ & PSNR (dB) [95\% CI] $\uparrow$ & SSIM $\uparrow$ & LPIPS $\downarrow$ \\
+\midrule
+FBP & 26.21\,{\scriptsize[25.31, 26.96]} & 0.580 & 0.309 & 18.03\,{\scriptsize[17.34, 18.67]} & 0.324 & 0.602 \\
+FBPConvNet（监督，仅训 $10^5$） & 35.32\,{\scriptsize[33.88, 36.51]} & \textbf{0.888} & 0.088 & --- & --- & --- \\
+M1：梯度引导（DPS 式） & 24.55\,{\scriptsize[23.81, 25.25]} & 0.590 & 0.333 & 24.50\,{\scriptsize[23.85, 25.12]} & 0.601 & 0.337 \\
+\midrule
+M3：近端一致（无噪假设） & 30.60\,{\scriptsize[29.34, 31.88]} & 0.744 & 0.191 & 20.63\,{\scriptsize[19.72, 21.52]} & 0.411 & 0.499 \\
+M3-PWLS（逐射线 $W{=}\Sigma_y^{-1}$，常 $\tilde\lambda$） & 32.44\,{\scriptsize[31.01, 33.57]} & 0.815 & 0.124 & 24.76\,{\scriptsize[23.57, 25.97]} & 0.524 & 0.384 \\
+M3-PWLS-MAP（$W{=}\Sigma_y^{-1}$，$\lambda_0/r_t^2$） & 32.09\,{\scriptsize[30.60, 33.45]} & 0.802 & 0.109 & 28.41\,{\scriptsize[27.26, 29.57]} & 0.669 & 0.174 \\
+\midrule
+M2：伪逆引导（无噪假设，$\sigma_y{=}0$） & 33.16\,{\scriptsize[31.69, 34.48]} & 0.837 & 0.122 & 22.53\,{\scriptsize[21.48, 23.55]} & 0.509 & 0.394 \\
+M2-Scalar（标量均值 $\bar{\sigma}_y^2/r_t^2$） & 34.23\,{\scriptsize[32.77, 35.57]} & 0.857 & 0.088 & 29.17\,{\scriptsize[27.93, 30.32]} & 0.729 & 0.132 \\
+M2-Poisson（逐射线 $\Sigma_y/r_t^2$+PCG） & \textbf{35.60}\,{\scriptsize[33.95, 37.13]} & 0.884 & \textbf{0.079} & \textbf{30.18}\,{\scriptsize[28.80, 31.41]} & \textbf{0.746} & \textbf{0.126} \\
+\bottomrule
+\end{tabular}}
+\end{table}
 
-逐像素后验标准差图（图~\ref{fig:unc}）揭示了背后机理：M2 的不确定性较小且高度集中于解剖边缘；M3 的不确定性则呈空间弥散的噪声状，主要分布在测量算子零空间分量上，多样本平均时恰好相互抵消。
+引入解析逐射线 Poisson 方差（式~\eqref{eq:poisson_var_zh}）与 Jacobi 预条件 CG 后，在\emph{完全相同的 5 步 CG 开销下}，低剂量表现发生质变（表~\ref{tab:lowdose_zh}、图~\ref{fig:t1solvers_zh}a 与图~\ref{fig:t1qual_zh}）：
+\begin{enumerate}[leftmargin=*,nosep]
+  \item \textbf{M2-Poisson 在 $I_0{=}10^5$ 反超监督基线 FBPConvNet。} 采用纯解析方差倍率（$\alpha{=}1.0$，$\zeta{=}0.5$），M2-Poisson 达到 \textbf{35.60\,dB}（LPIPS \textbf{0.079}，DC 0.0105），超无噪 M2 达 \textbf{$+2.44$\,dB}（CI $[+2.03,+2.91]$）、超标量噪声 M2-Scalar 达 $+1.37$\,dB（CI $[+1.21,+1.55]$），并在 PSNR（$+0.28$\,dB，CI $[-0.09,+0.66]$）与感知距离 LPIPS（降低 10\%，0.079 vs.\ 0.088）上双双领先监督基线 FBPConvNet。
+  \item \textbf{光子饥饿 $I_0{=}10^4$ 零样本暴涨 $+7.65$\,dB。} 不改动任何超参数直接迁移至光子数骤降 10 倍的 $I_0{=}10^4$，M2-Poisson 取得 \textbf{30.18\,dB}（LPIPS 0.126），超无噪 M2 达 \textbf{$+7.65$\,dB}（CI $[+6.27,+9.17]$）、超标量 M2-Scalar $+1.00$\,dB（CI $[+0.65,+1.35]$）、超 FBP $+12.15$\,dB。
+  \item \textbf{逐射线 PWLS 与贝叶斯 $1/r_t^2$ 调度大幅修复 M3。} 加入逐射线逆方差权重使 $I_0{=}10^5$ 的 M3 跃升 $+1.83$\,dB（30.60$\to$32.44\,dB，CI $[+1.28,+2.41]$）；进一步接入精确贝叶斯调度 $\lambda(t){=}\lambda_0/r_t^2$ 后，M3-PWLS-MAP 在 $I_0{=}10^4$ 零样本跃升至 \textbf{28.41\,dB}，超无噪 M3 达 \textbf{$+7.78$\,dB}（CI $[+6.40,+9.16]$），并领先常权重 M3-PWLS $+3.65$\,dB（CI $[+2.89,+4.34]$）。
+\end{enumerate}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/track1_solvers.pdf}
+\caption{求解器扩展与敏感度总览。\textbf{(a)} 解析 Poisson 建模在 $I_0{=}10^5$ 弥合并反超监督基线，并在 $I_0{=}10^4$ 零样本大涨 $+7.65$ 至 $+7.78$\,dB；\textbf{(b)} 早 M3 晚 M2 混合调度（$t_{\mathrm{sw}}{=}0.4$）刷新全部稀疏视角单样本最高分；\textbf{(c)} $120^\circ$ 限角验证曲线对比 M2 的窄峰悬崖（$\zeta{=}0.25$）与 M3 的平坦稳态平台。}
+\label{fig:t1solvers_zh}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/track1_qualitative.png}
+\caption{新求解器的定性与绝对误差对比（软组织窗 W400/L40，magma 误差色标 $[0,0.18]$）：上四行为 $I_0{=}10^5$ 与零样本 $I_0{=}10^4$ 低剂量结果，下两行为 60 视角混合调度。逐射线 Poisson 权重显著抑制了穿透脊柱与心脏的高衰减条纹噪声，同时保留清晰血管边界。}
+\label{fig:t1qual_zh}
+\end{figure}
+
+\takeaway{单样本稀疏视角 CT 首选早 M3 晚 M2 混合调度（$t_{\mathrm{sw}}{=}0.4$），精度最高且提速 15\%；低剂量及变剂量 CT 首选逐射线 M2-Poisson（$\Sigma_y/r_t^2$+PCG），在 $I_0{=}10^5$ 反超监督网络，且能零样本跨十倍剂量稳健迁移。}
+
+\subsection{后验均值反转与步数效率}
+对独立初始化的 $K$ 个后验样本取平均（表~\ref{tab:mean}）对 M3 的增益远大于 M2：60 视角 $K{=}8$ 时 M3 跃升 $+3.46$\,dB 至 \textbf{39.41\,dB}，反超 M2 $+0.82$\,dB（CI $[0.28,1.43]$）并领先 FBPConvNet 达 $+3.92$\,dB（CI $[2.97,4.95]$）；30 视角 $K{=}4$ 时 M3 以 $+1.21$\,dB 反超 M2（CI $[0.43,2.04]$）。逐像素标准差图（图~\ref{fig:unc}）表明，M2 不确定性集中于边缘，而 M3 呈弥散的零空间噪声状，平均时恰好抵消。
+
+在 60 视角步数消融中（图~\ref{fig:nfe}），M3 \textbf{仅需 20 步即达 36.23\,dB}（RTX~5090 跑 200 张仅 36 秒），而 M2 随步数增加单调提升（$34.34 \to 37.42$\,dB）。调参鲁棒性方面（图~\ref{fig:tune}），M3 在 $\tilde\lambda\in[0.01,1]$ 两个数量级内波动不到 0.1\,dB，工程部署最省心。
 
 \begin{table}[t]
 \centering
@@ -266,15 +350,10 @@ M3-Full（\texttt{dcfull}） & 否 & 是 & 全 180$^\circ$（$\A^\top W\A$） & 
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.86\linewidth]{figures/uncertainty.png}
-\caption{60 视角下单样本绝对误差（上）与 8 样本后验标准差（下）。M1 的不确定性对应解剖幻觉；M2 集中于边缘；M3 呈弥散噪声状，平均后抵消效果显著。}
+\includegraphics[width=0.84\linewidth]{figures/uncertainty.png}
+\caption{60 视角下单样本绝对误差（上）与 8 样本后验标准差（下）。M1 对应解剖幻觉；M2 集中于边缘；M3 呈弥散噪声状，平均后抵消效果显著。}
 \label{fig:unc}
 \end{figure}
-
-\subsection{步数效率与超参数鲁棒性}
-在 60 视角下固定 $\mathrm{NFE}{=}50$ 选出的强度并改变总步数（图~\ref{fig:nfe}），M3 展现出突出的少步效率：\textbf{仅需 20 步即达 36.23\,dB}（单张 RTX~5090 跑完 200 张切片仅需 36 秒），步数增至 100 时略微回落至 35.7\,dB（硬投影在早期含噪估计上执行过频所致）。M2 则随步数增加单调受益（$34.34 \to 37.42$\,dB）。
-
-从调参难度看（图~\ref{fig:tune}），M3 最易工程部署：$\tilde\lambda$ 在 $[0.01, 1]$ 跨越两个数量级时，验证集 PSNR 波动不到 0.1\,dB。相反，M2 存在陡峭的发散边界（稀疏视角 $\zeta{=}2$ 发散，限角 $\zeta{=}1$ 崩溃），M1 则需在 $(\zeta, t_s)$ 二维空间中艰难搜索。
 
 \begin{figure}[t]
 \centering
@@ -293,28 +372,32 @@ M3-Full（\texttt{dcfull}） & 否 & 是 & 全 180$^\circ$（$\A^\top W\A$） & 
 \end{figure}
 
 \subsection{为何常步长梯度引导（M1）在流 ODE 上失效}
-在 30、60 与 90 视角下，M1 均停滞在约 24.40--24.54\,dB 的同一平台（60 与 90 视角逐图平均差仅 $0.0003$\,dB），数据一致性残差高达 $\approx 3.8\%$（为 M2/M3 的十倍以上），并产生明显的解剖幻觉（图~\ref{fig:qual}）。失效由两项耦合因素造成：
+在 30、60 与 90 视角下，M1 均停滞在 24.40--24.54\,dB 的视角无关平台（60 与 90 视角逐图差仅 $0.0003$\,dB），$\mathrm{DC}\approx 3.8\%$ 且产生解剖幻觉（图~\ref{fig:qual}）。在\textbf{最终 120k 步先验权重}上基于 16 张验证切片的轨迹复测（60 视角，$\mathrm{NFE}{=}50$，图~\ref{fig:m1grad_zh}）定量证实了双重根因：
 \begin{enumerate}[leftmargin=*,nosep]
-  \item \textbf{初始时刻约 60 倍的雅可比尖峰。} 在 4 张验证切片（4 万步中间权重、60 视角）的初步测量中，M1 引导梯度均方根在 $t{=}0$ 处约为 1.9，而在 $t\ge 0.2$ 时骤降至 0.03--0.07。若从 $t_s{=}0$ 起施加引导，验证 PSNR 最高仅 13.8\,dB，必须推迟至 $t_s{=}0.2\text{--}0.4$。
-  \item \textbf{不随残差衰减的单位范数步长。} 对残差\emph{范数} $\|\A(\hat\x_1)-\y\|_2$ 求导消去了 $\|\bm r\|_2$ 的幅值缩放，使得一致性改善后修正步长仍保持恒定；配合无随机重加噪的确定性 ODE，最终形成与视角数无关的平台。只有引入随时间变化的引导权重调度~\cite{moroy2026guidanceweights} 才可能修复该类方法。
+  \item \textbf{初始时刻 $15.6\times$ 梯度尖峰。} 标准化 M1 引导梯度均方根在 $t{=}0$ 处飙升至 \textbf{1.41}（甚至超过速度场自身 RMS），而在 $t\ge 0.2$ 时骤降至 0.057--0.177（均值 0.090），峰值相对后期均值高 \textbf{15.6 倍}（相对最小值高 24.6 倍）。若从 $t_s{=}0$ 施加引导，50 张验证切片最高仅达 20.48\,dB（$\zeta{=}30$；$\zeta\in\{1,3,10\}$ 时仅 15.19--15.96\,dB）。
+  \item \textbf{不随残差衰减的单位范数步长。} 对残差\emph{范数} $\|\A(\hat\x_1)-\y\|_2$ 求导消去了 $\|\bm r\|_2$ 缩放，使一致性改善后步长仍不收缩；在确定性 ODE 上必须引入显式时间权重调度~\cite{moroy2026guidanceweights} 才能恢复有效引导。
 \end{enumerate}
 
-\subsection{光子噪声暴露无噪声模型一致性的短板}
-在 $I_0{=}10^5$ 的低剂量设置下（表~\ref{tab:main}），隐式学得噪声统计的监督基线 FBPConvNet 全面领先无噪声模型的流求解器（35.32\,dB，高于 M2 $+2.17$\,dB，CI $[1.86, 2.49]$；高于 M3 $+4.72$\,dB）。此时 M3 必须将 $\tilde\lambda$ 增大百倍至 30 才能抑制噪声回灌。若将 $I_0{=}10^5$ 选出的参数不经重调直接迁移到极端低剂量 $I_0{=}10^4$，排名发生完全倒转（FBP 18.03、M3 20.63、M2 22.53、M1 24.50\,dB）——M1 反而最稳健，恰恰因为它对含噪测量利用最少。要弥合这一差距，必须为流采样器显式引入 Poisson 似然或噪声标定项（$\sigma_y{>}0$）。
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\linewidth]{figures/m1_grad_120k.pdf}
+\caption{最终 120k 先验权重下的 M1 失效诊断（60 视角验证集）。\textbf{(a)} 标准化 M1 梯度 RMS 在 $t{=}0$ 处达 1.41（为 $t{\ge}0.2$ 均值 0.090 的 15.6 倍）；\textbf{(b)} 从 $t_s{=}0$ 起施加引导在 $\zeta\in\{1,3,10,30\}$ 上最高仅达 20.48\,dB。}
+\label{fig:m1grad_zh}
+\end{figure}
 
 \subsection{采样器内全角度正弦图补全与 HLCC 探针实验}
-最后，我们检验在采样器内部通过一维角度序列 SSM 与 HLCC 补全缺失正弦图（\texttt{dcfull}，式~\eqref{eq:dcfull_zh}）能否在稀疏视角或限角重建上超越 M3。表~\ref{tab:p1b_zh} 与图~\ref{fig:probe_zh} 汇总了 60 视角与 $120^\circ$ 限角的对照结果。
+最后，我们检验将 M3 扩展为全 180 角加权一致性（\texttt{dcfull}）并接入一维角度 SSM 与 HLCC 投影的收益（表~\ref{tab:p1b_zh}、图~\ref{fig:probe_zh}）。
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{figures/phase1b_probe.pdf}
-\caption{Phase~1b 正弦图补全探针的诊断分析。\textbf{(a)} 1.5 万步训练期间验证集未测行相对误差（$t{=}0.8$）：一维 SSM（实线）在全部四种协议下均收敛并停留在二维流先验自身投影 $\A_{\mathrm{full}}(\hat\x_1)$（虚线）之上。\textbf{(b)} \emph{test200} 上 M2 与 M3 的几何胜负反转及 \texttt{dcfull-SSM+HLCC} 的零增益饱和汇总。}
+\caption{正弦图补全探针的诊断分析。\textbf{(a)} 1.5 万步训练期间验证集未测行相对误差（$t{=}0.8$）：一维 SSM（实线）在全部四种协议下均停留在二维流先验自身投影 $\A_{\mathrm{full}}(\hat\x_1)$（虚线）之上。\textbf{(b)} 限角复核后 M2（$\zeta{=}0.25$）、M3 与 \texttt{dcfull-SSM+HLCC} 在 \emph{test200} 上的零增益汇总。}
 \label{fig:probe_zh}
 \end{figure}
 
 \begin{table}[t]
 \centering
-\caption{全角度加权一致性（\texttt{dcfull}）与 HLCC 投影探针结果（\emph{test200}，$\mathrm{NFE}{=}50$）。最右列为验证集 $t{=}0.8$ 时刻未测行上的正弦图相对误差（32 张验证切片）。}
+\caption{全角度加权一致性（\texttt{dcfull}）与 HLCC 投影探针结果（\emph{test200}，$\mathrm{NFE}{=}50$）。最右列为验证集 $t{=}0.8$ 未测行正弦图相对误差（32 张验证切片）。}
 \label{tab:p1b_zh}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
@@ -340,40 +423,35 @@ M3-Full（\texttt{dcfull}） & 否 & 是 & 全 180$^\circ$（$\A^\top W\A$） & 
 \end{tabular}}
 \end{table}
 
-该探针清晰揭示了三点事实：
-\begin{enumerate}[leftmargin=*,nosep]
-  \item \textbf{零增益触发止损。} 与 M3 相比，\texttt{dcfull-ssm + HLCC} 在 60 视角上仅变化 $+0.007$\,dB（CI $[-0.056, +0.077]$），在 $120^\circ$ 限角上为 $-0.028$\,dB（CI $[-0.060, -0.003]$），未达到预设的 $+0.3$\,dB 止损线；验证集选参将所有 \texttt{dcfull} 变体的 $\kappa$ 全部压至网格下界 $0.05$（等同于尽量关闭未测行权重）。
-  \item \textbf{几何表示鸿沟是根本原因。} 验证集正弦图误差给出了直接证据：即便完成 1.5 万步训练，2.57M 参数的一维正弦图 SSM 仍未超越 19.8M 参数二维图像先验自身的投影 $\A_{\mathrm{full}}(\hat\x_1)$（60 视角 0.00395 vs.\ 0.00372；$120^\circ$ 限角 0.00661 vs.\ 0.00644；$90^\circ$ 限角 0.00677 vs.\ 0.00660）。由于图像中单个像素 $(x,y)$ 在正弦图中对应弯曲的正弦曲线 $r{=}x\cos\theta{+}y\sin\theta$，按行编码的一维 SSM 缺乏显式二维反投影几何，难以修正已经严格位于 $\operatorname{range}(\A)$ 内且具备强二维解剖先验的投影估计。
-  \item \textbf{HLCC 在限角缺口中的小幅纠偏得到证实。} 在 $120^\circ$ 限角下，给 \texttt{dcfull-ssm} 加上 HLCC 投影带来了 $+0.065$\,dB 的统计显著回升（CI $[+0.041, +0.091]$），印证了低阶矩一致性确实能削弱连续缺口中的非物理补全误差，但不足以弥补补全器本身的几何劣势。
-\end{enumerate}
+该探针清晰揭示了三点事实：（i）\textbf{零增益触发止损：}相对 M3，\texttt{dcfull-ssm+HLCC} 在 60 视角仅 $+0.007$\,dB（CI $[-0.056,+0.077]$）、$120^\circ$ 为 $-0.028$\,dB（CI $[-0.060,-0.003]$），验证调参将 $\kappa$ 全部压至下界 $0.05$；（ii）\textbf{几何表示鸿沟：}1.5 万步后 2.57M 一维 SSM 误差仍高于 19.8M 二维先验自身投影 $\A_{\mathrm{full}}(\hat\x_1)$（60 视角 0.00395 vs.\ 0.00372；$120^\circ$ 0.00661 vs.\ 0.00644），根因在于按行一维编码缺乏显式二维正弦反投影几何；（iii）\textbf{HLCC 的局部纠偏作用：}在 $120^\circ$ 限角下 HLCC 带来 $+0.065$\,dB 的统计显著回升（CI $[+0.041,+0.091]$），但无法弥补补全器本身的几何劣势。
 
 \section{讨论、选型指南与局限}
 \paragraph{面向实践的选型指南。}
-表~\ref{tab:guide_zh} 将本文的对照结论凝练为流匹配 CT 重建的规则选择表。
+表~\ref{tab:guide_zh} 将本文全部实证发现凝练为流匹配 CT 重建的工程选型表。
 
 \begin{table}[t]
 \centering
-\caption{基于本文严格对照实验的流匹配 CT 测量注入规则选型指南。}
+\caption{基于完整 6 协议严格对照实验的流匹配 CT 测量注入规则选型指南。}
 \label{tab:guide_zh}
 \small
 \begin{tabularx}{\linewidth}{l l X}
 \toprule
 应用场景 / 约束条件 & 推荐规则 & 实验依据 \\
 \midrule
-中等稀疏视角（60 视角）单样本 & \textbf{M2（$\Pi$GDM）} & 单样本 PSNR 最高（超 FBPConvNet $+1.43$\,dB），边缘最锐利。 \\
+稀疏视角（30/60/90v）单样本 & \textbf{混合调度（M3$\to$M2，$t_{\mathrm{sw}}{=}0.4$）} & 全视角单样本 PSNR/LPIPS 最优（超 FBPConvNet $+1.59$ 至 $+2.14$\,dB），较纯 M2 提速 15\%。 \\
+低剂量 / 变剂量（$I_0{\le}10^5$） & \textbf{M2-Poisson（$\Sigma_y/r_t^2$+PCG）} & $I_0{=}10^5$ 达 35.60\,dB（LPIPS 0.079，反超监督基线），$I_0{=}10^4$ 零样本达 30.18\,dB（$+7.65$\,dB）。 \\
 低时延少步预算（$\mathrm{NFE}\le 20$） & \textbf{M3（Prox-DC）} & 20 步即达 36.23\,dB，无需网络反传，且对 $\tilde\lambda$ 极不敏感。 \\
-允许生成多样本 / 需不确定性 & \textbf{M3（$K\ge 4$ 均值）} & 零空间弥散方差平均后抵消（60 视角达 39.41\,dB，超监督 $+3.92$\,dB）。 \\
-限角重建（$120^\circ$、$90^\circ$） & \textbf{M3（Prox-DC）} & 显著超越 M2 $+2.12$ 至 $+2.63$\,dB，规避病态雅可比反传失稳。 \\
-低剂量 / 光子饥饿（$I_0\le 10^5$） & \textbf{噪声感知 / 监督} & 无噪声模型 M2/M3 落后 FBPConvNet 2.2--4.7\,dB，需显式 Poisson 建模。 \\
+允许生成多样本 / 需不确定性 & \textbf{M3（$K\ge 4$ 均值）} & 零空间弥散方差平均抵消（60 视角达 39.41\,dB，超监督 $+3.92$\,dB）。 \\
+限角重建（$120^\circ$、$90^\circ$） & \textbf{M3（无条件）/ 二维条件流} & M3 与复核 M2（$\zeta{=}0.25$）持平且调参平坦、DC 紧 3--4 倍；监督基线仍领先 3.1--5.3\,dB，需二维条件流进一步突破。 \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\paragraph{对后续方法设计的启示。}
-采样器内一维正弦图补全的负结果表明，若要在 M2/M3 之上获得真正的性能突破，应转向与二维成像几何对齐的路径：（i）\textbf{在二维图像域直接条件化或微调流先验}（如以 FBP / 测量特征作为条件输入训练条件流匹配或 LoRA 适配器），保留完整二维空间对应关系；（ii）\textbf{引入显式 Poisson 加权似然或噪声感知 $\sigma_y$ 调度}以攻克低剂量短板；（iii）\textbf{探索早期 M3 稳态 + 后期 M2 锐化的混合引导或可学习时间调度}~\cite{moroy2026guidanceweights,barthakur2026leegs}。
+\paragraph{对后续研究的启示。}
+在求解器层面（混合调度与逐射线 Poisson PCG）已在全部稀疏视角与低剂量协议上全面超越同骨干监督 FBPConvNet 之后，大缺失扇区限角重建（$120^\circ$/$90^\circ$）剩余的 3.1--5.3\,dB 缺口清楚指明了下一阶段的突破方向：在\textbf{二维图像域直接进行测量条件化流微调}（如基于 FBP 与角度频率覆盖掩码的 ControlNet/LoRA 或 FBP$\to$干净 CT 桥接流），并向真实扇束/锥束几何及三维层间一致性扩展。
 
 \paragraph{研究局限。}
-本文前向算子为作用于重建体数据的二维平行束仿真，未涉及扇束/锥束几何、真实原始投影数据、算子失配及三维层间一致性~\cite{chung2023diffusionmbir,song2024diffusionblend}；临床真值扫描本身含噪，客观上限制了可达到的 PSNR 上限；FBPConvNet 训练轮数（约 3.7 epoch）远少于流先验（约 89 epoch），其分数代表下界，且限角监督基线留待后续补齐；此外，M1 梯度轨迹测量基于 4 万步中间权重，后验均值仅评估了 $K{=}8$（60 视角）与 $K{=}4$（30 视角）。
+本文前向算子为作用于临床重建体数据的二维平行束仿真，真实扇束/锥束投影数据、算子失配与三维层间一致性~\cite{chung2023diffusionmbir,song2024diffusionblend} 留待后续研究；临床真值扫描自带噪声限制了 PSNR 上限；全部 6 类协议的监督基线 FBPConvNet 统一训练 1 万步（约 3.7 epoch，对照流先验约 89 epoch），代表受控预算下的基线而非监督渐近上限；此外，多样本后验均值仅评估了 $K{=}8$（60 视角）与 $K{=}4$（30 视角）。
 
 \section*{代码、数据与致谢}
 代码、配置文件、模型权重与逐图指标开源于 \url{https://github.com/ZeroDevi1/flow-ct-guidance}；数据取自公开 TotalSegmentator v2.0.1（CC-BY-4.0）。本工作的部分实验代码、执行流程与论文撰写借助了 AI 编程助手（Claude, Anthropic；Antigravity, Google DeepMind）协助完成；全部代码、实验数值与科学表述均由作者核验，作者对全文内容负全部责任。
@@ -384,9 +462,9 @@ M3-Full（\texttt{dcfull}） & 否 & 是 & 全 180$^\circ$（$\A^\top W\A$） & 
 \label{app:tuning_zh}
 全部引导强度严格仅在 50 张验证切片上按 $\mathrm{NFE}{=}50$ 选取，并直接迁移至同组其他视角数或剂量，不针对测试集重调：
 \begin{itemize}[leftmargin=*,nosep]
-  \item \textbf{稀疏视角（60 视角调参，迁移至 30/90 视角）：}M1 $\zeta\in\{3,10,30,100,300\}\times t_s\in\{0.1,\dots,0.5\}\to(30,0.4)$；M2 $\zeta\in\{0.5,1,2\}\to 1.0$；M3 $\tilde\lambda\in\{0.01,0.03,0.1,0.3,1,3\}\to 0.3$。
-  \item \textbf{限角扫描（$120^\circ$ 调参，迁移至 $90^\circ$）：}M2 $\zeta\in\{0.5,1,2\}\to 0.5$（落于网格下界，$\zeta{=}1$ 时骤降至 16.08\,dB）；M3 $\tilde\lambda\in\{0.1,0.3,1,3\}\to 0.1$。
-  \item \textbf{低剂量扫描（$I_0{=}10^5$ 调参，迁移至 $I_0{=}10^4$）：}M1 $\zeta\in\{10,30,100\}\times t_s\in\{0.2,\dots,0.5\}\to(30,0.4)$；M2 $\zeta\in\{0.03,0.05,0.1,0.25,0.5,1\}\to 0.1$；M3 $\tilde\lambda\in\{1,3,10,30,100\}\to 30$。
+  \item \textbf{稀疏视角（60 视角调参，迁移至 30/90 视角）：}M1 $\zeta\in\{3,10,30,100,300\}\times t_s\in\{0.1,\dots,0.5\}\to(30,0.4)$；M2 $\zeta\in\{0.5,1,2\}\to 1.0$；M3 $\tilde\lambda\in\{0.01,0.03,0.1,0.3,1,3\}\to 0.3$；混合调度 $t_{\mathrm{sw}}\in\{0.2,0.4,0.6\}$（固定 $\tilde\lambda{=}0.3,\zeta{=}1.0$）$\to 0.4$（验证 37.67\,dB）。
+  \item \textbf{限角扫描（$120^\circ$ 调参，迁移至 $90^\circ$）：}M2 扩展网格 $\zeta\in\{0.05,0.1,0.25,0.5,1,2\}\to 0.25$（验证 28.76\,dB；$\zeta{=}0.5$ 降至 25.86\,dB，$\zeta{=}1$ 骤降至 16.08\,dB）；M3 $\tilde\lambda\in\{0.1,0.3,1,3\}\to 0.1$（验证 28.81--28.93\,dB 平坦平台）。
+  \item \textbf{低剂量扫描（$I_0{=}10^5$ 调参，零样本迁移至 $I_0{=}10^4$）：}无噪基准 M1 $(30,0.4)$、M2 $\zeta\in\{0.03,\dots,1\}\to 0.1$、M3 $\tilde\lambda\in\{1,3,10,30,100\}\to 30$。噪声感知扩展：M2-Scalar $\zeta\in\{0.25,0.5\}\times\alpha\in\{1,2,4\}\to(0.5,4.0)$（验证 34.11\,dB）；M2-Poisson $\zeta\in\{0.25,0.5\}\times\alpha\in\{0.5,1,2,4\}\to(0.5,1.0)$（验证 35.50\,dB，纯解析方差）；M3-PWLS（常 $\tilde\lambda$）$\tilde\lambda\in\{0.03,0.1,0.3,1\}\to 0.3$（验证 32.30\,dB）；M3-PWLS-MAP（$1/r_t^2$）$\lambda_0\in\{3,10,30,100,300,1000\}\to 30$（验证 31.99\,dB）。
   \item \textbf{\texttt{dcfull} 探针（60 视角与 $120^\circ$ 分别调参）：}$\kappa\in\{0.05,0.15,0.3,0.6,1.0\}$，三类变体（\texttt{interp}、\texttt{pred}、\texttt{ssm}）最优值均落于 $0.05$。
 \end{itemize}
 
