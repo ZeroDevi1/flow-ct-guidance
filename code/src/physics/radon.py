@@ -188,26 +188,69 @@ class CTOperator:
         return x
 
 
-def weighted_cg_dc(op: "CTOperator", x0: torch.Tensor, y: torch.Tensor, w: torch.Tensor, lam: float = 1.0,
-                   n_iter: int = 10, relative: bool = True) -> torch.Tensor:
-    """逐角度加权的近端数据一致性：argmin_x ‖W^{1/2}(A x − y)‖² + λ‖x − x0‖²。
+def poisson_ray_variance(y: torch.Tensor, i0: float | None = None, sigma: float = 0.0,
+                         mu_scale: float = 0.06) -> torch.Tensor:
+    """按 Poisson-log 噪声一阶传播解析估计逐射线测量方差 σ²_{y,i}（形状同 y：[B, 1, A, N]）。
 
-    op 为全角度算子；y 为全角度"伪测量"（已测行是实测值，未测行是补全值）；w [B, A] 为逐行权重
-    （已测行通常为 1，未测行为补全置信度）。relative=True 时 λ 以加权有效能量 w̄·op.ata_scale 为单位，
-    使未测行权重趋近 0 时与仅在已测角上运行的 cg_data_consistency 严格等价。
-    正规方程 (Aᵀ W A + λI) x = Aᵀ W (y − b) + λ x0 用 CG 求解；全 batch 权重为 0 的行自动跳过计算。
+    物理模型为 c ~ Poisson(I0 * exp(-mu * y_clean))，c ← max(c, 1)，y = -ln(c / I0) / mu + N(0, σ²)。
+    Delta 方法给出 Var(y_i) ≈ 1 / (mu² * max(I0 * exp(-mu * max(y_i, 0)), 1)) + σ²。
     """
-    active = (w > 0).any(dim=0)
+    var = torch.full_like(y, float(sigma) ** 2)
+    if i0 is not None and i0 > 0:
+        counts = (float(i0) * torch.exp(-float(mu_scale) * y.clamp(min=0.0))).clamp(min=1.0)
+        var = var + 1.0 / ((float(mu_scale) ** 2) * counts)
+    return var
+
+
+def diag_atwa_approx(op: "CTOperator", w: torch.Tensor) -> torch.Tensor:
+    """用标定后的 A_linᵀ(W) 近似 diag(A_linᵀ W A_lin)（[B, 1, N, N]），用于异方差 PWLS 的 Jacobi 预条件 CG。"""
+    w4 = _normalize_weight(w, op.offset.shape[-2], op.n)
+    ones_sino = torch.ones(1, 1, op.offset.shape[-2], op.n, device=w.device, dtype=w.dtype)
+    base = op.A_lin_T(ones_sino)
+    scale = op.ata_scale / base.mean().clamp(min=1e-12)
+    return (op.A_lin_T(w4) * scale).clamp(min=0.0)
+
+
+def diag_aat_approx(op: "CTOperator") -> torch.Tensor:
+    """用标定后的 op.offset 近似 diag(A_lin A_linᵀ)（[1, 1, A, N]），用于测量域预条件 CG。"""
+    scale = op.aat_scale / op.offset.mean().clamp(min=1e-12)
+    return (op.offset * scale).clamp(min=0.0)
+
+
+def _normalize_weight(w: torch.Tensor, n_angles: int, n_det: int) -> torch.Tensor:
+    """把权重统一成 4D [B, 1, A, 1]（逐角度）或 [B, 1, A, N]（逐射线）。"""
+    if w.ndim == 2:
+        return w[:, None, :, None]
+    if w.ndim == 3:
+        return w[:, None, :, :]
+    if w.ndim == 4:
+        return w
+    raise ValueError(f"不支持的权重维度：{tuple(w.shape)}，期望 2D [B,A]、3D [B,A,N] 或 4D [B,1,A,N]")
+
+
+def weighted_cg_dc(op: "CTOperator", x0: torch.Tensor, y: torch.Tensor, w: torch.Tensor, lam: float | torch.Tensor = 1.0,
+                   n_iter: int = 10, relative: bool = True,
+                   precond_diag: torch.Tensor | None = None) -> torch.Tensor:
+    """逐角度或逐射线加权的近端数据一致性：argmin_x ‖W^{1/2}(A x − y)‖² + λ‖x − x0‖²。
+
+    w 支持 2D [B, A]（逐角度权重，兼容 dcfull）或 3D [B, A, N] / 4D [B, 1, A, N]（逐射线逆方差权重）。
+    relative=True 时 λ 以加权有效能量 w̄·op.ata_scale 为单位，使未测行权重趋近 0 时与仅在已测角上运行的
+    cg_data_consistency 严格等价；relative=False 时 λ 直接作为绝对先验精度（如精确 MAP 的 λ₀/r_t²）。
+    precond_diag 为可选的 diag(Aᵀ W A) 近似（[B, 1, N, N]），给定时启用 Jacobi 预条件 CG 以改善
+    Poisson 异方差权重跨数量级时的收敛速度。
+    """
+    w4 = _normalize_weight(w, y.shape[-2], y.shape[-1])
+    active = (w4 > 0).any(dim=(0, 1, 3))
     if not active.any():
         return x0.clone()
     if relative:
-        w_mean = w.mean(dim=1).clamp(min=1e-6)
+        w_mean = w4.flatten(1).mean(dim=1).clamp(min=1e-6)
         lam_t = (lam * op.ata_scale * w_mean).view(-1, 1, 1, 1)
     else:
-        lam_t = lam
+        lam_t = lam.view(-1, 1, 1, 1) if torch.is_tensor(lam) else lam
     use_sub = not bool(active.all())
     act = active if use_sub else None
-    wv = (w[:, active] if use_sub else w)[:, None, :, None]
+    wv = w4[:, :, active, :] if use_sub else w4
     y_act = y[:, :, active] if use_sub else y
     off_act = op.offset[:, :, active] if use_sub else op.offset
     rhs = op.A_lin_T(wv * (y_act - off_act), active=act) + lam_t * x0
@@ -215,20 +258,24 @@ def weighted_cg_dc(op: "CTOperator", x0: torch.Tensor, y: torch.Tensor, w: torch
     def Aop(v):
         return op.A_lin_T(wv * op.A_lin(v, active=act), active=act) + lam_t * v
 
+    m_inv = None if precond_diag is None else 1.0 / (precond_diag + lam_t).clamp(min=1e-8)
+
     x = x0.clone()
     r = rhs - Aop(x)
-    p = r.clone()
-    rs = (r * r).flatten(1).sum(1)
+    z = r if m_inv is None else m_inv * r
+    p = z.clone()
+    rz = (r * z).flatten(1).sum(1)
     for _ in range(n_iter):
         Ap = Aop(p)
-        alpha = rs / ((p * Ap).flatten(1).sum(1) + 1e-12)
+        alpha = rz / ((p * Ap).flatten(1).sum(1) + 1e-12)
         x = x + alpha.view(-1, 1, 1, 1) * p
         r = r - alpha.view(-1, 1, 1, 1) * Ap
-        rs_new = (r * r).flatten(1).sum(1)
-        if rs_new.max() < 1e-10:
+        if (r * r).flatten(1).sum(1).max() < 1e-10:
             break
-        p = r + (rs_new / (rs + 1e-12)).view(-1, 1, 1, 1) * p
-        rs = rs_new
+        z = r if m_inv is None else m_inv * r
+        rz_new = (r * z).flatten(1).sum(1)
+        p = z + (rz_new / (rz + 1e-12)).view(-1, 1, 1, 1) * p
+        rz = rz_new
     return x
 
 

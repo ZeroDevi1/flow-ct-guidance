@@ -1,10 +1,10 @@
 # How Should Measurements Enter Flow-Matching ODE Sampling?
 
-**测量应如何进入流匹配 ODE 采样？稀疏视角与低剂量 CT 的对照研究**
+**测量应如何进入流匹配 ODE 采样？稀疏视角、限角与低剂量 CT 的严格对照研究**
 
 张伟豪（Weihao Zhang）· 河北大学 · 20268018055@stumail.hbu.edu.cn
 
-论文：[英文版 PDF](paper/main.pdf) · [中文版 PDF](paper/main_zh.pdf) · LaTeX 源码见 [`paper/`](paper/)
+论文：[英文版 PDF](paper/main.pdf) · [中文版 PDF](paper/main_zh.pdf) · LaTeX 源码见 [`paper/`](paper/) · 最新版本：[Release v1.2-track1](https://github.com/ZeroDevi1/flow-ct-guidance/releases/tag/v1.2-track1)
 
 ---
 
@@ -40,23 +40,26 @@ WLS 在本配置下强于 DC，但仍落后匹配监督基线；DC 甚至低于 
 
 ## 主要结果（test200 = 20 位测试病人 × 10 张，NFE 50，PSNR / dB）
 
-| 设置 | FBP | FBPConvNet | M1 DPS | M2 ΠGDM | M3 近端 DC |
-|---|---|---|---|---|---|
-| 30 视角 | 23.50 | **32.22** | 24.40 | 32.17 | 31.62 |
-| 60 视角 | 28.50 | 35.50 | 24.54 | **36.93** | 35.95 |
-| 90 视角 | 30.58 | 37.41 | 24.54 | 38.09 | **38.62** |
-| 限角 120° | 19.09 | — | — | 27.20 | **29.32** |
-| 限角 90° | 16.04 | — | — | 21.74 | **24.38** |
-| 低剂量 I0=1e5 | 26.21 | **35.32** | 24.55 | 33.16 | 30.60 |
+| 设置 | FBP | FBPConvNet | M1 DPS | M2 ΠGDM | M3 Prox-DC | Track 1 扩展（Hybrid / Poisson） |
+|---|---:|---:|---:|---:|---:|---:|
+| 30 视角 | 23.50 | 32.22 | 24.40 | 32.17 | 31.62 | **33.99**（Hybrid $t_{\text{sw}}{=}0.4$） |
+| 60 视角 | 28.50 | 35.50 | 24.54 | 36.93 | 35.95 | **37.63**（Hybrid $t_{\text{sw}}{=}0.4$，LPIPS 0.069） |
+| 90 视角 | 30.58 | 37.41 | 24.54 | 38.09 | 38.62 | **38.99**（Hybrid $t_{\text{sw}}{=}0.4$） |
+| 限角 120° | 19.09 | **32.44** | — | 29.15 ($\zeta{=}0.25$) | 29.32 | 无条件最优 29.32（M3 稳态，DC 紧 3.3×） |
+| 限角 90° | 16.04 | **29.98** | — | 24.68 ($\zeta{=}0.25$) | 24.38 | 无条件最优 24.68（M3 稳态，DC 紧 2.6×） |
+| 低剂量 $I_0{=}10^5$ | 26.21 | 35.32 | 24.55 | 33.16 | 30.60 | **35.60**（M2-Poisson，LPIPS 0.079）；M3-PWLS 32.44 |
+| 极端低剂量 $I_0{=}10^4$（零样本） | 18.03 | — | 24.50 | 22.53 | 20.63 | **30.18**（M2-Poisson，+7.65 dB）；M3-MAP **28.41**（+7.78 dB） |
 
-- **最优规则随扫描几何反转**：60 视角单样本 M2 最优（+1.43 dB 超 FBPConvNet，95% CI [0.95, 1.91]）；但在强病态限角重建下 **M3 大幅反超 M2**（120° 高 +2.12 dB，CI [1.08, 3.26]；90° 高 +2.63 dB，CI [1.58, 3.71]）。
-- **M3 步数效率最高、后验均值最好**：20 步即达 36.23 dB（200 张图约 36 秒）；60 视角取 8 个样本后验均值达 39.41 dB（超 FBPConvNet +3.92 dB，CI [2.97, 4.95]）。
-- **M1（DPS 式）在流 ODE 上失效**：无论 30、60 还是 90 视角，都饱和在约 24.5 dB，并会产生解剖幻觉。
-- **低剂量与正弦图补全探针**：无显式噪声模型时监督基线仍占优（+2.17 dB）；采样器内一维角度 SSM 补全正弦图（Phase 1b，含融合 Triton 核 45× 加速）未超越二维图像流先验自身投影（60 视角 +0.01 dB，限角 120° −0.03 dB），已触发止损并纳入论文分析。
+- **早 M3 晚 M2 混合调度（$t_{\text{sw}}{=}0.4$）横扫全部稀疏视角单样本最优**：30/60/90 视角分别达到 **33.99 / 37.63 / 38.99 dB**，超纯 M2 `+0.71` 至 `+1.82 dB`（60 视角 CI `[+0.20, +1.29]`）、超同骨干监督基线 FBPConvNet `+1.59` 至 `+2.14 dB`（60 视角 CI `[+1.37, +3.03]`），同时相对纯 M2 降低 37% LPIPS 并提速 **14.6%**（同卡 A100 耗时 `2.12` vs `2.48 min`）。
+- **解析逐射线 Poisson 建模（$\Sigma_y/r_t^2$ + Jacobi PCG）彻底逆转低剂量短板**：`M2-Poisson` 在纯解析倍率（$\alpha{=}1.0$）下于 $I_0{=}10^5$ 达到 **35.60 dB / LPIPS 0.079**（较无噪 M2 提升 `+2.44 dB`，CI `[+2.03, +2.91]`；PSNR 与 LPIPS 双双反超监督基线 FBPConvNet 的 `35.32 dB / 0.088`），并零样本迁移至 $I_0{=}10^4$ 达到 **30.18 dB**（`+7.65 dB`）；贝叶斯 `M3-PWLS-MAP`（$\lambda_0/r_t^2$）在 $I_0{=}10^4$ 同样实现 **`+7.78 dB`** 零样本跃升（`28.41 dB`）。
+- **限角复核与完整 6 协议监督基线**：向低值扩展限角 M2 网格发现位于 $\zeta{=}0.25$ 的狭窄内点峰（`la120` 29.15 dB、`la90` 24.68 dB），复核后 M2 与 M3 统计持平但 M2 在 $\zeta{\ge}0.5$ 即发生陡峭失稳，而 M3 在两个数量级上平坦稳定且 DC 紧 3–4 倍；补齐后的限角监督基线 FBPConvNet 达 `32.44 dB`（120°）与 `29.98 dB`（90°），量化出无条件流先验在大缺失扇区仍存在 3.1–5.3 dB 缺口。
+- **M3 步数效率与后验均值最优、M1 终版权重失效诊断**：M3 20 步即达 36.23 dB，60 视角 $K{=}8$ 后验均值达 **39.41 dB**（超 FBPConvNet `+3.92 dB`，CI `[2.97, 4.95]`）；在最终 120k 先验上复测确认 M1 在 $t{=}0$ 处存在 **15.6×** 梯度尖峰（RMS 1.41 vs 后期均值 0.090），导致流 ODE 上饱和在 ~24.5 dB。
+- **Phase 1b 采样器内一维正弦图补全探针**：2.57M 一维角度 SSM（融合 Triton 核 45× 加速）未超越二维图像先验自身投影（60 视角 `+0.007 dB`，120° `-0.028 dB`），已止损归档。
 
-<p align="center"><img src="paper/figures/qualitative.png" width="90%"></p>
+<p align="center"><img src="paper/figures/track1_qualitative.png" width="90%"></p>
+<p align="center"><img src="paper/figures/limited_angle.png" width="90%"></p>
 
-完整的数值、置信区间和配对检验见 [`results/analysis.json`](results/analysis.json) 与 [`results/summary.md`](results/summary.md)。
+矢量分析图见 [`track1_solvers.pdf`](paper/figures/track1_solvers.pdf)、[`m1_grad_120k.pdf`](paper/figures/m1_grad_120k.pdf) 与 [`architecture.pdf`](paper/figures/architecture.pdf)；完整的数值、置信区间和配对检验见 [`results/analysis.json`](results/analysis.json)、[`results/phase1b/bootstrap_summary.json`](results/phase1b/bootstrap_summary.json) 与 [`results/track1/bootstrap_summary.json`](results/track1/bootstrap_summary.json)。
 
 ## 仓库结构
 
@@ -115,7 +118,7 @@ python src/data/prepare_slices.py --raw <解压后的目录> --out <processed �
 # 日志应显示 "meta.csv 划分匹配 1228/1228 例"；同时生成固定评测集 slices_test200.npy
 
 # 3. 单元测试
-python tests/test_radon.py && python tests/test_hlcc.py && python tests/test_angle_ssm.py && python tests/test_dcfull.py
+python tests/test_radon.py && python tests/test_hlcc.py && python tests/test_angle_ssm.py && python tests/test_dcfull.py && python tests/test_track1.py
 
 # 4. 先验（单张 RTX 5090 约 6.3 小时）
 python src/train_flow.py --config configs/prior_256.yaml
@@ -134,15 +137,14 @@ python scripts/analyze.py --results results --index results/index_test200.csv --
 ## 局限
 
 - 前向模型是作用在重建体数据上的平行束仿真，没有涉及扇束 / 锥束几何、算子失配和真实投影数据。
-- 引导强度在每种噪声情形下只调一次，再迁移到其他视角数和剂量；I0=1e4 没有重新调参。
-- FBPConvNet 只训了约 3.7 个 epoch（先验约 89 个），因此它的数字是下界。
-- 「DPS 梯度沿轨迹变化约 60 倍」这一结论来自中间权重上的初步测量。
+- 引导强度在每种噪声情形下只在验证集调一次，再零样本迁移到其他视角数和剂量（$I_0{=}10^4$ 未重调）。
+- 全部 6 协议的 FBPConvNet 统一训练 1 万步（约 3.7 epoch，先验约 89 epoch），代表受控预算下的基线而非监督渐近上限。
 
 论文中有完整的讨论。
 
-## Phase 1b 探针与后续方向
+## 后续路线图（Track 1 已收口，下一步进入 Track 2）
 
-已在 Colab A100 上完成限角（120° / 90°）基线对照及采样器内 1D 角度 SSM 正弦图补全 + HLCC 探针（详见 [`results/phase1b/`](results/phase1b/) 与论文第 5.6 节）。实验表明 1D 正弦图补全无法超越 2D 图像流先验自身的 Radon 投影，已按预设 0.3 dB 止损线收口；后续双轨升级与剩余 180 CU 算力分配见 [`docs/03_roadmap_v2.md`](docs/03_roadmap_v2.md)（Track 1：噪声感知 Poisson-WLS 与混合引导调度完成 Paper 1 投稿；Track 2：2D 条件流 + 真实扇束/3D 底座冲刺 2027 顶会）。
+Track 1（Poisson 噪声感知流求解器、早 M3 晚 M2 混合调度、限角 M2 内点复核、限角 FBPConvNet 补齐与 120k 权重 M1 梯度复测）已全部完成并写入终版中英文论文（详见 [`results/track1/`](results/track1/)）。剩余 `133.55 CU` 的 Track 2 规划（2D 条件流 ControlNet/LoRA 门控 + 真实扇束 2DeteCT / 3D 层间一致）见 [`docs/03_roadmap_v2.md`](docs/03_roadmap_v2.md)。
 
 后续研究优先级、阶段验收、数据隔离与新增文献定位见 [Research Roadmap](ROADMAP.md)（2026-10-31 更新）。该路线图补充现有 Phase 1b 设计，新增实验仍为待办。
 

@@ -24,7 +24,8 @@ import yaml
 from src.data.dataset import SliceDataset, SyntheticPhantomDataset
 from src.eval.metrics import data_consistency, lpips_dist, psnr, ssim, summarize
 from src.physics.hlcc import hlcc_project
-from src.physics.radon import CTOperator, interp_missing_rows, measured_mask, weighted_cg_dc
+from src.physics.radon import (CTOperator, diag_aat_approx, diag_atwa_approx, interp_missing_rows,
+                               measured_mask, poisson_ray_variance, weighted_cg_dc)
 from src.utils import load_ema, save_first, save_grid, save_per_image, set_seed
 
 
@@ -56,71 +57,117 @@ def make_measurement(op, x, cfg, generator=None, indices=None):
 
 def posterior_sample(model, op, y, shape, guidance: str, nfe: int, zeta: float = 1.0, dc_lam: float = 1.0,
                      dc_iters: int = 5, pigdm_cg_iters: int = 5, generator=None, t_start_guidance: float = 0.0,
-                     pigdm_sigma_y: float = 0.0, pigdm_eta: float = 1e-3, full: dict | None = None):
+                     pigdm_sigma_y: float = 0.0, pigdm_eta: float = 1e-3, full: dict | None = None,
+                     t_switch: float = 0.4, noise_model: str = "none", noise_scale: float = 1.0,
+                     dc_schedule: str = "const", physics_cfg: dict | None = None):
     """从 t=0（噪声）积分到 t=1（数据），每步按 guidance 引入测量 y。
 
-    dps  : x ← x + Δt·(v − ζ·∇ₓ‖A x̂₁ − y‖/√s)，s = tr(AᵀA)/N²；ζ 乘 Δt 使总引导量与 NFE 无关，
-           除以 √s 使 ζ 与角度数无关。
-    pigdm: 解 (AAᵀ + (σ_y²/r_t² + η·s) I) z = y − A x̂₁（s = tr(AAᵀ)/m），
-           x ← x + Δt·v + ζ·t₁·∇ₓ⟨x̂₁, Aᵀz⟩；t₁ 对应 ΠGDM 中的信号系数 √ᾱ_t。
-    dc   : x̂₁ 做 CG 近端投影 argmin ||A x − y||² + λ||x − x̂₁||²（λ = dc_lam·tr(AᵀA)/N²），
-           再按 (ε̂, x̂₁_dc) 重组 x_{t+Δt}（DDNM 式）。
-    dcfull: full 为上下文字典 {op, mask, y_full, mode, completer, y_interp, kappa, use_conf, hlcc}；
-           x̂₁ 换成 argmin ‖W^{1/2}(A_full x − ŷ)‖² + λ‖x − x̂₁‖²，ŷ 的已测行 = y，未测行由 mode 决定：
-           ssm（补全器，权重 κ/σ²_θ，σ² 为补全器预测的方差）、interp（环形插值，权重 κ）、pred（A_full x̂₁，权重 κ）。
+    dps   : x ← x + Δt·(v − ζ·∇ₓ‖A x̂₁ − y‖/√s)，s = tr(AᵀA)/N²；ζ 乘 Δt 使总引导量与 NFE 无关，
+            除以 √s 使 ζ 与角度数无关。
+    pigdm : 解 (AAᵀ + (Σ_y/r_t² + η·s I)) z = y − A x̂₁（s = tr(AAᵀ)/m），
+            x ← x + Δt·v + ζ·t₁·∇ₓ⟨x̂₁, Aᵀz⟩；t₁ 对应 ΠGDM 中的信号系数 √ᾱ_t。
+            noise_model="scalar" 用解析均值方差 σ̄_y²，"poisson" 用逐射线方差 Σ_y + Jacobi 预条件 CG。
+    dc    : x̂₁ 做 CG 近端投影 argmin ‖W^{1/2}(A x − y)‖² + λ(t)‖x − x̂₁‖²，再按 (ε̂, x̂₁_dc) 重组 x_{t+Δt}。
+            noise_model="poisson" 时 W = Σ_y⁻¹ ∝ I₀ e^{-μy}；dc_schedule="rt2" 时 λ(t) = λ₀/r_t²（精确 MAP）。
+    hybrid: 混合调度，t < t_switch 用 M3(dc) 稳定全局结构，t ≥ t_switch 切 M2(pigdm) 锐化边缘。
+    dcfull: Phase 1b。full 为上下文字典 {op, mask, y_full, mode, completer, y_interp, kappa, use_conf, hlcc}。
     """
     device = y.device
     x = torch.randn(shape, device=device, generator=generator)
     ts = torch.linspace(0, 1, nfe + 1, device=device)
     b = shape[0]
+
+    # 预先按物理噪声模型构造逐射线方差与对角预条件器（仅算一次，避免在 ODE 循环内重复求伴随）
+    sigma_y2_ray = None
+    sigma_y2_scalar = None
+    w_ray = None
+    diag_atwa = None
+    diag_aat = None
+    if noise_model != "none" and physics_cfg is not None:
+        i0 = physics_cfg.get("i0")
+        sigma = float(physics_cfg.get("sigma", 0.0) or 0.0)
+        mu_scale = float(physics_cfg.get("mu_scale", 0.06))
+        if (i0 is not None and i0 > 0) or sigma > 0:
+            sigma_y2_ray = poisson_ray_variance(y, i0=i0, sigma=sigma, mu_scale=mu_scale)
+            sigma_y2_scalar = sigma_y2_ray.flatten(1).mean(dim=1).view(-1, 1, 1, 1)
+            if noise_model == "poisson":
+                w_ray = 1.0 / sigma_y2_ray.clamp(min=1e-12)
+                if guidance in ("dc", "hybrid"):
+                    diag_atwa = diag_atwa_approx(op, w_ray)
+                if guidance in ("pigdm", "hybrid"):
+                    diag_aat = diag_aat_approx(op)
+
     for i in range(nfe):
         t0, t1 = ts[i], ts[i + 1]
         tb = t0.expand(b)
         dt = t1 - t0
-        need_grad = guidance in ("dps", "pigdm") and float(t0) >= t_start_guidance
+        step_guid = ("dc" if float(t0) < t_switch else "pigdm") if guidance == "hybrid" else guidance
+        need_grad = step_guid in ("dps", "pigdm") and float(t0) >= t_start_guidance
         with torch.set_grad_enabled(need_grad):
             if need_grad:
                 x = x.detach().requires_grad_(True)
             v = model(x, tb)
             x1 = x + (1 - t0) * v
-            if guidance == "dps" and need_grad:
+            if step_guid == "dps" and need_grad:
                 r = op(x1) - y
                 norm = r.flatten(1).norm(dim=1)
                 g, = torch.autograd.grad(norm.sum(), x)
                 # 梯度量级随算子范数 √tr(AᵀA)/N 增长（60 视角约 3.4，180 视角约 5.9），除以它使 ζ 跨视角数可比
                 x_next = (x + dt * (v - zeta * g / op.ata_scale ** 0.5)).detach()
-            elif guidance == "pigdm" and need_grad:
+            elif step_guid == "pigdm" and need_grad:
                 r = (y - op(x1)).detach()
                 # x_t=(1-t)ε+t x 下 x̂₁ 的后验方差系数 r_t² = (1-t)²/(t²+(1-t)²)（等效 VE σ̃=(1-t)/t）
                 r_t2 = float(((1 - t0) ** 2) / (t0 ** 2 + (1 - t0) ** 2 + 1e-8))
-                damp = pigdm_sigma_y ** 2 / max(r_t2, 1e-8) + pigdm_eta * op.aat_scale
-                # 测量域 CG 解 (A Aᵀ + damp·I) z = r
-                z = torch.zeros_like(r); res = r.clone(); p = res.clone()
-                rs = (res * res).flatten(1).sum(1)
+                if noise_model == "poisson" and sigma_y2_ray is not None:
+                    damp = (noise_scale * sigma_y2_ray) / max(r_t2, 1e-8) + pigdm_eta * op.aat_scale
+                elif noise_model == "scalar" and sigma_y2_scalar is not None:
+                    damp = (noise_scale * sigma_y2_scalar) / max(r_t2, 1e-8) + pigdm_eta * op.aat_scale
+                else:
+                    damp = pigdm_sigma_y ** 2 / max(r_t2, 1e-8) + pigdm_eta * op.aat_scale
+                m_inv = None if (diag_aat is None or noise_model != "poisson") else 1.0 / (diag_aat + damp).clamp(min=1e-8)
+                # 测量域（预条件）CG 解 (A Aᵀ + damp) z = r
+                z = torch.zeros_like(r); res = r.clone()
+                u = res if m_inv is None else m_inv * res
+                p = u.clone()
+                rz = (res * u).flatten(1).sum(1)
                 for _ in range(pigdm_cg_iters):
                     Ap = op.A_lin(op.A_lin_T(p)) + damp * p
-                    alpha = rs / ((p * Ap).flatten(1).sum(1) + 1e-12)
+                    alpha = rz / ((p * Ap).flatten(1).sum(1) + 1e-12)
                     z = z + alpha.view(-1, 1, 1, 1) * p
                     res = res - alpha.view(-1, 1, 1, 1) * Ap
-                    rs_new = (res * res).flatten(1).sum(1)
-                    p = res + (rs_new / (rs + 1e-12)).view(-1, 1, 1, 1) * p
-                    rs = rs_new
+                    u = res if m_inv is None else m_inv * res
+                    rz_new = (res * u).flatten(1).sum(1)
+                    p = u + (rz_new / (rz + 1e-12)).view(-1, 1, 1, 1) * p
+                    rz = rz_new
                 w = op.A_lin_T(z).detach()
                 g, = torch.autograd.grad((x1 * w).sum(), x)
                 x_next = (x + dt * v + zeta * t1 * g).detach()
             else:
                 x_next = (x + dt * v).detach()
-        if guidance == "dcfull" and float(t0) >= t_start_guidance:
+        if step_guid == "dcfull" and float(t0) >= t_start_guidance:
             with torch.no_grad():
                 x1 = x1.detach()
                 eps_hat = x.detach() - t0 * v.detach()
                 x1_dc = _dcfull_step(full, x1, t0, b, dc_lam, dc_iters)
                 x_next = (1 - t1) * eps_hat + t1 * x1_dc
-        if guidance == "dc" and float(t0) >= t_start_guidance:
+        if step_guid == "dc" and float(t0) >= t_start_guidance:
             with torch.no_grad():
                 x1 = x1.detach()
                 eps_hat = x.detach() - t0 * v.detach()
-                x1_dc = op.cg_data_consistency(x1, y, lam=dc_lam, n_iter=dc_iters, relative=True)
+                r_t2 = float(((1 - t0) ** 2) / (t0 ** 2 + (1 - t0) ** 2 + 1e-8))
+                if noise_model == "poisson" and w_ray is not None:
+                    if dc_schedule == "rt2":
+                        lam_step = (dc_lam * noise_scale) / max(r_t2, 1e-8)
+                        x1_dc = weighted_cg_dc(op, x1, y, w_ray, lam=lam_step, n_iter=dc_iters,
+                                               relative=False, precond_diag=diag_atwa)
+                    else:
+                        x1_dc = weighted_cg_dc(op, x1, y, w_ray, lam=dc_lam, n_iter=dc_iters,
+                                               relative=True, precond_diag=diag_atwa)
+                elif dc_schedule == "rt2":
+                    lam_step = dc_lam / max(r_t2, 1e-8)
+                    x1_dc = op.cg_data_consistency(x1, y, lam=lam_step, n_iter=dc_iters, relative=True)
+                else:
+                    x1_dc = op.cg_data_consistency(x1, y, lam=dc_lam, n_iter=dc_iters, relative=True)
                 x_next = (1 - t1) * eps_hat + t1 * x1_dc
         x = x_next
     return x.detach().clamp(-1, 1)
@@ -175,7 +222,16 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--ckpt", required=True)
     ap.add_argument("--config", required=True)
-    ap.add_argument("--guidance", choices=["dps", "pigdm", "dc", "dcfull", "none"], default="dps")
+    ap.add_argument("--guidance", choices=["dps", "pigdm", "dc", "hybrid", "dcfull", "none"], default="dps")
+    ap.add_argument("--t-switch", type=float, default=0.4, help="hybrid 调度从 M3(dc) 切换到 M2(pigdm) 的时刻")
+    ap.add_argument("--noise-model", choices=["none", "scalar", "poisson"], default="none",
+                    help="噪声感知模式：none（原无噪假设）、scalar（解析均值方差）、poisson（逐射线逆方差 + PCG）")
+    ap.add_argument("--noise-scale", type=float, default=1.0, help="解析噪声方差标定倍率（默认 1.0）")
+    ap.add_argument("--dc-schedule", choices=["const", "rt2"], default="const",
+                    help="dc 的 λ 时间调度：const（常数）或 rt2（精确 MAP 的 λ₀/r_t²）")
+    ap.add_argument("--dc-iters", type=int, default=None, help="覆盖 sampling.dc_iters")
+    ap.add_argument("--pigdm-cg-iters", type=int, default=None, help="覆盖 sampling.pigdm_cg_iters")
+    ap.add_argument("--pigdm-sigma-y", type=float, default=None, help="覆盖 sampling.pigdm_sigma_y")
     ap.add_argument("--full-mode", choices=["ssm", "interp", "pred"], default="ssm", help="dcfull 的未测行来源")
     ap.add_argument("--completer", default=None, help="dcfull/ssm 用的补全器权重（train_completer.py 输出）")
     ap.add_argument("--kappa", type=float, default=0.3, help="dcfull 未测行的基准权重")
@@ -202,6 +258,9 @@ def main():
     nfe = args.nfe or s.get("nfe", 50)
     zeta = args.zeta if args.zeta is not None else s.get("zeta", 1.0)
     dc_lam = args.dc_lam if args.dc_lam is not None else s.get("dc_lam", 1.0)
+    dc_iters = args.dc_iters if args.dc_iters is not None else s.get("dc_iters", 5)
+    pigdm_cg_iters = args.pigdm_cg_iters if args.pigdm_cg_iters is not None else s.get("pigdm_cg_iters", 5)
+    pigdm_sigma_y = args.pigdm_sigma_y if args.pigdm_sigma_y is not None else s.get("pigdm_sigma_y", 0.0)
     split = args.split or cfg["data"].get("split", "test")
     t_guid = args.t_start if args.t_start is not None else s.get("t_start_guidance", 0.0)
     n_samples = args.n_samples or s.get("n_samples", 1)
@@ -256,11 +315,13 @@ def main():
         samples = []
         for _ in range(n_samples):
             xs = posterior_sample(model, op, y, x.shape, args.guidance, nfe, zeta=zeta,
-                                  dc_lam=dc_lam, dc_iters=s.get("dc_iters", 5),
-                                  pigdm_cg_iters=s.get("pigdm_cg_iters", 5), generator=gen,
+                                  dc_lam=dc_lam, dc_iters=dc_iters,
+                                  pigdm_cg_iters=pigdm_cg_iters, generator=gen,
                                   t_start_guidance=t_guid,
-                                  pigdm_sigma_y=s.get("pigdm_sigma_y", 0.0), pigdm_eta=s.get("pigdm_eta", 1e-3),
-                                  full=full)
+                                  pigdm_sigma_y=pigdm_sigma_y, pigdm_eta=s.get("pigdm_eta", 1e-3),
+                                  full=full, t_switch=args.t_switch, noise_model=args.noise_model,
+                                  noise_scale=args.noise_scale, dc_schedule=args.dc_schedule,
+                                  physics_cfg=cfg["physics"])
             samples.append(xs)
         S = torch.stack(samples)  # [K,B,1,N,N]
         x_hat = S[0]
@@ -286,7 +347,10 @@ def main():
         print(f"[{i0 + x.shape[0]}/{len(ds)}] psnr={sum(agg['psnr']) / len(agg['psnr']):.2f} "
               f"fbp={sum(agg['psnr_fbp']) / len(agg['psnr_fbp']):.2f}  {(time.time() - t_start) / 60:.1f} min")
 
-    res = {"guidance": args.guidance, "nfe": nfe, "zeta": zeta, "dc_lam": dc_lam, "t_start_guidance": t_guid,
+    res = {"guidance": args.guidance, "nfe": nfe, "zeta": zeta, "dc_lam": dc_lam, "dc_iters": dc_iters,
+           "pigdm_cg_iters": pigdm_cg_iters, "t_start_guidance": t_guid,
+           "noise_model": args.noise_model, "noise_scale": args.noise_scale, "dc_schedule": args.dc_schedule,
+           **({"t_switch": args.t_switch} if args.guidance == "hybrid" else {}),
            "n_samples": n_samples,
            "split": split, "n_test": len(ds), "ckpt": args.ckpt,
            **({"full_mode": args.full_mode, "kappa": args.kappa, "use_conf": not args.no_conf, "hlcc": args.hlcc,

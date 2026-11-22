@@ -1,0 +1,60 @@
+{
+  "guidance": "pigdm",
+  "nfe": 50,
+  "zeta": 0.25,
+  "dc_lam": 1.0,
+  "dc_iters": 5,
+  "pigdm_cg_iters": 5,
+  "t_start_guidance": 0.0,
+  "noise_model": "scalar",
+  "noise_scale": 4.0,
+  "dc_schedule": "const",
+  "n_samples": 1,
+  "split": "val",
+  "n_test": 50,
+  "ckpt": "checkpoints/prior_256/ema_final.pt",
+  "physics": {
+    "n_angles": 180,
+    "i0": 100000.0,
+    "sigma": 0.0,
+    "mu_scale": 0.06
+  },
+  "metrics": {
+    "psnr": {
+      "mean": 33.182231483459475,
+      "std": 3.4908045138110335,
+      "n": 50
+    },
+    "ssim": {
+      "mean": 0.8490454113483429,
+      "std": 0.09419324809242387,
+      "n": 50
+    },
+    "lpips": {
+      "mean": 0.12571620739996434,
+      "std": 0.08431410982026386,
+      "n": 50
+    },
+    "dc": {
+      "mean": 0.012211036421358585,
+      "std": 0.003527339698020545,
+      "n": 50
+    },
+    "psnr_fbp": {
+      "mean": 25.973172340393067,
+      "std": 3.304327428788922,
+      "n": 50
+    },
+    "ssim_fbp": {
+      "mean": 0.5767368215322495,
+      "std": 0.15797447644449022,
+      "n": 50
+    },
+    "lpips_fbp": {
+      "mean": 0.3337420538067818,
+      "std": 0.20074160633468996,
+      "n": 50
+    }
+  },
+  "minutes": 0.962878143787384
+}

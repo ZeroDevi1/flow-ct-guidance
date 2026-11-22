@@ -95,17 +95,18 @@ def make_probe_fig(p1b: Path, val_log_path: Path, out: Path):
     ax1.grid(alpha=0.28)
     ax1.legend(fontsize=7.2, ncol=2, loc="upper right", frameon=True)
 
-    # 右图：限角（la120 / la90）与稀疏（sv60）关键方法对比
+    # 右图：限角（la120 / la90）与稀疏（sv60）关键方法对比（限角 M2 采用 Track 1 复核后的内点最优 ζ=0.25）
     groups = ["60 views", "120° lim.", "90° lim."]
     x = np.arange(len(groups))
     w = 0.20
     bs = json.loads((p1b / "bootstrap_summary.json").read_text())
-    m2 = [36.93, bs["main_la120_pigdm"]["psnr"], bs["main_la90_pigdm"]["psnr"]]
+    t1_bs = json.loads((p1b.parent / "track1" / "bootstrap_summary.json").read_text())["metrics"]
+    m2 = [36.93, t1_bs["main_la120_pigdm_z0.25"]["psnr"], t1_bs["main_la90_pigdm_z0.25"]["psnr"]]
     m3 = [35.95, bs["main_la120_dc"]["psnr"], bs["main_la90_dc"]["psnr"]]
     interp = [bs["main_sv60_dcfull_interp"]["psnr"], bs["main_la120_dcfull_interp"]["psnr"], bs["main_la90_dcfull_interp"]["psnr"]]
     ssm = [bs["main_sv60_dcfull_ssm_hlcc"]["psnr"], bs["main_la120_dcfull_ssm_hlcc"]["psnr"], np.nan]
 
-    b1 = ax2.bar(x - 1.5 * w, m2, w, label="M2 (ΠGDM)", color="#4c78a8")
+    b1 = ax2.bar(x - 1.5 * w, m2, w, label="M2 (ΠGDM, best ζ)", color="#4c78a8")
     b2 = ax2.bar(x - 0.5 * w, m3, w, label="M3 (Prox-DC)", color="#f58518")
     b3 = ax2.bar(x + 0.5 * w, interp, w, label="dcfull-interp", color="#bab0ac")
     b4 = ax2.bar(x[:2] + 1.5 * w, ssm[:2], w, label="dcfull-SSM+HLCC", color="#54a24b")
@@ -120,7 +121,7 @@ def make_probe_fig(p1b: Path, val_log_path: Path, out: Path):
     ax2.set_xticklabels(groups, fontsize=8.5)
     ax2.set_ylabel("PSNR (dB), test200", fontsize=9)
     ax2.set_ylim(16, 40.5)
-    ax2.set_title("(b) Geometry Flip (M2 vs. M3) & Completion Probe", fontsize=9.5)
+    ax2.set_title("(b) Recalibrated M2/M3 & Completion Probe", fontsize=9.5)
     ax2.grid(axis="y", alpha=0.28)
     ax2.legend(fontsize=7.2, loc="upper right", frameon=True)
 
@@ -196,8 +197,8 @@ def make_architecture_fig(out: Path):
              ha="center", va="center", fontsize=7.6, fontweight="bold", color="#184e77")
     rules = [
         ("M1: DPS-grad\n$-\\Delta t\\frac{\\zeta}{\\sqrt{s_x}}\\nabla\\|A\\hat{x}_1-y\\|$\n(U-Net backprop)", 0.42, "#fdecea", "#c0392b"),
-        ("M2: ΠGDM\n5-CG $(AA^\\top+\\eta s_y I)^{-1}r$\n+ VJP through U-Net", 2.74, "#e8f4fd", "#1f77b4"),
-        ("M3: Prox-DC\n5-CG image-space DC\n(no U-Net backprop)", 5.06, "#eaf7ea", "#2e7d32"),
+        ("M2: ΠGDM (+Poisson)\n5-PCG $(AA^\\top+\\Sigma_y/r_t^2)^{-1}r$\n+ VJP through U-Net", 2.74, "#e8f4fd", "#1f77b4"),
+        ("M3: Prox-DC (+Hybrid)\n5-PCG PWLS / $t{<}t_{\\mathrm{sw}}$ M3\n$\\to t{\\geq}t_{\\mathrm{sw}}$ M2", 5.06, "#eaf7ea", "#2e7d32"),
         ("M3-Full (dcfull)\nFull $180^\\circ$ weighted CG\nusing Panel (b) + HLCC", 7.38, "#f3ecfa", "#6a3d9a"),
     ]
     for txt, rx, rfc, rec in rules:
