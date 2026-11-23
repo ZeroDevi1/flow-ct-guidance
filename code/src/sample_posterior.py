@@ -248,6 +248,9 @@ def main():
     ap.add_argument("--dc-lam", type=float, default=None, help="覆盖 sampling.dc_lam（相对量纲）")
     ap.add_argument("--split", default=None, help="覆盖 data.split；调参用 val，主表用 test200")
     ap.add_argument("--t-start", type=float, default=None, help="覆盖 sampling.t_start_guidance：t 小于该值的步不加引导")
+    ap.add_argument("--control-ckpt", default=None, help="Track 2-1：2D 测量条件化 ControlNet 分支权重")
+    ap.add_argument("--cond-scale", type=float, default=1.0, help="ControlNet 条件分支注入强度（0 退化为无条件先验）")
+    ap.add_argument("--cfg-scale", type=float, default=1.0, help="Classifier-free guidance 缩放（默认 1.0，单次前向）")
     ap.add_argument("--no-lpips", action="store_true")
     args = ap.parse_args()
 
@@ -270,7 +273,13 @@ def main():
     device = "cuda" if torch.cuda.is_available() else "cpu"
     out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
 
-    model, mcfg = load_ema(args.ckpt, device)
+    ctrl_model = None
+    if args.control_ckpt:
+        from src.models.control_flow import BoundControlFlow, build_cond_context, fourier_wedge_mask, load_control_flow
+        ctrl_model, mcfg = load_control_flow(args.ckpt, args.control_ckpt, device=device)
+        model = ctrl_model.base
+    else:
+        model, mcfg = load_ema(args.ckpt, device)
     completer = None
     if args.guidance == "dcfull" and args.full_mode == "ssm":
         from src.models.angle_ssm import AngleCompleter
@@ -300,6 +309,9 @@ def main():
         p = cfg["physics"]
         full_mask = measured_mask(180, p.get("n_angles", 180), p.get("angle_range", 3.141592653589793)).to(device)
         op_full = CTOperator(n, n_angles=180, device=device)
+    ctrl_fmask = None
+    if ctrl_model is not None:
+        ctrl_fmask = fourier_wedge_mask(n, op.angles, device=device, dtype=torch.float32)
     first_batch, worst = None, []
     t_start = time.time()
     for i0 in range(0, len(ds), bs):
@@ -307,6 +319,10 @@ def main():
         x = torch.stack([ds[j] for j in idx]).to(device)
         y = make_measurement(op, x, cfg, indices=idx)
         x_fbp = op.fbp(y)
+        step_model = model
+        if ctrl_model is not None:
+            cond_ctx = build_cond_context(op, y, physics_cfg=cfg["physics"], x_fbp=x_fbp, freq_mask=ctrl_fmask)
+            step_model = BoundControlFlow(ctrl_model, cond_ctx, cond_scale=args.cond_scale, cfg_scale=args.cfg_scale)
         full = None
         if args.guidance == "dcfull":
             full = build_full_context(cfg, n, device, y, args.full_mode, completer, kappa=args.kappa,
@@ -314,7 +330,7 @@ def main():
                                       op_full=op_full, mask=full_mask)
         samples = []
         for _ in range(n_samples):
-            xs = posterior_sample(model, op, y, x.shape, args.guidance, nfe, zeta=zeta,
+            xs = posterior_sample(step_model, op, y, x.shape, args.guidance, nfe, zeta=zeta,
                                   dc_lam=dc_lam, dc_iters=dc_iters,
                                   pigdm_cg_iters=pigdm_cg_iters, generator=gen,
                                   t_start_guidance=t_guid,
@@ -353,6 +369,8 @@ def main():
            **({"t_switch": args.t_switch} if args.guidance == "hybrid" else {}),
            "n_samples": n_samples,
            "split": split, "n_test": len(ds), "ckpt": args.ckpt,
+           **({"control_ckpt": args.control_ckpt, "cond_scale": args.cond_scale, "cfg_scale": args.cfg_scale}
+              if args.control_ckpt else {}),
            **({"full_mode": args.full_mode, "kappa": args.kappa, "use_conf": not args.no_conf, "hlcc": args.hlcc,
                "completer": args.completer} if args.guidance == "dcfull" else {}),
            "physics": cfg["physics"], "metrics": summarize(agg), "minutes": (time.time() - t_start) / 60}
